@@ -16,3 +16,23 @@ py manage.py runserver
 py manage.py runserver 8001
 
 py .\manage.py startapp chai
+
+uv pip install django-tailwind
+
+#install pip
+py -m ensurepip --upgrade
+py -m pip install --upgrade pip
+
+py .\manage.py tailwind init
+
+py .\manage.py tailwind install
+
+py .\manage.py tailwind start
+
+where npm 
+
+py .\manage.py migrate
+
+py .\manage.py createsuperuser
+
+user  password
