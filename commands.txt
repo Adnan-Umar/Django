@@ -15,4 +15,4 @@ django-admin startproject chaiaurDjango
 py manage.py runserver
 py manage.py runserver 8001
 
-
+py .\manage.py startapp chai
