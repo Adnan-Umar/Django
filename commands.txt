@@ -12,4 +12,7 @@ uv pip install Django
 
 django-admin startproject chaiaurDjango
 
+py manage.py runserver
+py manage.py runserver 8001
+
 
