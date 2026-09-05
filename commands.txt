@@ -1,0 +1,15 @@
+pip install uv
+
+uv venv   # Create a virtual environment  at .venv
+
+.venv\Scripts\activate
+
+uv pip install <.......>
+
+pip install Django
+
+uv pip install Django
+
+django-admin startproject chaiaurDjango
+
+
