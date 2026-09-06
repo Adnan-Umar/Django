@@ -36,3 +36,9 @@ py .\manage.py migrate
 py .\manage.py createsuperuser
 
 user  password
+
+py -m pip install Pillow
+
+py .\manage.py makemigrations chai
+
+py .\manage.py migrate   
