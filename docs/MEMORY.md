@@ -22,7 +22,7 @@
 | Code | Folder | Title | Status | Sources available? |
 |---|---|---|---|---|
 | A001 | `A001_Introduction_What_is_Django` | Introduction to Django / What is Django? | ✅ Documented | ❌ No transcript — built from topic list + official docs |
-| A002 | `A002_MVT_Architecture_Explained` | MVT Architecture Explained | 🗓️ Planned | — |
+| A002 | `A002_MVT_Architecture_Explained` | MVT Architecture Explained | ✅ Documented | ❌ No transcript — built from title + official docs + the chai app's real code (quoted verbatim) |
 
 ---
 
@@ -56,6 +56,21 @@
 - **Admin (Django admin)** — the auto-generated back-office UI for managing models · *built from `admin.py` registrations; for staff, not the public site* · 🧷 the staff-only back office.
 - **DRY (Don't Repeat Yourself)** — say everything exactly once · *every piece of knowledge has one authoritative representation; duplication breeds disagreement* · 🧷 one price tag per item.
 
+### A002 — MVT Architecture Explained
+
+- **QuerySet** — the object a model query returns: "all chais", "chais under ₹100" · *a chainable, lazy description of a database question; iterating it runs the query* · 🧷 the question you hand the storeroom.
+- **View contract** — every view takes one `request` and returns one response object · *uniform signature is what lets the dispatcher call any view* · 🧷 request in, response out — no exceptions.
+- **`render()`** — the standard way a view produces a page · *combines request + template file + context into a filled `HttpResponse`* · 🧷 "fill that file with this data."
+- **Context** — the dictionary a view hands to a template · *its keys become the template's variable names; the only official view→template data channel* · 🧷 the handoff brief.
+- **DTL (Django Template Language)** — the mini-language inside templates · *three syntaxes: `{{ variable }}`, `{% tag %}`, `{{ value\|filter }}` — intentionally not full Python* · 🧷 three shapes, read any template.
+- **Template inheritance** — a parent template declares the shared skeleton; children fill its blocks · *`{% extends %}` + `{% block %}`; one navbar definition, N pages* · 🧷 letterhead & blank fields.
+- **Path converter** — the typed part of a URL pattern, e.g. `<int:chai_id>` · *captures the URL segment, converts it, passes it as a view argument* · 🧷 the receptionist writes the room number on the ticket.
+- **`get_object_or_404()`** — fetch one row or raise a 404 page · *replaces manual try/except around `.get()` for missing records* · 🧷 "find it — or politely say not found."
+- **`pk` (primary key)** — the unique id of a row · *Django auto-adds an `id` pk to every model; `pk=chai_id` is the generic spelling* · 🧷 every row wears a badge number.
+- **`__str__()`** — the human-readable name of a model object · *used by the admin, shell and logs; without it: `ChaiVarity object (1)`* · 🧷 the shelf label on the crate.
+- **URL name & `{% url %}`** — patterns get a `name=`; templates build links from the name · *links survive URL restructuring — no hardcoded paths* · 🧷 call the room by its nickname, never its street address.
+- **Single source of truth (model)** — one model declaration governs table, forms, admin, validation · *DRY applied to data definitions* · 🧷 one declaration, many obeying behaviors.
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -68,6 +83,7 @@
 | **Restaurant** | request cycle: waiter = view, kitchen = model/ORM, plating & menu = template, order ticket = request, dish = response | A001 | architecture & lifecycle questions |
 | **Reception desk** | URL dispatcher | A001 | routing questions |
 | **Airport security lanes** | middleware | A001 | request-pipeline questions |
+| **Letterhead & blank fields** | template inheritance: parent layout declares blocks, children fill them | A002 | template reuse questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -85,6 +101,13 @@ MTV vs MVC? · Trace a request through Django · Project vs app (two concrete
 differences) · What Django does NOT do · Why Python + Django works well · What you
 would have to build by hand without a framework.
 
+**From A002:** Name the three MVT layers, their files, and the one question each
+answers · The three model mappings (class/field/object → ?) · What are `render()`'s
+three arguments? · What is a context dictionary and why do its keys matter? · The DTL's
+three syntaxes? · What problem does template inheritance solve, and how? · What does
+`get_object_or_404` prevent? · Why do templates build URLs with `{% url %}` instead of
+hardcoding them? · Walk `/chai/3/` file by file · Map a symptom to its layer.
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -92,6 +115,7 @@ would have to build by hand without a framework.
 | Chapter | Day 1 | Day 7 | Day 30 |
 |---|---|---|---|
 | A001 | Re-read 📝 Quick Revision; answer 🔁 recall questions | Redraw the 5 Mermaid diagrams from memory; explain project vs app aloud | Do the Level-4 exercise; deliver 🎯 interview answers aloud |
+| A002 | Re-read 📝 Quick Revision; recite the three layers + their files | Redraw the `/chai/3/` journey table from memory; annotate `views.py` aloud | Trace a fresh URL (e.g. `/chai/chai_stores/`) through every file; answer the interview set aloud |
 
 ---
 
@@ -110,4 +134,9 @@ would have to build by hand without a framework.
   diagram flow corrected (WHY now motivates Django instead of following the response),
   trailing blank lines trimmed. CSS: inline-code `white-space: nowrap` removed (mobile
   overflow risk) and `.diagram` selector simplified. `ChaiAurCode/**` untouched.
+- **A002 documented** — MVT deep dive built from title + official docs + the chai app's
+  real code (models/views/urls/templates quoted and annotated verbatim). 12 glossary
+  terms added; "Letterhead & blank fields" mental model registered; recall bank and
+  revision schedule extended; hub TOC updated to ✅. Key teaching artifacts: the
+  `/chai/3/` file-by-file trace and the symptom→layer debugging table.
 
