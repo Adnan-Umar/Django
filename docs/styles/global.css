@@ -1,0 +1,289 @@
+/* =====================================================================
+   DJANGO LECTURE SERIES — GLOBAL DOCUMENTATION STYLESHEET
+   ---------------------------------------------------------------------
+   File    : docs/styles/global.css
+   Purpose : Shared "study-book" design system for every lecture README.
+   Truth   : GitHub.com README rendering does NOT load external CSS.
+             This file is the design system consumed by renderers that
+             support local stylesheets (VS Code preview extensions such
+             as Markdown Preview Enhanced, pandoc, MkDocs, or any future
+             documentation site). Every Markdown file must remain fully
+             readable with CSS disabled. See docs/AGENTS.md §CSS.
+   Rules   : One file only. No per-lecture CSS. No animations.
+   ===================================================================== */
+
+/* ------------------------------------------------ 1. Design tokens */
+:root {
+  --bg:            #ffffff;
+  --fg:            #1f2328;
+  --fg-muted:      #59636e;
+  --border:        #d1d9e0;
+  --border-strong: #afb8c1;
+  --link:          #0a6e4f;             /* Django-green family */
+  --accent:        #0c4b33;             /* Django dark green   */
+  --accent-2:      #2e8b6a;             /* Django light green  */
+  --accent-soft:   #e9f5f0;
+  --code-bg:       #f6f8fa;
+  --code-fg:       #24292f;
+  --inline-bg:     #eff2f5;
+  --note-bg:   #eef5fc;  --note-border:   #3b82f6;
+  --tip-bg:    #ecfaf1;  --tip-border:    #2da44e;
+  --warn-bg:   #fff8e6;  --warn-border:   #d4a72c;
+  --imp-bg:    #fdf3f7;  --imp-border:    #bf3989;
+  --danger-bg: #fdf0ef;  --danger-border: #cf222e;
+  --card-bg:       #fafbfc;
+  --radius:        8px;
+  --shadow:        0 1px 3px rgba(31, 35, 40, 0.08);
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+               Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+               "Liberation Mono", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:            #0d1117;
+    --fg:            #e6edf3;
+    --fg-muted:      #8b949e;
+    --border:        #30363d;
+    --border-strong: #484f58;
+    --link:          #4ec99a;
+    --accent:        #44b78b;
+    --accent-2:      #3fb950;
+    --accent-soft:   #12261f;
+    --code-bg:       #161b22;
+    --code-fg:       #e6edf3;
+    --inline-bg:     #21262d;
+    --note-bg:   #111a24;  --note-border:   #4493f8;
+    --tip-bg:    #0f2118;  --tip-border:    #3fb950;
+    --warn-bg:   #241d0e;  --warn-border:   #d29922;
+    --imp-bg:    #21121c;  --imp-border:    #db61a2;
+    --danger-bg: #241012;  --danger-border: #f85149;
+    --card-bg:       #10151c;
+    --shadow:        0 1px 3px rgba(0, 0, 0, 0.40);
+  }
+}
+
+/* ------------------------------------------------ 2. Page & base type */
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+/* Container for renderers that expose a body-level wrapper */
+body > .markdown-body,
+main,
+article {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 6rem;
+}
+p { margin: 0.85rem 0; }
+strong { font-weight: 650; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+/* ------------------------------------------------ 3. Headings */
+h1, h2, h3, h4, h5 { line-height: 1.3; font-weight: 700; scroll-margin-top: 1rem; }
+h1 {
+  font-size: 2.1rem;
+  margin: 0 0 0.6rem;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: 1.45rem;
+  margin: 2.6rem 0 0.8rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+}
+h3 { font-size: 1.18rem; margin: 1.9rem 0 0.6rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 0.5rem; color: var(--accent); }
+h5 {
+  font-size: 0.94rem;
+  margin: 1.2rem 0 0.4rem;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ------------------------------------------------ 4. Links */
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ------------------------------------------------ 5. Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.1rem 0;
+  font-size: 0.93rem;
+  display: block;              /* horizontal scroll for wide tables */
+  overflow-x: auto;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+}
+thead th {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+}
+tbody tr:nth-child(even) { background: var(--card-bg); }
+
+/* ------------------------------------------------ 6. Code */
+code, pre, kbd { font-family: var(--font-mono); font-size: 0.88em; }
+:not(pre) > code {
+  background: var(--inline-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.12em 0.4em;
+  color: var(--code-fg);
+  /* no white-space:nowrap — long inline code (file paths) must wrap on narrow screens */
+}
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+  overflow-x: auto;
+  line-height: 1.55;
+  box-shadow: var(--shadow);
+}
+pre code { background: transparent; border: 0; padding: 0; white-space: pre; }
+
+
+/* ------------------------------------------------ 7. Callouts (class hooks)
+   GFM alerts (> [!NOTE] …) render natively on GitHub; these classes give
+   local renderers the same visual language. Markdown stays readable
+   without any of this. */
+blockquote {
+  margin: 1.1rem 0;
+  padding: 0.7rem 1.1rem;
+  border-left: 4px solid var(--border-strong);
+  background: var(--card-bg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+blockquote > :first-child { margin-top: 0; }
+blockquote > :last-child  { margin-bottom: 0; }
+
+blockquote.note,      div.note,
+blockquote.tip,       div.tip,
+blockquote.warning,   div.warning,
+blockquote.important, div.important,
+blockquote.caution,   div.caution {
+  border-radius: var(--radius);
+  border: 1px solid;
+  border-left-width: 4px;
+  padding: 0.8rem 1.1rem;
+}
+blockquote.note,      div.note      { background: var(--note-bg);   border-color: var(--note-border); }
+blockquote.tip,       div.tip       { background: var(--tip-bg);    border-color: var(--tip-border); }
+blockquote.warning,   div.warning   { background: var(--warn-bg);   border-color: var(--warn-border); }
+blockquote.important, div.important { background: var(--imp-bg);    border-color: var(--imp-border); }
+blockquote.caution,   div.caution   { background: var(--danger-bg); border-color: var(--danger-border); }
+
+/* ------------------------------------------------ 8. Learning cards */
+div.learning-card, div.example-card, div.interview-card,
+div.remember, div.misconception, div.checkpoint, div.revision {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem 1.25rem;
+  margin: 1.2rem 0;
+}
+div.learning-card  { border-left: 4px solid var(--accent-2); }
+div.example-card   { border-left: 4px solid var(--note-border); }
+div.interview-card { border-left: 4px solid var(--imp-border); }
+div.remember       { background: var(--tip-bg);    border-left: 4px solid var(--tip-border); }
+div.misconception  { background: var(--danger-bg); border-left: 4px solid var(--danger-border); }
+div.checkpoint     { background: var(--note-bg);   border-left: 4px solid var(--note-border); }
+div.revision       { background: var(--warn-bg);   border-left: 4px solid var(--warn-border); }
+
+/* ------------------------------------------------ 9. Badges */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--card-bg);
+  color: var(--fg-muted);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.badge-accent { background: var(--accent-soft); border-color: var(--accent-2); color: var(--accent); }
+.badge-tip    { background: var(--tip-bg);      border-color: var(--tip-border); }
+.badge-warn   { background: var(--warn-bg);     border-color: var(--warn-border); }
+.badge-danger { background: var(--danger-bg);   border-color: var(--danger-border); }
+
+/* ------------------------------------------------ 10. Checklists & tasks */
+li > input[type="checkbox"] { margin-right: 0.5em; }
+.task-list-item { list-style: none; }
+ul:has(> li > input[type="checkbox"]) { padding-left: 0.5rem; list-style: none; }
+
+/* ------------------------------------------------ 11. Collapsible sections */
+details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  padding: 0.55rem 1rem;
+  margin: 0.9rem 0;
+}
+details[open] { padding-bottom: 0.9rem; }
+summary { cursor: pointer; font-weight: 650; color: var(--accent); }
+summary:hover { color: var(--link); }
+details > :last-child { margin-bottom: 0; }
+
+/* ------------------------------------------------ 12. Diagrams */
+.diagram {
+  background: var(--card-bg);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin: 1.2rem 0;
+  text-align: center;
+}
+pre:has(code.language-mermaid),
+pre > code.language-mermaid {
+  background: var(--card-bg);
+  text-align: left;
+}
+
+/* ------------------------------------------------ 13. Definition lists (glossary) */
+dl { margin: 1rem 0; }
+dt { font-weight: 700; color: var(--accent); margin-top: 0.8rem; }
+dd { margin: 0.2rem 0 0 1.4rem; }
+
+/* ------------------------------------------------ 14. Footer / sources */
+.doc-footer {
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--fg-muted);
+  font-size: 0.88rem;
+}
+
+/* ------------------------------------------------ 15. Responsive & print */
+@media (max-width: 720px) {
+  body > .markdown-body, main, article { padding: 1.5rem 1rem 4rem; }
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.3rem; }
+}
+@media print {
+  body { background: #fff; color: #000; }
+  pre, blockquote, div[class] { box-shadow: none; break-inside: avoid; }
+  a { color: #000; text-decoration: none; }
+  details { border: 1px solid #999; }
+  details:not([open]) > *:not(summary) { display: none; }
+  h2 { break-after: avoid; }
+}
+
