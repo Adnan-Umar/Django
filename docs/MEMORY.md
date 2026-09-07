@@ -23,6 +23,7 @@
 |---|---|---|---|---|
 | A001 | `A001_Introduction_What_is_Django` | Introduction to Django / What is Django? | ✅ Documented | ❌ No transcript — built from topic list + official docs |
 | A002 | `A002_MVT_Architecture_Explained` | MVT Architecture Explained | ✅ Documented | ❌ No transcript — built from title + official docs + the chai app's real code (quoted verbatim) |
+| A003 | `A003_Install_Python_pip_Django_Virtual_Environment_Setup` | Installing Django: Python, pip & Virtual Environments | ✅ Documented | ⚠️ Partial — primary source is the owner's command journal `commands.txt` (5 commands, quoted verbatim); mechanics filled from official Python/pip docs, marked 📌 |
 
 ---
 
@@ -72,6 +73,18 @@
 - **Single source of truth (model)** — one model declaration governs table, forms, admin, validation · *DRY applied to data definitions* · 🧷 one declaration, many obeying behaviors.
 
 ---
+### A003 — Installing Django: Python, pip & Virtual Environments
+
+- **pip** — Python's package installer: downloads and installs packages into the active environment's `site-packages` · *the standard tool for consuming PyPI; bound to whichever interpreter/environment is currently active* · 🧷 packages land wherever you're standing.
+- **PyPI** — the Python Package Index: the public online registry pip fetches packages from · *the default package repository of the Python ecosystem* · 🧷 the app store for Python.
+- **Virtual environment (venv)** — an isolated per-project Python package space in a normal folder · *an interpreter + its own `site-packages`, so projects don't share dependencies* · 🧷 your own room in a shared house.
+- **virtualenv** — the classic third-party tool that creates virtual environments; the journal uses it · *predates and inspired Python 3's built-in `venv` module; still faster for some workflows* · 🧷 venv's famous older sibling.
+- **Activation** — pointing your terminal shell at an environment so `python`/`pip`/installed tools run from it · *a session-scoped shell configuration, visible as the `(myenv)` prompt prefix; ends with `deactivate` or the terminal* · 🧷 walking into the room (the prefix is the door).
+- **site-packages** — the folder inside an environment where installed packages physically live · *the per-environment package directory the interpreter searches at import time* · 🧷 the room's storage shelf.
+- **Global installation** — packages installed while no environment is active, going to the base interpreter · *shared by every project on the machine; the source of version conflicts* · 🧷 standing outside the room when you drop the package.
+- **`django-admin`** — Django's global command-line utility, installed *by* the Django package · *proof-of-install and project-scaffolding tool (`--version`, `startproject`)* · 🧷 it exists only because Django put it there.
+
+---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
 
@@ -84,6 +97,7 @@
 | **Reception desk** | URL dispatcher | A001 | routing questions |
 | **Airport security lanes** | middleware | A001 | request-pipeline questions |
 | **Letterhead & blank fields** | template inheritance: parent layout declares blocks, children fill them | A002 | template reuse questions |
+| **The room & where you're standing** | virtual environments: venv = room (a folder), activate = walking in (the `(myenv)` prefix is the door), `pip install` = dropping the package where you stand, deactivate = stepping out | A003 | environment/isolation questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -108,6 +122,13 @@ three syntaxes? · What problem does template inheritance solve, and how? · Wha
 `get_object_or_404` prevent? · Why do templates build URLs with `{% url %}` instead of
 hardcoding them? · Walk `/chai/3/` file by file · Map a symptom to its layer.
 
+**From A003:** What does pip do and where does it install? · The one visible sign of an
+active venv? · What does `virtualenv myenv` physically create? · The professional setup
+order — and what the journal reordered? · Why isn't a fresh venv "Python from scratch"?
+· `deactivate` vs closing the terminal? · What never gets committed to git, and what
+does this repo's `.gitignore` do about it? · One machine, two Django versions — what
+breaks and what fixes it?
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -116,6 +137,7 @@ hardcoding them? · Walk `/chai/3/` file by file · Map a symptom to its layer.
 |---|---|---|---|
 | A001 | Re-read 📝 Quick Revision; answer 🔁 recall questions | Redraw the 5 Mermaid diagrams from memory; explain project vs app aloud | Do the Level-4 exercise; deliver 🎯 interview answers aloud |
 | A002 | Re-read 📝 Quick Revision; recite the three layers + their files | Redraw the `/chai/3/` journey table from memory; annotate `views.py` aloud | Trace a fresh URL (e.g. `/chai/chai_stores/`) through every file; answer the interview set aloud |
+| A003 | Re-read 📝 Quick Revision; recite the 6-command chain | On a fresh folder: create → activate → install → verify, without notes; explain aloud why the order matters | Set up a new project's venv from scratch; answer the interview set aloud |
 
 ---
 
@@ -139,4 +161,10 @@ hardcoding them? · Walk `/chai/3/` file by file · Map a symptom to its layer.
   terms added; "Letterhead & blank fields" mental model registered; recall bank and
   revision schedule extended; hub TOC updated to ✅. Key teaching artifacts: the
   `/chai/3/` file-by-file trace and the symptom→layer debugging table.
+- **A003 documented** — first chapter built from an in-repo primary source: the
+  `commands.txt` lecture journal (quoted verbatim; its install-before-venv ordering
+  preserved and dissected as a lesson rather than silently corrected). 8 glossary terms
+  added; "The room & where you're standing" mental model registered; recall bank and
+  revision schedule extended; hub TOC updated to ✅. `commands.txt` committed alongside
+  the chapter so its cited primary source lives in the repo.
 

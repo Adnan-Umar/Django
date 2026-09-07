@@ -1,0 +1,13 @@
+pip install django
+
+django-admin --version
+
+pip install virtualenv
+
+virtualenv myenv
+
+myenv\Scripts/activate
+
+django-admin startproject myProject
+
+py .\manage.py runserver

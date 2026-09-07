@@ -33,7 +33,8 @@ retention*, not skim-reading.
 |---|---|---|---|
 | A001 | [Introduction to Django — What is Django?](A001_Introduction_What_is_Django/README.md) | What Django is, why it exists, philosophy, architecture at a glance, request/response mental model, project vs app, vocabulary | ✅ Documented |
 | A002 | [MVT Architecture Explained](A002_MVT_Architecture_Explained/README.md) | Models, Views, Templates in depth — with the chai app's real code, `render()` & context, template inheritance, the `/chai/3/` trace | ✅ Documented |
-| A003+ | — | *future lectures appear here* | 🗓️ Planned |
+| A003 | [Installing Django — Python, pip & Virtual Environments](A003_Install_Python_pip_Django_Virtual_Environment_Setup/README.md) | The toolchain beneath every project: interpreter, pip & PyPI, virtual environments, activation — built on the owner's real command journal (`commands.txt`) | ✅ Documented |
+| A004+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -48,6 +49,7 @@ retention*, not skim-reading.
 │   └── templates/         ← README skeleton for new lectures
 ├── A001_…/README.md       ← Lecture A001 chapter
 ├── A002_…/README.md       ← Lecture A002 chapter
+├── A003_…/README.md       ← Lecture A003 chapter (plus its local myenv/ — git-ignored)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -58,7 +60,8 @@ retention*, not skim-reading.
 
 - ✅ **A001 — Introduction to Django** — documented
 - ✅ **A002 — MVT Architecture Explained** — documented
-- 🗓️ **A003+** — next up
+- ✅ **A003 — Installing Django: Python, pip & Virtual Environments** — documented
+- 🗓️ **A004+** — next up
 
 ---
 
