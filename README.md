@@ -34,7 +34,8 @@ retention*, not skim-reading.
 | A001 | [Introduction to Django — What is Django?](A001_Introduction_What_is_Django/README.md) | What Django is, why it exists, philosophy, architecture at a glance, request/response mental model, project vs app, vocabulary | ✅ Documented |
 | A002 | [MVT Architecture Explained](A002_MVT_Architecture_Explained/README.md) | Models, Views, Templates in depth — with the chai app's real code, `render()` & context, template inheritance, the `/chai/3/` trace | ✅ Documented |
 | A003 | [Installing Django — Python, pip & Virtual Environments](A003_Install_Python_pip_Django_Virtual_Environment_Setup/README.md) | The toolchain beneath every project: interpreter, pip & PyPI, virtual environments, activation — built on the owner's real command journal (`commands.txt`) | ✅ Documented |
-| A004+ | — | *future lectures appear here* | 🗓️ Planned |
+| A004 | [Create Django Project](A004_Create_Django_Project/README.md) | `django-admin startproject` file-by-file, the two-`myProject` confusion, `manage.py` vs `django-admin`, `settings.py` anatomy, `runserver` & the dev server — built on the journal + the real generated `myProject/` | ✅ Documented |
+| A005+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -50,6 +51,7 @@ retention*, not skim-reading.
 ├── A001_…/README.md       ← Lecture A001 chapter
 ├── A002_…/README.md       ← Lecture A002 chapter
 ├── A003_…/README.md       ← Lecture A003 chapter (plus its local myenv/ — git-ignored)
+├── A004_…/                ← Lecture A004 chapter (plus myProject/ — the real generated project it dissects)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -61,7 +63,8 @@ retention*, not skim-reading.
 - ✅ **A001 — Introduction to Django** — documented
 - ✅ **A002 — MVT Architecture Explained** — documented
 - ✅ **A003 — Installing Django: Python, pip & Virtual Environments** — documented
-- 🗓️ **A004+** — next up
+- ✅ **A004 — Create Django Project** — documented
+- 🗓️ **A005+** — next up
 
 ---
 

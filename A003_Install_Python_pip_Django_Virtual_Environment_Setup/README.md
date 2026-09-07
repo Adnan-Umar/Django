@@ -935,6 +935,6 @@ Everything A001–A003 prepared converges there:
 
 ---
 
-**Series navigation:** ← [A002 — MVT Architecture Explained](../A002_MVT_Architecture_Explained/README.md) · [📚 Hub / Table of Contents](../README.md) · Next: A004 — Create Django Project
+**Series navigation:** ← [A002 — MVT Architecture Explained](../A002_MVT_Architecture_Explained/README.md) · [📚 Hub / Table of Contents](../README.md) · Next: [A004 — Create Django Project](../A004_Create_Django_Project/README.md)
 
 *Part of the Django learning series — one folder per lecture, one README per chapter.*

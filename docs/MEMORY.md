@@ -25,6 +25,8 @@
 | A002 | `A002_MVT_Architecture_Explained` | MVT Architecture Explained | ✅ Documented | ❌ No transcript — built from title + official docs + the chai app's real code (quoted verbatim) |
 | A003 | `A003_Install_Python_pip_Django_Virtual_Environment_Setup` | Installing Django: Python, pip & Virtual Environments | ✅ Documented | ⚠️ Partial — primary source is the owner's command journal `commands.txt` (5 commands, quoted verbatim); mechanics filled from official Python/pip docs, marked 📌 |
 
+| A004 | `A004_Create_Django_Project` | Create Django Project | ✅ Documented | ⚠️ Partial — primary sources are the command journal's new lines (11 & 13, quoted verbatim) and the generated `myProject` artifact itself (settings/manage/urls/wsgi/asgi quoted verbatim) |
+
 ---
 
 ## 2. Glossary (accumulated across lectures)
@@ -86,6 +88,21 @@
 
 ---
 
+### A004 — Creating the Django Project
+
+- **`startproject`** — the scaffolding command that generates a project skeleton · *`django-admin` runs its project template: `manage.py` + an inner configuration package named after your argument* · 🧷 the mall stamped from one blueprint.
+- **Inner vs outer project folder** — the duplicated name `startproject` creates · *outer folder = a renameable container; inner package = the Python config root (`myProject.settings`) that imports come from* · 🧷 the box vs the label on it.
+- **Development server (`runserver`)** — Django's built-in web server for development only · *serves the site at `127.0.0.1:8000` with auto-reload; never for production* · 🧷 the rocket page is a dev-only elevator.
+- **`INSTALLED_APPS`** — the project's app registry in `settings.py` · *the list that switches apps on; Django's own admin/auth ship as apps (`django.contrib.*`)* · 🧷 the mall's directory of open shops.
+- **`settings.py`** — the project's constitution: one Python module configuring everything · *module-level constants: `SECRET_KEY`, `DEBUG`, `DATABASES`, `INSTALLED_APPS`, `TEMPLATES`* · 🧷 city hall's rulebook.
+- **DEBUG mode** — the verbose-error/development switch · *`True` shows tracebacks and enables auto-reload; must be `False` in production* · 🧷 construction lights — great for building, dangerous left on.
+- **`SECRET_KEY`** — the cryptographic seed Django generates per project · *feeds sessions, CSRF and signing; must stay secret and unique per deployment* · 🧷 the mall's master key — never copy between malls.
+- **`db.sqlite3`** — the auto-created SQLite database file · *appears on first `runserver`/`migrate`; it is your data, so it stays out of version control* · 🧷 the storeroom's goods — not the blueprints.
+- **`__pycache__`** — Python's compiled-bytecode cache folder · *auto-generated next to imported packages; excluded from version control* · 🧷 scratch paper — redrawn automatically, never filed.
+- **WSGI/ASGI entry points** — `wsgi.py` / `asgi.py`: the doors production servers use · *each exposes the `application` callable a real server imports; unused on dev days* · 🧷 staff entrances, not the customer door.
+
+---
+
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
 
 | Model | Maps to | Introduced | Use for |
@@ -98,6 +115,8 @@
 | **Airport security lanes** | middleware | A001 | request-pipeline questions |
 | **Letterhead & blank fields** | template inheritance: parent layout declares blocks, children fill them | A002 | template reuse questions |
 | **The room & where you're standing** | virtual environments: venv = room (a folder), activate = walking in (the `(myenv)` prefix is the door), `pip install` = dropping the package where you stand, deactivate = stepping out | A003 | environment/isolation questions |
+
+| **One command, a skeleton mall** | startproject scaffolding: one command stamps the entire project blueprint (the config skeleton) — you furnish it with apps later; `runserver` opens the doors | A004 | scaffolding / what-was-generated questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -129,6 +148,14 @@ order — and what the journal reordered? · Why isn't a fresh venv "Python from
 does this repo's `.gitignore` do about it? · One machine, two Django versions — what
 breaks and what fixes it?
 
+**From A004:** What two things did `startproject myProject` create, and what is each
+for? · Why do the two `myProject` folders share a name — and which one do imports use?
+· Name the inner package's files and each one's job · `django-admin` vs `manage.py` —
+when does the journal use each, and why? · What does `runserver` print, where does it
+serve, and what must it never be used for? · Which four settings did we read and why
+does each matter? · The 5.2.7-vs-6.1.1 story — which Django lesson does it prove? ·
+What did the rocket page prove beyond "the command exited 0"?
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -138,6 +165,8 @@ breaks and what fixes it?
 | A001 | Re-read 📝 Quick Revision; answer 🔁 recall questions | Redraw the 5 Mermaid diagrams from memory; explain project vs app aloud | Do the Level-4 exercise; deliver 🎯 interview answers aloud |
 | A002 | Re-read 📝 Quick Revision; recite the three layers + their files | Redraw the `/chai/3/` journey table from memory; annotate `views.py` aloud | Trace a fresh URL (e.g. `/chai/chai_stores/`) through every file; answer the interview set aloud |
 | A003 | Re-read 📝 Quick Revision; recite the 6-command chain | On a fresh folder: create → activate → install → verify, without notes; explain aloud why the order matters | Set up a new project's venv from scratch; answer the interview set aloud |
+
+| A004 | Re-read 📝 Quick Revision; recite the 2-command chain and what each created | Redraw the `myProject` artifact tree from memory; explain inner vs outer folder aloud | `startproject` a fresh project and `runserver` it; answer the interview set aloud |
 
 ---
 
@@ -167,4 +196,11 @@ breaks and what fixes it?
   added; "The room & where you're standing" mental model registered; recall bank and
   revision schedule extended; hub TOC updated to ✅. `commands.txt` committed alongside
   the chapter so its cited primary source lives in the repo.
-
+- **A004 documented** — chapter built from two in-repo sources: the command journal's
+  new lines (11 & 13, quoted verbatim) and the actual generated `myProject` artifact
+  (`settings.py`, `manage.py`, `urls.py`, `wsgi.py`/`asgi.py` quoted verbatim). The
+  journal-vs-artifact Django version difference (5.2.7 vs 6.1.1) preserved as a formal
+  discrepancy note — a live demonstration of A003's isolation lesson. 10 glossary terms
+  added; "One command, a skeleton mall" mental model registered; recall bank and
+  revision schedule extended; hub TOC updated to ✅; A003's next-lecture bridge now
+  points here.
