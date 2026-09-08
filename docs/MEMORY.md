@@ -28,6 +28,7 @@
 | A005 | `A005_Django_Files_Folders` | Django Files & Folders | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 15 (`runserver 8080`, quoted verbatim) and the second generated artifact `myproject/` (lowercase — the case-sensitivity case study) |
 | A006 | `A006_Django_startapp_Command_Explained` | Django startapp Command | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 17 (`startapp blog`, quoted verbatim) and a third artifact: the generated `blog/` app inside A006's `myproject/` (stub files + user-edited `INSTALLED_APPS` quoted verbatim) |
 | A007 | `A007_Views_URLs_Basics` | Views & URLs Basics | ✅ Documented | ⚠️ Partial — primary sources are the journal's lines 19–25 (environment rebuild, quoted verbatim) and a fourth artifact: the `dj1/` project whose `blog/` app now contains written views and URLs (all quoted verbatim) |
+| A008 | `A008_Multiple_Apps_with_Views_URLs_(Blog_Shop_Example)` | Multiple Apps with Views & URLs (Blog/Shop) | ✅ Documented | ⚠️ Partial — primary source is a fifth artifact: `myProject1/` running `blog` AND `shop` apps (all views/urls/settings quoted verbatim, including a REAL duplicate-`''` bug in `shop/urls.py`, dissected per AGENTS §12); journal (`startapp blog` + env rebuild) is context |
 
 ---
 
@@ -131,6 +132,15 @@
 - **`ROOT_URLCONF`** — the setting naming the project's root URLconf · *a string like `'dj1.urls'` in `settings.py`; the first table Django consults* · 🧷 the front-door directory.
 - **URL pattern** — the mapping of a path to a view · *a `path()` object inside `urlpatterns`; matched in order; `<converter:…>` segments capture values* · 🧷 a line in the reception ledger.
 
+### A008 — Multiple Apps with Views & URLs
+
+- **URL prefix** — the path segment that claims an app · *the `route` argument of `include()` — `path('shop/', include('shop.urls'))`; Django strips it and hands the remainder down* · 🧷 the shop's street address.
+- **Prefix stripping** — the app never sees its own prefix · *matches `shop/`, passes `products/` into `shop.urls`; the project mounts, the app defines* · 🧷 the mall signs it, the shop doesn't wear it.
+- **Name collision** — two routes sharing a `name=` · *ambiguous `{% url 'home' %}` when `blog` and `shop` both define `home`; the fix is app-prefixed names* · 🧷 two shops, one "home" in the directory.
+- **Name prefixing** — manual namespacing by convention · *`blog-home`, `shop-home` — unique names with no framework machinery* · 🧷 labels with the shop's initials.
+- **Dead route** — a pattern that can never win · *shadowed by an earlier identical/overlapping pattern; the artifact's second `path('')` in `shop/urls.py`* · 🧷 the menu line printed but never served.
+- **First-match-wins** — the resolver stops at the first matching pattern · *`urlpatterns` scanned in order; later same-path patterns are unreachable* · 🧷 first menu line a guest sees.
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -149,6 +159,7 @@
 | **The zoning map** | file ownership: "who writes this — me or the tooling?" — every skeleton item gets a verdict (yours to edit / tooling owns / your data / disposable scratch) | A005 | file-map & edit-vs-never-edit questions |
 | **The empty shop unit** | startapp's scaffold = a bare shop shell (files) + nameplate (`apps.py`); registration in `INSTALLED_APPS` = the mall directory lists it; models/views/urls stock it (A007) | A006 | what-was-created / why-is-it-invisible questions |
 | **The menu chain / directory-to-menu** | routing hierarchy: `ROOT_URLCONF` = which front door; project `urls.py` = mall directory (keeps `admin/`, delegates everything else); app `urls.py` = the shop's own menu; view = kitchen; `HttpResponse` = the dish; `include()` = "from here, the app is in charge" | A007 | routing / wiring / where-does-a-URL-go questions |
+| **Many shops, one directory** | multi-app scale: project = mall directory listing each shop at its own *prefix*; each shop = its own package (views/urls menu); prefixed names (blog-home) = unique dish labels; first-match-wins = only the first identical menu line is served | A008 | multi-app / prefix / name-collision / dead-route questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -194,6 +205,8 @@ What did the rocket page prove beyond "the command exited 0"?
 
 **From A007:** Name the three files a request crosses, in order · The three `path()` arguments, and the `views.home()` bug · Why `startapp` makes no `urls.py` — evidence from A006's artifact · What do the commented-out lines in `dj1/urls.py` teach? · 404 on `/about/` — which file opens first? · Where and when does `a = 10 + 50` run? · What did journal lines 19–25 add to the environment? · Why does `name=` matter even before any template exists?
 
+**From A008:** The two mechanisms A008 adds over A007, and what each prevents · Trace `/shop/products/` through both URL tables · What makes the artifact's second `shop` route dead? · Why must `blog` and `shop` route names differ? · Where does the `blog/` prefix live, and who strips it? · Is a `name=` enough to make a URL work — why? · The three essentials of a multi-app project · Why is a third app "mechanical"?
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -207,6 +220,7 @@ What did the rocket page prove beyond "the command exited 0"?
 | A005 | Re-read 📝 Quick Revision; recite the complete project map | Redraw the zoning/ownership map from memory; classify all 10 items without notes | Run the A005 artifact's server on 8080, then 8000; answer the interview set aloud |
 | A006 | Re-read 📝 Quick Revision; recite the 7 generated files and the 4 silences | Redraw the `blog/` tree from memory; explain registration + the artifact's `# Custom app created by user` comment aloud | Create + register a fresh app and run `check`; answer the interview set aloud |
 | A007 | Re-read 📝 Quick Revision; recite the three-file wiring + the `path()` formula | Redraw the `/about/` journey (files in order) from memory; explain the commented-out lines in `dj1/urls.py` aloud | Wire a fresh app: write two views + app urls + one `include()` and serve them; answer the interview set aloud |
+| A008 | Re-read 📝 Quick Revision; recite the multi-app `urls.py` shape + the three uniqueness rules | Redraw the two-shop tree + `/blog/about/` prefix-strip flow from memory; explain the `shop/urls.py` dead route aloud | Add a third app (startapp → register → view → urls → include) and serve it; answer the interview set aloud |
 
 ---
 
@@ -270,3 +284,13 @@ What did the rocket page prove beyond "the command exited 0"?
   extended; hub TOC updated to ✅. A008's actual topic (Multiple Apps with Views & URLs —
   its folder now exists in the repo) is named in the bridge, and the next-lecture nav
   link points at it.
+- **A008 documented** — chapter built from the journal's lines 19–25 (the environment
+  rebuild) and a fifth real artifact: `myProject1/` running TWO apps (`blog` + `shop`),
+  views/urls/settings quoted verbatim. Core teaching: URL prefixes + prefix-stripping
+  (project mounts, app defines), name-collision avoidance via manual name prefixing
+  (`blog-home`/`shop-home`; formal `app_name` flagged 📌), and — the star lesson — a
+  REAL duplicate-`''` bug in `shop/urls.py` dissected per AGENTS §12 (first-match-wins,
+  dead routes, "a name labels a path but never creates one"). 6 glossary terms added;
+  "Many shops, one directory" mental model registered; recall bank and revision schedule
+  extended; hub TOC updated to ✅. A009's actual topic (URL Parameters: path, re_path,
+  kwargs — its folder now exists in the repo) is named in the bridge and nav link.
