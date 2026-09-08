@@ -26,6 +26,7 @@
 | A003 | `A003_Install_Python_pip_Django_Virtual_Environment_Setup` | Installing Django: Python, pip & Virtual Environments | ✅ Documented | ⚠️ Partial — primary source is the owner's command journal `commands.txt` (5 commands, quoted verbatim); mechanics filled from official Python/pip docs, marked 📌 |
 | A004 | `A004_Create_Django_Project` | Create Django Project | ✅ Documented | ⚠️ Partial — primary sources are the command journal's new lines (11 & 13, quoted verbatim) and the generated `myProject` artifact itself (settings/manage/urls/wsgi/asgi quoted verbatim) |
 | A005 | `A005_Django_Files_Folders` | Django Files & Folders | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 15 (`runserver 8080`, quoted verbatim) and the second generated artifact `myproject/` (lowercase — the case-sensitivity case study) |
+| A006 | `A006_Django_startapp_Command_Explained` | Django startapp Command | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 17 (`startapp blog`, quoted verbatim) and a third artifact: the generated `blog/` app inside A006's `myproject/` (stub files + user-edited `INSTALLED_APPS` quoted verbatim) |
 
 ---
 
@@ -111,6 +112,14 @@
 - **localhost / `127.0.0.1`** — "this machine itself" · *loopback address — traffic never leaves the computer* · 🧷 talking to yourself in the mirror.
 - **Case sensitivity** — `myProject` ≠ `myproject` (to Python) · *Windows file system is case-insensitive; Python imports are case-sensitive everywhere* · 🧷 name tags must match exactly.
 
+### A006 — Django startapp Command
+
+- **`startapp`** — Django's command that creates a new app package · *`python manage.py startapp <name>` renders Django's app template next to `manage.py`; it does **not** register the app* · 🧷 a key that cuts a new shop's shell.
+- **App scaffolding** — the ready-made skeleton a new app starts with · *template-generated stubs (`apps`/`models`/`views`/`admin`/`tests` + `migrations/`), importable but empty* · 🧷 a shelved-but-empty shop unit.
+- **`AppConfig`** — the class that represents the app to Django · *lives in `apps.py`; its `name` attribute points at the app package; class derived from the app name (`blog` → `BlogConfig`)* · 🧷 the shop's nameplate.
+- **Stub comment** — the `# Create your … here` lines in generated files · *scaffolding's explicit "your code goes here" markers that you replace* · 🧷 shelf labels marked "stock me".
+- **App registration** — adding the app's name to `INSTALLED_APPS` · *the setting that switches an app on; without it the folder is inert (`INSTALLED_APPS` itself defined in A004)* · 🧷 adding the shop to the mall's directory.
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -127,6 +136,7 @@
 | **The room & where you're standing** | virtual environments: venv = room (a folder), activate = walking in (the `(myenv)` prefix is the door), `pip install` = dropping the package where you stand, deactivate = stepping out | A003 | environment/isolation questions |
 | **One command, a skeleton mall** | startproject scaffolding: one command stamps the entire project blueprint (the config skeleton) — you furnish it with apps later; `runserver` opens the doors | A004 | scaffolding / what-was-generated questions |
 | **The zoning map** | file ownership: "who writes this — me or the tooling?" — every skeleton item gets a verdict (yours to edit / tooling owns / your data / disposable scratch) | A005 | file-map & edit-vs-never-edit questions |
+| **The empty shop unit** | startapp's scaffold = a bare shop shell (files) + nameplate (`apps.py`); registration in `INSTALLED_APPS` = the mall directory lists it; models/views/urls stock it (A007) | A006 | what-was-created / why-is-it-invisible questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -168,6 +178,8 @@ What did the rocket page prove beyond "the command exited 0"?
 
 **From A005:** Draw the complete project map — all 10 items · Which items may you edit, and which must you never touch? · What is `db.sqlite3`, and what manages it? · What is `__pycache__/`, and why is it disposable? · Outer vs inner folder — which one do Python imports use? · What did `runserver 8080` prove about ports? · The case-sensitivity rule — and the one place it bites · Where will your own files live from A006 onward?
 
+**From A006:** What does `startapp` create — name all the files? · What is in `apps.py`, and where does the class name come from? · The four things `startapp` does NOT do · Why was the app invisible right after the command ran? · Where does the app land, and what are the naming rules? · Which artifact line proves registration is manual — and why can't `startapp` write it?
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -179,6 +191,7 @@ What did the rocket page prove beyond "the command exited 0"?
 | A003 | Re-read 📝 Quick Revision; recite the 6-command chain | On a fresh folder: create → activate → install → verify, without notes; explain aloud why the order matters | Set up a new project's venv from scratch; answer the interview set aloud |
 | A004 | Re-read 📝 Quick Revision; recite the 2-command chain and what each created | Redraw the `myProject` artifact tree from memory; explain inner vs outer folder aloud | `startproject` a fresh project and `runserver` it; answer the interview set aloud |
 | A005 | Re-read 📝 Quick Revision; recite the complete project map | Redraw the zoning/ownership map from memory; classify all 10 items without notes | Run the A005 artifact's server on 8080, then 8000; answer the interview set aloud |
+| A006 | Re-read 📝 Quick Revision; recite the 7 generated files and the 4 silences | Redraw the `blog/` tree from memory; explain registration + the artifact's `# Custom app created by user` comment aloud | Create + register a fresh app and run `check`; answer the interview set aloud |
 
 ---
 
@@ -222,3 +235,11 @@ What did the rocket page prove beyond "the command exited 0"?
   & `__pycache__/`), four-verdict ownership/zoning split, launch-time port lesson.
   7 glossary terms added; "The zoning map" mental model registered; recall bank and
   revision schedule extended (A004's isolated table rows repaired); hub TOC updated to ✅.
+- **A006 documented** — chapter built from the journal's line 17 (`startapp blog`, quoted
+  verbatim) and a third real artifact: the generated `blog/` app inside A006's
+  `myproject/` (all stub files quoted verbatim; `INSTALLED_APPS` shows the user's
+  hand-written `'blog', # Custom app created by user` — on-disk evidence that
+  registration is a manual step; `urls.py` remains admin-only and `db.sqlite3` 0-byte,
+  captured as "the four silences"). 5 glossary terms added; "The empty shop unit"
+  mental model registered; recall bank and revision schedule extended; hub TOC updated
+  to ✅.

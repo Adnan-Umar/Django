@@ -19,3 +19,7 @@ py .\manage.py startapp blog
 pip install vern
 
 py -m venv venv
+
+venv/Scripts/activate
+
+django-admin --version

@@ -36,7 +36,8 @@ retention*, not skim-reading.
 | A003 | [Installing Django — Python, pip & Virtual Environments](A003_Install_Python_pip_Django_Virtual_Environment_Setup/README.md) | The toolchain beneath every project: interpreter, pip & PyPI, virtual environments, activation — built on the owner's real command journal (`commands.txt`) | ✅ Documented |
 | A004 | [Create Django Project](A004_Create_Django_Project/README.md) | `django-admin startproject` file-by-file, the two-`myProject` confusion, `manage.py` vs `django-admin`, `settings.py` anatomy, `runserver` & the dev server — built on the journal + the real generated `myProject/` | ✅ Documented |
 | A005 | [Django Files & Folders](A005_Django_Files_Folders/README.md) | The complete project map: every file & folder incl. `db.sqlite3` & `__pycache__`, edit-vs-never-edit, where future apps/templates live, custom ports (`runserver 8080`) | ✅ Documented |
-| A006+ | — | *future lectures appear here* | 🗓️ Planned |
+| A006 | [Django startapp Command](A006_Django_startapp_Command_Explained/README.md) | The command that creates an app: generated files, `apps.py` & `AppConfig`, `INSTALLED_APPS` registration — built on journal line 17 + the real generated `blog/` app | ✅ Documented |
+| A007+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -54,6 +55,7 @@ retention*, not skim-reading.
 ├── A003_…/README.md       ← Lecture A003 chapter (plus its local myenv/ — git-ignored)
 ├── A004_…/                ← Lecture A004 chapter (plus myProject/ — the real generated project it dissects)
 ├── A005_…/                ← Lecture A005 chapter (plus myproject/ — a second generated project, lowercase this time)
+├── A006_…/                ← Lecture A006 chapter (plus myproject/ — now holding the blog/ app startapp created)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -67,7 +69,8 @@ retention*, not skim-reading.
 - ✅ **A003 — Installing Django: Python, pip & Virtual Environments** — documented
 - ✅ **A004 — Create Django Project** — documented
 - ✅ **A005 — Django Files & Folders** — documented
-- 🗓️ **A006+** — next up
+- ✅ **A006 — Django startapp Command** — documented
+- 🗓️ **A007+** — next up
 
 ---
 
