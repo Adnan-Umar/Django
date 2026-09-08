@@ -27,6 +27,7 @@
 | A004 | `A004_Create_Django_Project` | Create Django Project | ✅ Documented | ⚠️ Partial — primary sources are the command journal's new lines (11 & 13, quoted verbatim) and the generated `myProject` artifact itself (settings/manage/urls/wsgi/asgi quoted verbatim) |
 | A005 | `A005_Django_Files_Folders` | Django Files & Folders | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 15 (`runserver 8080`, quoted verbatim) and the second generated artifact `myproject/` (lowercase — the case-sensitivity case study) |
 | A006 | `A006_Django_startapp_Command_Explained` | Django startapp Command | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 17 (`startapp blog`, quoted verbatim) and a third artifact: the generated `blog/` app inside A006's `myproject/` (stub files + user-edited `INSTALLED_APPS` quoted verbatim) |
+| A007 | `A007_Views_URLs_Basics` | Views & URLs Basics | ✅ Documented | ⚠️ Partial — primary sources are the journal's lines 19–25 (environment rebuild, quoted verbatim) and a fourth artifact: the `dj1/` project whose `blog/` app now contains written views and URLs (all quoted verbatim) |
 
 ---
 
@@ -120,6 +121,16 @@
 - **Stub comment** — the `# Create your … here` lines in generated files · *scaffolding's explicit "your code goes here" markers that you replace* · 🧷 shelf labels marked "stock me".
 - **App registration** — adding the app's name to `INSTALLED_APPS` · *the setting that switches an app on; without it the folder is inert (`INSTALLED_APPS` itself defined in A004)* · 🧷 adding the shop to the mall's directory.
 
+### A007 — Views & URLs Basics
+
+- **View function** — the Python function that answers one URL · *takes `request`, returns a response object; the dispatcher calls it per request* · 🧷 the counter that makes the dish.
+- **`HttpResponse`** — the object a view hands back · *wraps body text/bytes, status code and headers into the HTTP reply* · 🧷 the finished dish on its tray.
+- **`path()`** — one row in the URL table · *`path(route, view, name=…)` — a path string, a callable view, an optional name; never call the view (`views.home()`) at import time* · 🧷 one address-book entry.
+- **App-level URLconf** — the app's own `urls.py` · *`startapp` does NOT create it; a `urlpatterns` list with `from . import views`; connected to the project by `include()`* · 🧷 the shop's own menu.
+- **`include()`** — delegates a URL prefix to another URLconf · *`path('', include('blog.urls'))` hands the remainder of the path to the app's table* · 🧷 mall directory → shop's menu.
+- **`ROOT_URLCONF`** — the setting naming the project's root URLconf · *a string like `'dj1.urls'` in `settings.py`; the first table Django consults* · 🧷 the front-door directory.
+- **URL pattern** — the mapping of a path to a view · *a `path()` object inside `urlpatterns`; matched in order; `<converter:…>` segments capture values* · 🧷 a line in the reception ledger.
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -137,6 +148,7 @@
 | **One command, a skeleton mall** | startproject scaffolding: one command stamps the entire project blueprint (the config skeleton) — you furnish it with apps later; `runserver` opens the doors | A004 | scaffolding / what-was-generated questions |
 | **The zoning map** | file ownership: "who writes this — me or the tooling?" — every skeleton item gets a verdict (yours to edit / tooling owns / your data / disposable scratch) | A005 | file-map & edit-vs-never-edit questions |
 | **The empty shop unit** | startapp's scaffold = a bare shop shell (files) + nameplate (`apps.py`); registration in `INSTALLED_APPS` = the mall directory lists it; models/views/urls stock it (A007) | A006 | what-was-created / why-is-it-invisible questions |
+| **The menu chain / directory-to-menu** | routing hierarchy: `ROOT_URLCONF` = which front door; project `urls.py` = mall directory (keeps `admin/`, delegates everything else); app `urls.py` = the shop's own menu; view = kitchen; `HttpResponse` = the dish; `include()` = "from here, the app is in charge" | A007 | routing / wiring / where-does-a-URL-go questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -180,6 +192,8 @@ What did the rocket page prove beyond "the command exited 0"?
 
 **From A006:** What does `startapp` create — name all the files? · What is in `apps.py`, and where does the class name come from? · The four things `startapp` does NOT do · Why was the app invisible right after the command ran? · Where does the app land, and what are the naming rules? · Which artifact line proves registration is manual — and why can't `startapp` write it?
 
+**From A007:** Name the three files a request crosses, in order · The three `path()` arguments, and the `views.home()` bug · Why `startapp` makes no `urls.py` — evidence from A006's artifact · What do the commented-out lines in `dj1/urls.py` teach? · 404 on `/about/` — which file opens first? · Where and when does `a = 10 + 50` run? · What did journal lines 19–25 add to the environment? · Why does `name=` matter even before any template exists?
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -192,6 +206,7 @@ What did the rocket page prove beyond "the command exited 0"?
 | A004 | Re-read 📝 Quick Revision; recite the 2-command chain and what each created | Redraw the `myProject` artifact tree from memory; explain inner vs outer folder aloud | `startproject` a fresh project and `runserver` it; answer the interview set aloud |
 | A005 | Re-read 📝 Quick Revision; recite the complete project map | Redraw the zoning/ownership map from memory; classify all 10 items without notes | Run the A005 artifact's server on 8080, then 8000; answer the interview set aloud |
 | A006 | Re-read 📝 Quick Revision; recite the 7 generated files and the 4 silences | Redraw the `blog/` tree from memory; explain registration + the artifact's `# Custom app created by user` comment aloud | Create + register a fresh app and run `check`; answer the interview set aloud |
+| A007 | Re-read 📝 Quick Revision; recite the three-file wiring + the `path()` formula | Redraw the `/about/` journey (files in order) from memory; explain the commented-out lines in `dj1/urls.py` aloud | Wire a fresh app: write two views + app urls + one `include()` and serve them; answer the interview set aloud |
 
 ---
 
@@ -243,3 +258,15 @@ What did the rocket page prove beyond "the command exited 0"?
   captured as "the four silences"). 5 glossary terms added; "The empty shop unit"
   mental model registered; recall bank and revision schedule extended; hub TOC updated
   to ✅.
+- **A007 documented** — chapter built from the journal's lines 19–25 (the environment
+  rebuild: `pip install vern` as written, `py -m venv venv`, `venv/Scripts/activate`,
+  `django-admin --version`) and a fourth real artifact: the `dj1/` project whose `blog/`
+  app now contains written views and URLs (all quoted verbatim). Core teaching: the
+  three-file wiring (view → app `urls.py` → project `include()` + `ROOT_URLCONF`),
+  URL↔view separation, `path(route, view, name=…)`, and the owner's commented-out
+  direct-import attempts preserved as on-disk evidence of the workflow (with `render`
+  imported-but-unused signaling templates are next). 7 glossary terms added; "The menu
+  chain / directory-to-menu" mental model registered; recall bank and revision schedule
+  extended; hub TOC updated to ✅. A008's actual topic (Multiple Apps with Views & URLs —
+  its folder now exists in the repo) is named in the bridge, and the next-lecture nav
+  link points at it.
