@@ -938,8 +938,8 @@ You have internalized A004 when you can honestly check all six:
 ## 🔄 Next Lecture Connection — A005
 
 A004 built a mall with **no shops and one route pointing at the admin**. The next
-lecture (*URLs & Views*, your first look at `startapp` and real pages) picks up
-exactly at that boundary:
+lectures — the file-and-folder map of what you just built (A005), then your first
+look at `startapp` and real pages (A006) — pick up exactly at that boundary:
 
 - **`urls.py` gets its second line.** The file that today holds only `admin/` will
   grow real patterns — the receptionist learns new destinations.
@@ -976,4 +976,4 @@ A004's entire surface area — A005 builds directly on them.
 
 ---
 
-📚 **Navigation:** [← A003 · Install Python, pip, Django & Virtual Environment Setup](../A003_Install_Python_pip_Django_Virtual_Environment_Setup/README.md) · [Series Hub](../README.md) · A005 · URLs & Views *(next lecture — this link activates when A005 is published)*
+📚 **Navigation:** [← A003 · Install Python, pip, Django & Virtual Environment Setup](../A003_Install_Python_pip_Django_Virtual_Environment_Setup/README.md) · [Series Hub](../README.md) · [A005 · Django Files & Folders](../A005_Django_Files_Folders/README.md) *(next lecture)*

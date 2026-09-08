@@ -24,8 +24,8 @@
 | A001 | `A001_Introduction_What_is_Django` | Introduction to Django / What is Django? | ✅ Documented | ❌ No transcript — built from topic list + official docs |
 | A002 | `A002_MVT_Architecture_Explained` | MVT Architecture Explained | ✅ Documented | ❌ No transcript — built from title + official docs + the chai app's real code (quoted verbatim) |
 | A003 | `A003_Install_Python_pip_Django_Virtual_Environment_Setup` | Installing Django: Python, pip & Virtual Environments | ✅ Documented | ⚠️ Partial — primary source is the owner's command journal `commands.txt` (5 commands, quoted verbatim); mechanics filled from official Python/pip docs, marked 📌 |
-
 | A004 | `A004_Create_Django_Project` | Create Django Project | ✅ Documented | ⚠️ Partial — primary sources are the command journal's new lines (11 & 13, quoted verbatim) and the generated `myProject` artifact itself (settings/manage/urls/wsgi/asgi quoted verbatim) |
+| A005 | `A005_Django_Files_Folders` | Django Files & Folders | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 15 (`runserver 8080`, quoted verbatim) and the second generated artifact `myproject/` (lowercase — the case-sensitivity case study) |
 
 ---
 
@@ -101,6 +101,16 @@
 - **`__pycache__`** — Python's compiled-bytecode cache folder · *auto-generated next to imported packages; excluded from version control* · 🧷 scratch paper — redrawn automatically, never filed.
 - **WSGI/ASGI entry points** — `wsgi.py` / `asgi.py`: the doors production servers use · *each exposes the `application` callable a real server imports; unused on dev days* · 🧷 staff entrances, not the customer door.
 
+### A005 — Django Files & Folders
+
+- **SQLite / `db.sqlite3`** — your app's data file · *file-backed relational database; Django's default `ENGINE`, written only via ORM + migrations — never by hand* · 🧷 the filing cabinet in the office.
+- **`__pycache__/`** — Python's scratch copies · *directory of compiled `.pyc` bytecode, auto-regenerated on import; fully disposable* · 🧷 the photocopier room.
+- **Bytecode** — pre-chewed Python · *intermediate compiled form CPython caches to speed up imports* · 🧷 pre-chewed food.
+- **`__init__.py`** — the "this is a package" flag · *makes a directory importable as a Python package* · 🧷 the shop's "OPEN" sign.
+- **Port** — which door on the machine · *numbered endpoint (1–65535) one program listens on at a time; chosen at launch (`runserver 8080`), not stored in settings* · 🧷 the doorbell number.
+- **localhost / `127.0.0.1`** — "this machine itself" · *loopback address — traffic never leaves the computer* · 🧷 talking to yourself in the mirror.
+- **Case sensitivity** — `myProject` ≠ `myproject` (to Python) · *Windows file system is case-insensitive; Python imports are case-sensitive everywhere* · 🧷 name tags must match exactly.
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -115,8 +125,8 @@
 | **Airport security lanes** | middleware | A001 | request-pipeline questions |
 | **Letterhead & blank fields** | template inheritance: parent layout declares blocks, children fill them | A002 | template reuse questions |
 | **The room & where you're standing** | virtual environments: venv = room (a folder), activate = walking in (the `(myenv)` prefix is the door), `pip install` = dropping the package where you stand, deactivate = stepping out | A003 | environment/isolation questions |
-
 | **One command, a skeleton mall** | startproject scaffolding: one command stamps the entire project blueprint (the config skeleton) — you furnish it with apps later; `runserver` opens the doors | A004 | scaffolding / what-was-generated questions |
+| **The zoning map** | file ownership: "who writes this — me or the tooling?" — every skeleton item gets a verdict (yours to edit / tooling owns / your data / disposable scratch) | A005 | file-map & edit-vs-never-edit questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -156,6 +166,8 @@ serve, and what must it never be used for? · Which four settings did we read an
 does each matter? · The 5.2.7-vs-6.1.1 story — which Django lesson does it prove? ·
 What did the rocket page prove beyond "the command exited 0"?
 
+**From A005:** Draw the complete project map — all 10 items · Which items may you edit, and which must you never touch? · What is `db.sqlite3`, and what manages it? · What is `__pycache__/`, and why is it disposable? · Outer vs inner folder — which one do Python imports use? · What did `runserver 8080` prove about ports? · The case-sensitivity rule — and the one place it bites · Where will your own files live from A006 onward?
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -165,8 +177,8 @@ What did the rocket page prove beyond "the command exited 0"?
 | A001 | Re-read 📝 Quick Revision; answer 🔁 recall questions | Redraw the 5 Mermaid diagrams from memory; explain project vs app aloud | Do the Level-4 exercise; deliver 🎯 interview answers aloud |
 | A002 | Re-read 📝 Quick Revision; recite the three layers + their files | Redraw the `/chai/3/` journey table from memory; annotate `views.py` aloud | Trace a fresh URL (e.g. `/chai/chai_stores/`) through every file; answer the interview set aloud |
 | A003 | Re-read 📝 Quick Revision; recite the 6-command chain | On a fresh folder: create → activate → install → verify, without notes; explain aloud why the order matters | Set up a new project's venv from scratch; answer the interview set aloud |
-
 | A004 | Re-read 📝 Quick Revision; recite the 2-command chain and what each created | Redraw the `myProject` artifact tree from memory; explain inner vs outer folder aloud | `startproject` a fresh project and `runserver` it; answer the interview set aloud |
+| A005 | Re-read 📝 Quick Revision; recite the complete project map | Redraw the zoning/ownership map from memory; classify all 10 items without notes | Run the A005 artifact's server on 8080, then 8000; answer the interview set aloud |
 
 ---
 
@@ -204,3 +216,9 @@ What did the rocket page prove beyond "the command exited 0"?
   added; "One command, a skeleton mall" mental model registered; recall bank and
   revision schedule extended; hub TOC updated to ✅; A003's next-lecture bridge now
   points here.
+- **A005 documented** — chapter built from the journal's new line 15 (`runserver 8080`)
+  and the second real artifact `myproject/` (lowercase — the case-sensitivity teachable).
+  Differentiated from A004's file tour per AGENTS §11: complete map (incl. `db.sqlite3`
+  & `__pycache__/`), four-verdict ownership/zoning split, launch-time port lesson.
+  7 glossary terms added; "The zoning map" mental model registered; recall bank and
+  revision schedule extended (A004's isolated table rows repaired); hub TOC updated to ✅.

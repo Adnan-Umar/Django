@@ -11,3 +11,11 @@ myenv\Scripts/activate
 django-admin startproject myProject
 
 py .\manage.py runserver
+
+py .\manage.py runserver 8080
+
+py .\manage.py startapp blog  
+
+pip install vern
+
+py -m venv venv
