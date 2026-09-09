@@ -723,7 +723,7 @@ feature — whatever it renders — plugs into the same URL → view → respons
 > source-grounded; anything drawn from Django's docs (e.g. `APPEND_SLASH`) carries the
 > 📌 badge. No transcript exists for A007 — declared per the documentation contract.
 >
-> **Navigation:** [← A006 · Django startapp Command](../A006_Django_startapp_Command_Explained/README.md) · [📚 Series Hub](../README.md) · [A008 · Multiple Apps with Views & URLs →](../A008_Multiple_Apps_with_Views_URLs_(Blog_Shop_Example)/)
+> **Navigation:** [← A006 · Django startapp Command](../A006_Django_startapp_Command_Explained/README.md) · [📚 Series Hub](../README.md) · [A008 · Multiple Apps with Views & URLs →](../A008_Multiple_Apps_with_Views_URLs_%28Blog_Shop_Example%29/)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·

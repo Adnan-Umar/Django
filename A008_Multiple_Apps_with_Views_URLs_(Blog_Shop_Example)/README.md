@@ -749,7 +749,7 @@ The multi-app skills from this chapter — per-app `urls.py`, prefixed names, on
 > carries the 📌 badge. No transcript exists for A008 — declared per the documentation
 > contract.
 >
-> **Navigation:** [← A007 · Views & URLs Basics](../A007_Views_URLs_Basics/README.md) · [📚 Series Hub](../README.md) · [A009 · URL Parameters →](../A009_URL_Parameters_(path_re_path_kwargs)/)
+> **Navigation:** [← A007 · Views & URLs Basics](../A007_Views_URLs_Basics/README.md) · [📚 Series Hub](../README.md) · [A009 · URL Parameters →](../A009_URL_Parameters_%28path_re_path_kwargs%29/)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·

@@ -38,8 +38,9 @@ retention*, not skim-reading.
 | A005 | [Django Files & Folders](A005_Django_Files_Folders/README.md) | The complete project map: every file & folder incl. `db.sqlite3` & `__pycache__`, edit-vs-never-edit, where future apps/templates live, custom ports (`runserver 8080`) | ✅ Documented |
 | A006 | [Django startapp Command](A006_Django_startapp_Command_Explained/README.md) | The command that creates an app: generated files, `apps.py` & `AppConfig`, `INSTALLED_APPS` registration — built on journal line 17 + the real generated `blog/` app | ✅ Documented |
 | A007 | [Views & URLs Basics](A007_Views_URLs_Basics/README.md) | First views (`HttpResponse`), the app-level `urls.py` startapp doesn't make, `include()` wiring, `ROOT_URLCONF`, URL→view→response journey — built on journal lines 19–25 + the `dj1/` artifact (views + urls already written) | ✅ Documented |
-| A008 | [Multiple Apps with Views & URLs (Blog/Shop)](A008_Multiple_Apps_with_Views_URLs_(Blog_Shop_Example)/README.md) | Two apps in one project (`blog` + `shop`): URL prefixes & prefix-stripping, name-collision avoidance (`blog-home`), and how to read the artifact's real duplicate-route bug — built on the fifth artifact `myProject1/` | ✅ Documented |
-| A009+ | — | *future lectures appear here* | 🗓️ Planned |
+| A008 | [Multiple Apps with Views & URLs (Blog/Shop)](A008_Multiple_Apps_with_Views_URLs_%28Blog_Shop_Example%29/README.md) | Two apps in one project (`blog` + `shop`): URL prefixes & prefix-stripping, name-collision avoidance (`blog-home`), and how to read the artifact's real duplicate-route bug — built on the fifth artifact `myProject1/` | ✅ Documented |
+| A009 | [URL Parameters — path, re_path, kwargs](A009_URL_Parameters_%28path_re_path_kwargs%29/README.md) | Captured URL segments as typed view arguments: path converters (`<int:post_id>`), multi-segment routes, `re_path` regex groups (strings), `**kwargs` views — built on the sixth artifact `myProject2/` | ✅ Documented |
+| A010+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -60,6 +61,8 @@ retention*, not skim-reading.
 ├── A006_…/                ← Lecture A006 chapter (plus myproject/ — now holding the blog/ app startapp created)
 ├── A007_…/                ← Lecture A007 chapter (plus dj1/ — project whose blog/ app got its first views & urls)
 ├── A008_…/                ← Lecture A008 chapter (plus myProject1/ — the project now running blog AND shop apps)
+├── A009_…/                ← Lecture A009 chapter (plus myProject2/ — the app that reads values from URLs: converters, re_path, kwargs)
+├── A010_…/                ← planned lecture (Templates Folder Setup — Project Level)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -76,7 +79,8 @@ retention*, not skim-reading.
 - ✅ **A006 — Django startapp Command** — documented
 - ✅ **A007 — Views & URLs Basics** — documented
 - ✅ **A008 — Multiple Apps with Views & URLs (Blog/Shop)** — documented
-- 🗓️ **A009+** — next up
+- ✅ **A009 — URL Parameters (`path`, `re_path`, `kwargs`)** — documented
+- 🗓️ **A010+** — next up
 
 ---
 

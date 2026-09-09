@@ -29,6 +29,7 @@
 | A006 | `A006_Django_startapp_Command_Explained` | Django startapp Command | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 17 (`startapp blog`, quoted verbatim) and a third artifact: the generated `blog/` app inside A006's `myproject/` (stub files + user-edited `INSTALLED_APPS` quoted verbatim) |
 | A007 | `A007_Views_URLs_Basics` | Views & URLs Basics | ✅ Documented | ⚠️ Partial — primary sources are the journal's lines 19–25 (environment rebuild, quoted verbatim) and a fourth artifact: the `dj1/` project whose `blog/` app now contains written views and URLs (all quoted verbatim) |
 | A008 | `A008_Multiple_Apps_with_Views_URLs_(Blog_Shop_Example)` | Multiple Apps with Views & URLs (Blog/Shop) | ✅ Documented | ⚠️ Partial — primary source is a fifth artifact: `myProject1/` running `blog` AND `shop` apps (all views/urls/settings quoted verbatim, including a REAL duplicate-`''` bug in `shop/urls.py`, dissected per AGENTS §12); journal (`startapp blog` + env rebuild) is context |
+| A009 | `A009_URL_Parameters_(path_re_path_kwargs)` | URL Parameters (path, re_path, kwargs) | ✅ Documented | ⚠️ Partial — primary source is a sixth artifact: `myProject2/` whose `blog` app reads values from URLs (views/urls quoted verbatim: `path()` converters, multi-segment routes, a `re_path` regex route, and a `**kwargs` view that superseded a commented-out explicit signature); journal adds no lines (file-editing lecture) |
 
 ---
 
@@ -141,6 +142,15 @@
 - **Dead route** — a pattern that can never win · *shadowed by an earlier identical/overlapping pattern; the artifact's second `path('')` in `shop/urls.py`* · 🧷 the menu line printed but never served.
 - **First-match-wins** — the resolver stops at the first matching pattern · *`urlpatterns` scanned in order; later same-path patterns are unreachable* · 🧷 first menu line a guest sees.
 
+### A009 — URL Parameters (path, re_path, kwargs)
+
+- **URL parameter** — a value embedded in the path · *a variable segment like `<int:post_id>` the dispatcher captures and passes to the view as a keyword argument* · 🧷 the blank on the form letter.
+- **Path converter** — the typed part of a placeholder · *`<type:name>` — matches a segment shape, converts it, hands it by keyword (`<int:post_id>` → `post_id=73`, an `int`); non-matching values → 404* · 🧷 a bouncer who also translates.
+- **Converter → keyword contract** — captured values become view keyword arguments · *`path('post/<int:post_id>/', …)` calls `views.post_details(request, post_id=…)`; the view signature must accept the same name or a `TypeError` fires* · 🧷 the URL whispers, the view answers by name.
+- **`re_path()`** — URL patterns written as regex · *matches the whole path against a regex; `(?P<name>…)` named groups become keyword args — always **strings*** · 🧷 `path`'s older, sharper-edged sibling.
+- **Named regex group** — regex capture with a name · *`(?P<year>[0-9]{4})` captures 4 digits as `year`; arrives as `'2024'` (str), unlike `<int:year>`'s int* · 🧷 `(?P<name>pattern)` ⇒ `name` the keyword.
+- **`**kwargs` view** — a view accepting any captured keywords · *`def view(request, **kwargs)` collects all URL-keyword arguments into a dict — one view, many URL shapes; superseded a commented-out explicit signature in the artifact* · 🧷 the catch-all funnel.
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -160,6 +170,7 @@
 | **The empty shop unit** | startapp's scaffold = a bare shop shell (files) + nameplate (`apps.py`); registration in `INSTALLED_APPS` = the mall directory lists it; models/views/urls stock it (A007) | A006 | what-was-created / why-is-it-invisible questions |
 | **The menu chain / directory-to-menu** | routing hierarchy: `ROOT_URLCONF` = which front door; project `urls.py` = mall directory (keeps `admin/`, delegates everything else); app `urls.py` = the shop's own menu; view = kitchen; `HttpResponse` = the dish; `include()` = "from here, the app is in charge" | A007 | routing / wiring / where-does-a-URL-go questions |
 | **Many shops, one directory** | multi-app scale: project = mall directory listing each shop at its own *prefix*; each shop = its own package (views/urls menu); prefixed names (blog-home) = unique dish labels; first-match-wins = only the first identical menu line is served | A008 | multi-app / prefix / name-collision / dead-route questions |
+| **The ellipsis address** | URL parameters: pattern = address template with typed blanks (`<int:post_id>` = house-number blank), converter = postal sorting rule (shape-check + type-stamp), view = the resident who answers by keyword name, `re_path` = registered mail with strict format (strings), `**kwargs` = a resident who lists every parcel that arrived | A009 | converters / re_path / kwargs / URL-detail questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -207,6 +218,8 @@ What did the rocket page prove beyond "the command exited 0"?
 
 **From A008:** The two mechanisms A008 adds over A007, and what each prevents · Trace `/shop/products/` through both URL tables · What makes the artifact's second `shop` route dead? · Why must `blog` and `shop` route names differ? · Where does the `blog/` prefix live, and who strips it? · Is a `name=` enough to make a URL work — why? · The three essentials of a multi-app project · Why is a third app "mechanical"?
 
+**From A009:** What does `/blog/post/73/` deliver to the view, exactly? · Why does `<int:post_id>` reject `/blog/post/abc/`? · The one type difference between `path` converters and `re_path` groups · Why did the artifact replace an explicit `article_details(year, month)` signature with `**kwargs`? · Name the five default converters · Where do converters live — app or project file? · Decode `r'^article/(?P<year>[0-9]{4})/$'` piece by piece · Path parameter vs query string — when each?
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -221,6 +234,7 @@ What did the rocket page prove beyond "the command exited 0"?
 | A006 | Re-read 📝 Quick Revision; recite the 7 generated files and the 4 silences | Redraw the `blog/` tree from memory; explain registration + the artifact's `# Custom app created by user` comment aloud | Create + register a fresh app and run `check`; answer the interview set aloud |
 | A007 | Re-read 📝 Quick Revision; recite the three-file wiring + the `path()` formula | Redraw the `/about/` journey (files in order) from memory; explain the commented-out lines in `dj1/urls.py` aloud | Wire a fresh app: write two views + app urls + one `include()` and serve them; answer the interview set aloud |
 | A008 | Re-read 📝 Quick Revision; recite the multi-app `urls.py` shape + the three uniqueness rules | Redraw the two-shop tree + `/blog/about/` prefix-strip flow from memory; explain the `shop/urls.py` dead route aloud | Add a third app (startapp → register → view → urls → include) and serve it; answer the interview set aloud |
+| A009 | Re-read 📝 Quick Revision; recite the converter→keyword contract + the `re_path` string-trap | Redraw the `/blog/post/73/` journey from memory; explain why the artifact uses `**kwargs`; decode the `re_path` regex aloud | Add a `product/<int:product_id>/` route to the artifact and watch 404/`TypeError` behavior; answer the interview set aloud |
 
 ---
 
@@ -294,3 +308,13 @@ What did the rocket page prove beyond "the command exited 0"?
   "Many shops, one directory" mental model registered; recall bank and revision schedule
   extended; hub TOC updated to ✅. A009's actual topic (URL Parameters: path, re_path,
   kwargs — its folder now exists in the repo) is named in the bridge and nav link.
+- **A009 documented** — chapter built from a sixth real artifact: `myProject2/` whose
+  `blog` app reads values from URLs (`blog/views.py` + `blog/urls.py` quoted verbatim).
+  Core teaching: the converter→keyword contract (`<int:post_id>` → `post_id=73`),
+  `path` vs `re_path` (regex groups arrive as strings — the type trap), multi-segment
+  routes, and the `**kwargs` view that superseded a commented-out explicit signature
+  (the "two routes, one view" story). The artifact's shared `name='article_details'`
+  flagged as fragile per A008's lesson. 6 glossary terms added; "The ellipsis address"
+  mental model registered; recall bank and revision schedule extended; hub TOC updated
+  to ✅. Next lecture (A010 Templates Folder Setup — its folder already exists) linked
+  in the bridge and nav footer.
