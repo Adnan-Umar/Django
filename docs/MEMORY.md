@@ -30,6 +30,7 @@
 | A007 | `A007_Views_URLs_Basics` | Views & URLs Basics | ✅ Documented | ⚠️ Partial — primary sources are the journal's lines 19–25 (environment rebuild, quoted verbatim) and a fourth artifact: the `dj1/` project whose `blog/` app now contains written views and URLs (all quoted verbatim) |
 | A008 | `A008_Multiple_Apps_with_Views_URLs_(Blog_Shop_Example)` | Multiple Apps with Views & URLs (Blog/Shop) | ✅ Documented | ⚠️ Partial — primary source is a fifth artifact: `myProject1/` running `blog` AND `shop` apps (all views/urls/settings quoted verbatim, including a REAL duplicate-`''` bug in `shop/urls.py`, dissected per AGENTS §12); journal (`startapp blog` + env rebuild) is context |
 | A009 | `A009_URL_Parameters_(path_re_path_kwargs)` | URL Parameters (path, re_path, kwargs) | ✅ Documented | ⚠️ Partial — primary source is a sixth artifact: `myProject2/` whose `blog` app reads values from URLs (views/urls quoted verbatim: `path()` converters, multi-segment routes, a `re_path` regex route, and a `**kwargs` view that superseded a commented-out explicit signature); journal adds no lines (file-editing lecture) |
+| A010 | `A010_Templates_Folder_Setup_Project_Level` | Templates Folder Setup (Project Level) | ✅ Documented | ⚠️ Partial — primary source is a seventh artifact: `myProject3/`, the first with **no app** (project-level `templates/home.html`, config-level `views.py` calling `render()`, `settings.py` with the `DIRS` edit + `import os` + an inert `MAILERS` block — all quoted verbatim); A004's pristine `settings.py` serves as the in-repo "before" diff; journal adds no lines (file-editing lecture) |
 
 ---
 
@@ -151,6 +152,15 @@
 - **Named regex group** — regex capture with a name · *`(?P<year>[0-9]{4})` captures 4 digits as `year`; arrives as `'2024'` (str), unlike `<int:year>`'s int* · 🧷 `(?P<name>pattern)` ⇒ `name` the keyword.
 - **`**kwargs` view** — a view accepting any captured keywords · *`def view(request, **kwargs)` collects all URL-keyword arguments into a dict — one view, many URL shapes; superseded a commented-out explicit signature in the artifact* · 🧷 the catch-all funnel.
 
+### A010 — Templates Folder Setup (Project Level)
+
+- **Project-level templates folder** — one `templates/` directory at the project root, shared by the whole site · *convention home for site-wide templates (layouts, home, error pages), found via `DIRS`* · 🧷 the building's central print room.
+- **`TEMPLATES['DIRS']`** — the engine's "look here too" list · *a list of template directories searched **first** by the `DjangoTemplates` loader; default `[]` = a fresh project cannot find project-level templates* · 🧷 the signpost to the print room.
+- **`APP_DIRS`** — the "also look inside apps" flag · *`True` makes each installed app's `templates/` subfolder a lookup location, in `INSTALLED_APPS` order; a no-op with zero apps* · 🧷 also check every open shop's printer.
+- **Template lookup order** — where the engine searches, in sequence · *`DIRS` directories first, then app dirs; **first match wins**, so `DIRS` can shadow an app's template* · 🧷 A008's URL rule, now a file rule.
+- **Template engine / loader** — the machinery that finds, reads, and fills templates · *the `'BACKEND'` in `TEMPLATES` (`DjangoTemplates`) resolves a name to a file, parses, fills from context* · 🧷 the clerk of the print room.
+- **`TemplateDoesNotExist`** — Django's "I looked everywhere; no file" error · *raised when no configured location contains the requested name; the `DEBUG` page lists every location tried — read it first* · 🧷 the clerk's receipt of every room checked.
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -171,6 +181,7 @@
 | **The menu chain / directory-to-menu** | routing hierarchy: `ROOT_URLCONF` = which front door; project `urls.py` = mall directory (keeps `admin/`, delegates everything else); app `urls.py` = the shop's own menu; view = kitchen; `HttpResponse` = the dish; `include()` = "from here, the app is in charge" | A007 | routing / wiring / where-does-a-URL-go questions |
 | **Many shops, one directory** | multi-app scale: project = mall directory listing each shop at its own *prefix*; each shop = its own package (views/urls menu); prefixed names (blog-home) = unique dish labels; first-match-wins = only the first identical menu line is served | A008 | multi-app / prefix / name-collision / dead-route questions |
 | **The ellipsis address** | URL parameters: pattern = address template with typed blanks (`<int:post_id>` = house-number blank), converter = postal sorting rule (shape-check + type-stamp), view = the resident who answers by keyword name, `re_path` = registered mail with strict format (strings), `**kwargs` = a resident who lists every parcel that arrived | A009 | converters / re_path / kwargs / URL-detail questions |
+| **The central print room** | project-level templates: the folder = the building's print room (site-wide forms), `DIRS` = the signpost in the staff handbook (`settings.py`) saying where it is, `APP_DIRS` = the rule "also check every open shop's printer", `render()` = the clerk who finds the form by name and fills it from a brief (context — empty today), `TemplateDoesNotExist` = the receipt listing every room checked | A010 | template setup / DIRS / lookup-order / render questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -220,6 +231,8 @@ What did the rocket page prove beyond "the command exited 0"?
 
 **From A009:** What does `/blog/post/73/` deliver to the view, exactly? · Why does `<int:post_id>` reject `/blog/post/abc/`? · The one type difference between `path` converters and `re_path` groups · Why did the artifact replace an explicit `article_details(year, month)` signature with `**kwargs`? · Name the five default converters · Where do converters live — app or project file? · Decode `r'^article/(?P<year>[0-9]{4})/$'` piece by piece · Path parameter vs query string — when each?
 
+**From A010:** The two lookup locations, in order — and who can be shadowed? · The three touches that set up project-level templates, proven against A004's default settings · What `render()`'s missing third argument means for the artifact's page · Why does `myProject3/` work with zero apps? · Why is `import os` needed with `os.path.join` (and what breaks without it)? · Why does `render(request, 'templates/home.html')` fail? · The three failure stages on the `/` journey (404 / startup `NameError` / `TemplateDoesNotExist`) · What does the `MAILERS` block in the artifact's settings actually do?
+
 ---
 
 ## 5. Spaced-Revision Schedule
@@ -235,6 +248,7 @@ What did the rocket page prove beyond "the command exited 0"?
 | A007 | Re-read 📝 Quick Revision; recite the three-file wiring + the `path()` formula | Redraw the `/about/` journey (files in order) from memory; explain the commented-out lines in `dj1/urls.py` aloud | Wire a fresh app: write two views + app urls + one `include()` and serve them; answer the interview set aloud |
 | A008 | Re-read 📝 Quick Revision; recite the multi-app `urls.py` shape + the three uniqueness rules | Redraw the two-shop tree + `/blog/about/` prefix-strip flow from memory; explain the `shop/urls.py` dead route aloud | Add a third app (startapp → register → view → urls → include) and serve it; answer the interview set aloud |
 | A009 | Re-read 📝 Quick Revision; recite the converter→keyword contract + the `re_path` string-trap | Redraw the `/blog/post/73/` journey from memory; explain why the artifact uses `**kwargs`; decode the `re_path` regex aloud | Add a `product/<int:product_id>/` route to the artifact and watch 404/`TypeError` behavior; answer the interview set aloud |
+| A010 | Re-read 📝 Quick Revision; recite the `DIRS`→`APP_DIRS` order + the edit trio | Redraw the `/` render journey from memory; explain `render()` as find-fill-wrap aloud; diff A010's `settings.py` against A004's | Add an about page to `myProject3/`, then deliberately break and fix a `TemplateDoesNotExist` via the tried-list; answer the interview set aloud |
 
 ---
 
@@ -318,3 +332,18 @@ What did the rocket page prove beyond "the command exited 0"?
   mental model registered; recall bank and revision schedule extended; hub TOC updated
   to ✅. Next lecture (A010 Templates Folder Setup — its folder already exists) linked
   in the bridge and nav footer.
+- **A010 documented** — chapter built from a seventh real artifact: `myProject3/`, the
+  first with **no app** — a project-level `templates/home.html`, a config-package
+  `views.py` calling `render()` for the first time in the series' own projects (A007's
+  imported-but-unused `render` debt paid), and a `settings.py` whose three manual edits
+  (folder, `import os`, `'DIRS': [os.path.join(BASE_DIR, 'templates')]`) are proven
+  against A004's pristine same-Django-6.1.1 settings in an in-repo diff. Two honest flags
+  per §12: the legacy `os.path.join` style (vs `BASE_DIR / 'templates'`, 📌) and an inert
+  `MAILERS` block Django's core never reads (the core setting is `EMAIL_BACKEND`). Core
+  teaching: call-by-name/configure-the-search, the `DIRS`→`APP_DIRS` lookup order with
+  first-match shadowing, find-fill-wrap `render()` mechanics, the 8-station `/` journey,
+  and `TemplateDoesNotExist` as diagnostic output. 6 glossary terms added; "The central
+  print room" mental model registered; recall bank and revision schedule extended; hub
+  TOC updated to ✅. Next lecture (A011 App-Level Templates Setup — HTML Integration; its
+  folder already exists with the `myProject4/` artifact) named and linked in the bridge
+  and nav footer.
