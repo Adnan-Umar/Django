@@ -771,7 +771,7 @@ can now trace blindfolded.
 > `MAILERS` block and its unreferenced `base.html` are flagged ⚠️, not silently endorsed.
 > No transcript exists for A011 — declared per the documentation contract.
 >
-> **Navigation:** [← A010 · Templates Folder Setup (Project Level)](../A010_Templates_Folder_Setup_Project_Level/README.md) · [📚 Series Hub](../README.md) · [A012 · Manage HTML Files →](../A012_Manage_HTML_Files/)
+> **Navigation:** [← A010 · Templates Folder Setup (Project Level)](../A010_Templates_Folder_Setup_Project_Level/README.md) · [📚 Series Hub](../README.md) · [A012 · Manage HTML Files →](../A012_Manage_HTML_Files/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·

@@ -42,7 +42,8 @@ retention*, not skim-reading.
 | A009 | [URL Parameters — path, re_path, kwargs](A009_URL_Parameters_%28path_re_path_kwargs%29/README.md) | Captured URL segments as typed view arguments: path converters (`<int:post_id>`), multi-segment routes, `re_path` regex groups (strings), `**kwargs` views — built on the sixth artifact `myProject2/` | ✅ Documented |
 | A010 | [Templates Folder Setup — Project Level](A010_Templates_Folder_Setup_Project_Level/README.md) | The T of MVT hands-on: the project-level `templates/` folder, `TEMPLATES['DIRS']` vs `APP_DIRS`, lookup order & shadowing, `render()` as find-fill-wrap, `TemplateDoesNotExist` debugging — built on the seventh artifact `myProject3/` (zero apps, first executed `render()`) | ✅ Documented |
 | A011 | [App-Level Templates Setup — HTML Integration](A011_App_Level_Templates_Setup_HTML_Integration/README.md) | Templates inside apps: the `templates/<app>/` namespacing convention, the populated two-lane lookup (`DIRS` → `INSTALLED_APPS` order), registration as precondition, ownership-based placement — built on the eighth artifact `myProject4/` (`blog` + `shop`, orphaned `base.html`) | ✅ Documented |
-| A012+ | — | *future lectures appear here* | 🗓️ Planned |
+| A012 | [Manage HTML Files](A012_Manage_HTML_Files/README.md) | Template inheritance in practice: parent `base.html` with `{% block %}` regions, children that `{% extends %}` it, cross-lane parent lookup, block defaults, silent-failure diagnosis, ownership-based placement — built on the ninth artifact (same `myProject4/`, zero Python changed, three rewritten templates) | ✅ Documented |
+| A013+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -66,7 +67,8 @@ retention*, not skim-reading.
 ├── A009_…/                ← Lecture A009 chapter (plus myProject2/ — the app that reads values from URLs: converters, re_path, kwargs)
 ├── A010_…/                  ← Lecture A010 chapter (plus myProject3/ — zero apps: project-level templates/, config-level views.py, the DIRS edit)
 ├── A011_…/                  ← Lecture A011 chapter (plus myProject4/ — blog + shop apps, each owning templates/<app>/; orphaned base.html)
-├── A012_…/                  ← planned lecture (Manage HTML Files)
+├── A012_…/                  ← Lecture A012 chapter (plus myProject4/ — same blog + shop project, zero Python changed; base.html now a parent, both app pages children)
+├── A013_…/                  ← planned lecture (Templates 1: Basics & Variables)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -86,7 +88,8 @@ retention*, not skim-reading.
 - ✅ **A009 — URL Parameters (`path`, `re_path`, `kwargs`)** — documented
 - ✅ **A010 — Templates Folder Setup (Project Level)** — documented
 - ✅ **A011 — App-Level Templates Setup (HTML Integration)** — documented
-- 🗓️ **A012+** — next up
+- ✅ **A012 — Manage HTML Files** — documented
+- 🗓️ **A013+** — next up
 
 ---
 

@@ -32,6 +32,7 @@
 | A009 | `A009_URL_Parameters_(path_re_path_kwargs)` | URL Parameters (path, re_path, kwargs) | ✅ Documented | ⚠️ Partial — primary source is a sixth artifact: `myProject2/` whose `blog` app reads values from URLs (views/urls quoted verbatim: `path()` converters, multi-segment routes, a `re_path` regex route, and a `**kwargs` view that superseded a commented-out explicit signature); journal adds no lines (file-editing lecture) |
 | A010 | `A010_Templates_Folder_Setup_Project_Level` | Templates Folder Setup (Project Level) | ✅ Documented | ⚠️ Partial — primary source is a seventh artifact: `myProject3/`, the first with **no app** (project-level `templates/home.html`, config-level `views.py` calling `render()`, `settings.py` with the `DIRS` edit + `import os` + an inert `MAILERS` block — all quoted verbatim); A004's pristine `settings.py` serves as the in-repo "before" diff; journal adds no lines (file-editing lecture) |
 | A011 | `A011_App_Level_Templates_Setup_HTML_Integration` | App-Level Templates Setup (HTML Integration) | ✅ Documented | ⚠️ Partial — primary source is an eighth artifact: `myProject4/` running `blog` + `shop`, each owning a namespaced `templates/<app>/` folder with a tag-free page (`views.py`/`urls.py`/templates + `settings.py` quoted verbatim: both apps registered, pathlib `DIRS`, orphaned `base.html`, inert `MAILERS` block carried over); A010's `settings.py` is the "before" diff; journal adds no lines (file-editing lecture) |
+| A012 | `A012_Manage_HTML_Files` | Manage HTML Files | ✅ Documented | ⚠️ Partial — primary source is a ninth artifact: the same `myProject4/` with **zero Python changed** (all `.py` files diffed vs A011 — identical); three rewritten templates (`base.html` now a parent with `title`/`content` blocks at outer `templates/` — moved from A011's inner path, flagged in a §12 discrepancy note — plus two `{% extends %}` children); journal adds no lines (file-editing lecture) |
 
 ---
 
@@ -171,6 +172,16 @@
 - **Registration precondition** — the `APP_DIRS` lane only walks registered apps · *an unregistered app's template folder is invisible to the engine — the A006 step matters for templates too* · 🧷 not in the mall directory → its printer isn't on the checklist.
 - **Orphaned template** — a staged file no view renders yet · *present on disk, wired lane-wise, but referenced by no `render()` call — reserved (here: `base.html`, for inheritance)* · 🧷 letterhead printed; nobody's holding it.
 
+### A012 — Manage HTML Files
+
+- **Parent template** — the shared skeleton other pages build on · *a template containing `{% block %}` regions; never rendered directly here — reached via `{% extends %}`* · 🧷 the letterhead itself.
+- **`{% extends %}`** — the line where a child names its parent · *must be the child's first tag (📌); its string resolves through the normal two-lane lookup* · 🧷 "print this on that letterhead."
+- **`{% block %}`** — a named, fillable region of the parent · *`{% block name %}default{% endblock %}` — declares the slot and its fallback content* · 🧷 a labeled blank field.
+- **Block default** — what shows when a child stays silent · *the content between `{% block %}` and `{% endblock %}` in the parent; replaced entirely when a child fills the block* · 🧷 the pre-printed line.
+- **Child template** — a page that fills a parent's blanks · *contains `{% extends %}` + `{% block %}` fills; stray text outside blocks is dropped (📌)* · 🧷 the filled-in letter.
+- **Cross-lane inheritance** — child and parent found in different lanes · *e.g. lane-2 child extends a lane-1 parent — one lookup mechanism, two searches* · 🧷 two rooms, one checklist, twice.
+
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -193,6 +204,7 @@
 | **The ellipsis address** | URL parameters: pattern = address template with typed blanks (`<int:post_id>` = house-number blank), converter = postal sorting rule (shape-check + type-stamp), view = the resident who answers by keyword name, `re_path` = registered mail with strict format (strings), `**kwargs` = a resident who lists every parcel that arrived | A009 | converters / re_path / kwargs / URL-detail questions |
 | **The central print room** | project-level templates: the folder = the building's print room (site-wide forms), `DIRS` = the signpost in the staff handbook (`settings.py`) saying where it is, `APP_DIRS` = the rule "also check every open shop's printer", `render()` = the clerk who finds the form by name and fills it from a brief (context — empty today), `TemplateDoesNotExist` = the receipt listing every room checked | A010 | template setup / DIRS / lookup-order / render questions |
 | **Private printers, labeled forms** | app-level templates: each `templates/<app>/` folder = a shop's private printer installed at registration, the `<app>/` subfolder = the shop's name stamped on every form it prints, checklist order = central room then registered shops in `INSTALLED_APPS` order (first labeled match wins), `base.html` = the shared letterhead waiting in the central room, `TemplateDoesNotExist` = the receipt (unregistered shops' trays aren't even listed) | A011 | namespacing / app-vs-project placement / cross-app collision / receipt-reading questions |
+| **The company letterhead** | template inheritance: parent = pre-printed letterhead (fixed skeleton + named blanks with defaults), children = filled-in sheets (`{% extends %}` first line + fills, stray text dropped), extends string resolves through the same two-lane lookup (cross-lane here), block-name typos fail silently | A012 | inheritance / extends / block / parent-child / silent-failure questions |
 
 **One-breath model (A001):** *Python is the language; Django is the furnished framework
 built on it; a project is the mall; apps are its shops; a request enters, the reception
@@ -245,6 +257,9 @@ What did the rocket page prove beyond "the command exited 0"?
 **From A010:** The two lookup locations, in order — and who can be shadowed? · The three touches that set up project-level templates, proven against A004's default settings · What `render()`'s missing third argument means for the artifact's page · Why does `myProject3/` work with zero apps? · Why is `import os` needed with `os.path.join` (and what breaks without it)? · Why does `render(request, 'templates/home.html')` fail? · The three failure stages on the `/` journey (404 / startup `NameError` / `TemplateDoesNotExist`) · What does the `MAILERS` block in the artifact's settings actually do?
 
 **From A011:** Trace `'blog/post_list.html'` through both lanes — every miss and the hit · Why the doubled folder (`blog/templates/blog/`) — what collision does it prevent? · What happens if the app is never registered in `INSTALLED_APPS`? · The artifact's one asymmetry (`blog` first in registration, `shop/` first in URLs) — why harmless, when not? · A010's vs A011's `DIRS` spelling — what changed and what proves it? · Why is `base.html` an orphan, and what lecture gives it a job? · Where does `GET /shop/` differ from A010's `GET /` journey? · What breaks / survives if `DIRS` empties to `[]`?
+**From A012:** How does the engine find the parent named in `{% extends %}` — new mechanism or reused? · What renders when a child skips a block, and is there an error? · The two silent failures (typo'd block name, stray outside-block text) — symptom and fix for each · Trace `GET /shop/` stations 9–11: what is new vs byte-identical? · Why did `base.html`'s move from the inner config package to the outer root matter? · Shop's child shrank 321→221 bytes — where did the bytes go, and why is blog's delta tiny? · What is still missing from every template (zero `{{ }}`) — and which lecture supplies it?
+
+
 
 ---
 
@@ -263,6 +278,7 @@ What did the rocket page prove beyond "the command exited 0"?
 | A009 | Re-read 📝 Quick Revision; recite the converter→keyword contract + the `re_path` string-trap | Redraw the `/blog/post/73/` journey from memory; explain why the artifact uses `**kwargs`; decode the `re_path` regex aloud | Add a `product/<int:product_id>/` route to the artifact and watch 404/`TypeError` behavior; answer the interview set aloud |
 | A010 | Re-read 📝 Quick Revision; recite the `DIRS`→`APP_DIRS` order + the edit trio | Redraw the `/` render journey from memory; explain `render()` as find-fill-wrap aloud; diff A010's `settings.py` against A004's | Add an about page to `myProject3/`, then deliberately break and fix a `TemplateDoesNotExist` via the tried-list; answer the interview set aloud |
 | A011 | Re-read 📝 Quick Revision; recite the stamp convention + the two-lane checklist | Redraw the two-lane trace of `'blog/post_list.html'` from memory; explain the doubled folder and the registration precondition aloud | Add the stamped shop about page, then break it three ways (bare name / missing stamp / unregistered) and restore; answer the interview set aloud |
+| A012 | Re-read 📝 Quick Revision; recite the two block names + the extends string | Redraw the `/shop/` parent+child journey (stations 9–11) from memory; explain defaults vs fills aloud | Add the about child, break it two silent ways, change the banner once and confirm propagation; answer the interview set aloud |
 
 ---
 
@@ -376,3 +392,4 @@ What did the rocket page prove beyond "the command exited 0"?
   extended; hub TOC updated to ✅. A010's nav footer repointed at this chapter. Next
   lecture (A012 Manage HTML Files — its folder already exists) named and linked in the
   bridge and nav footer.
+- **A012 documented** — ninth artifact, same myProject4, zero Python changed: three rewritten templates (parent base.html with title/content blocks plus two extends children); teaches cross-lane lookup, defaults, silent failures, ownership; inner-to-outer base.html move flagged per section 12; 6 terms, letterhead model, recall/revision extended, hub updated, A011 nav repointed, A013 linked.
