@@ -735,7 +735,7 @@ open A011's `myProject4/`, predict it with this chapter's model: which lane will
 > style and unread `MAILERS` setting are flagged ⚠️, not silently endorsed. No transcript
 > exists for A010 — declared per the documentation contract.
 >
-> **Navigation:** [← A009 · URL Parameters (`path`, `re_path`, `kwargs`)](../A009_URL_Parameters_%28path_re_path_kwargs%29/README.md) · [📚 Series Hub](../README.md) · [A011 · App-Level Templates Setup (HTML Integration) →](../A011_App_Level_Templates_Setup_HTML_Integration/)
+> **Navigation:** [← A009 · URL Parameters (`path`, `re_path`, `kwargs`)](../A009_URL_Parameters_%28path_re_path_kwargs%29/README.md) · [📚 Series Hub](../README.md) · [A011 · App-Level Templates Setup (HTML Integration) →](../A011_App_Level_Templates_Setup_HTML_Integration/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·
