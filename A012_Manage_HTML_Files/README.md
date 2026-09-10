@@ -698,7 +698,7 @@ appear in parents, children, defaults, and fills alike.
 > flagged ⚠️, not endorsed. No transcript exists for A012 — declared per the documentation
 > contract.
 >
-> **Navigation:** [← A011 · App-Level Templates Setup](../A011_App_Level_Templates_Setup_HTML_Integration/README.md) · [📚 Series Hub](../README.md) · [A013 · Templates 1: Basics & Variables →](../A013_Templates_1_Basics_&_Variables/)
+> **Navigation:** [← A011 · App-Level Templates Setup](../A011_App_Level_Templates_Setup_HTML_Integration/README.md) · [📚 Series Hub](../README.md) · [A013 · Templates 1: Basics & Variables →](../A013_Templates_1_Basics_&_Variables/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·

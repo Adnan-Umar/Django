@@ -43,7 +43,8 @@ retention*, not skim-reading.
 | A010 | [Templates Folder Setup — Project Level](A010_Templates_Folder_Setup_Project_Level/README.md) | The T of MVT hands-on: the project-level `templates/` folder, `TEMPLATES['DIRS']` vs `APP_DIRS`, lookup order & shadowing, `render()` as find-fill-wrap, `TemplateDoesNotExist` debugging — built on the seventh artifact `myProject3/` (zero apps, first executed `render()`) | ✅ Documented |
 | A011 | [App-Level Templates Setup — HTML Integration](A011_App_Level_Templates_Setup_HTML_Integration/README.md) | Templates inside apps: the `templates/<app>/` namespacing convention, the populated two-lane lookup (`DIRS` → `INSTALLED_APPS` order), registration as precondition, ownership-based placement — built on the eighth artifact `myProject4/` (`blog` + `shop`, orphaned `base.html`) | ✅ Documented |
 | A012 | [Manage HTML Files](A012_Manage_HTML_Files/README.md) | Template inheritance in practice: parent `base.html` with `{% block %}` regions, children that `{% extends %}` it, cross-lane parent lookup, block defaults, silent-failure diagnosis, ownership-based placement — built on the ninth artifact (same `myProject4/`, zero Python changed, three rewritten templates) | ✅ Documented |
-| A013+ | — | *future lectures appear here* | 🗓️ Planned |
+| A013 | [Templates 1: Basics & Variables](A013_Templates_1_Basics_&_Variables/README.md) | `{{ }}` variables + the context dictionary: `render()`'s data argument, the dot-lookup order, auto-escaping & `|safe`, DTL comments — built on the tenth artifact `myProject5/` (fresh single-app project, first living `home.html`, all 12 outputs verified by rendering) | ✅ Documented |
+| A014+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -68,7 +69,8 @@ retention*, not skim-reading.
 ├── A010_…/                  ← Lecture A010 chapter (plus myProject3/ — zero apps: project-level templates/, config-level views.py, the DIRS edit)
 ├── A011_…/                  ← Lecture A011 chapter (plus myProject4/ — blog + shop apps, each owning templates/<app>/; orphaned base.html)
 ├── A012_…/                  ← Lecture A012 chapter (plus myProject4/ — same blog + shop project, zero Python changed; base.html now a parent, both app pages children)
-├── A013_…/                  ← planned lecture (Templates 1: Basics & Variables)
+├── A013_…/                  ← Lecture A013 chapter (plus myProject5/ — the fresh single-app project whose home.html got live {{ }} variables, render-verified against artifact context)
+├── A014_…/                  ← planned lecture (Templates 2: Filters)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -89,7 +91,8 @@ retention*, not skim-reading.
 - ✅ **A010 — Templates Folder Setup (Project Level)** — documented
 - ✅ **A011 — App-Level Templates Setup (HTML Integration)** — documented
 - ✅ **A012 — Manage HTML Files** — documented
-- 🗓️ **A013+** — next up
+- ✅ **A013 — Templates 1: Basics & Variables** — documented
+- 🗓️ **A014+** — next up
 
 ---
 

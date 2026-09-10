@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>#1 Template Basic</title>
+  </head>
+  <body>
+    <h1>Template Basic</h1>
+    <! -- This is a 1st comment in HTML -->
+    {% comment %} This is a 2nd comment in HTML {% endcomment %}
+    {# This is a 3rd comment in HTML #}
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, tempore!</p>
+    <p>Lorem ipsum dolor sit amet.</p>
+
+    {% comment %} Single Variable {% endcomment %}
+    <p> Name: {{name}} </p>
+    <p> Age: {{age}} </p>
+
+    {% comment %} List Access {% endcomment %}
+    <p>First skill: {{skills.0}}</p>
+    <p>All skills: {{skills}}</p>
+
+    {% comment %} Obj Attribute {% endcomment %}
+    <p>User name: {{user.name}}</p>
+    <p>User age: {{user.age}}</p>
+
+    {% comment %} Dict {% endcomment %}
+    <h2>Blog Information</h2>
+    <p>Title: {{blog.title}}</p>
+    <p>Content: {{blog.content}}</p>
+    <p>Content: {{blog.content|safe}}</p>
+    <p>Create At: {{blog.created_at}}</p>
+
+    {% comment %} Default value {% endcomment %}
+    <p>Default Empty value: {{empty_value|default:"No value provided"}} </p>
+    <p>Default Empty value: {{empty_value|default_if_none:"No Data"}} </p>
+  </body>
+</html>
