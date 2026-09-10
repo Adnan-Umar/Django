@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>#2 Template</title>
+  </head>
+  <body>
+    <h1>Blog Filter Page</h1>
+    <p>Author Available?: {{post.author|yesno:"Yes,No,Maybe"}}</p>
+    <p>Comments Count?: {{post.comment_count}} Comment{{post.comment_count|pluralize:"s"}}</p>
+    <hr>
+    {% comment %} Date Filter {% endcomment %}
+    <p><b>Created At: </b>{{post.created_at}}</p>
+    <p><b>Formatted Date: </b>{{post.created_at|date:"D,d,M,Y"}}</p>
+    <p><b>Time Only: </b>{{post.created_at|time:"H:i"}}</p>
+    <hr>
+    {% comment %} Encoding and Formatting {% endcomment %}
+    <p><b>Title Encode : </b>{{post.title|urlencode}}</p>
+    <p><b>Float formate Example : </b>{{123.4568|floatformat:2}}</p>
+    <hr>
+    {% comment %} Text filter {% endcomment %}
+    <p><b>Title (Normal):</b>{{post.title}}</p>
+    <p><b>Title (Uppercase):</b>{{post.title|upper}}</p>
+    <p><b>Title (Lowercase):</b>{{post.title|lower}}</p>
+    <p><b>Title (Capitalize):</b>{{post.title|capfirst}}</p>
+    <p><b>Title (Title Case):</b>{{post.title|title}}</p>
+    <p><b>Title (Truncate Characters):</b>{{post.title|truncatechars:10}}</p>
+    <p><b>Title (Truncate Words):</b>{{post.title|truncatewords:3}}</p>
+    <p><b>Title (Line Break):</b>{{post.title|linebreaks}}</p>
+    <hr>
+    <p><b>Original Price:</b>{{post.price}}</p>
+    <p><b>Original Price(+5):</b>{{post.price|add:5}}</p>
+    {% comment %} Division By {% endcomment %}
+    {% if post.number|divisibleby:2 %}
+        <p>{{post.number}} is divisible by 2</p>
+    {% else %}
+        <p>{{post.number}} is not divisible by 2</p>
+    {% endif %}
+    {% comment %} List Filter {% endcomment %}
+    <p><b>Original Tags:</b>{{post.tags}}</p>
+    <p><b>First tag:</b>{{post.tags|first}}</p>
+    <p><b>Last tag:</b>{{post.tags|last}}</p>
+    <p><b>Length tag:</b>{{post.tags|length}}</p>
+    <p><b>Slice (First 2):</b>{{post.tags|slice:":2"}}</p>
+    <p><b>Join tag:</b>{{post.tags|join:" , "}}</p>
+
+  </body>
+</html>

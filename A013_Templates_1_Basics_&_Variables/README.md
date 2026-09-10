@@ -691,7 +691,7 @@ transform *resolved values at print time* — resolve first (this chapter), resh
 > `User` class are flagged ⚠️, not endorsed. No transcript exists for A013 — declared per
 > the documentation contract.
 >
-> **Navigation:** [← A012 · Manage HTML Files](../A012_Manage_HTML_Files/README.md) · [📚 Series Hub](../README.md) · [A014 · Templates 2: Filters (Text, Numbers, Date) →](../A014_Templates_2_Filters_Text_Numbers_Date/)
+> **Navigation:** [← A012 · Manage HTML Files](../A012_Manage_HTML_Files/README.md) · [📚 Series Hub](../README.md) · [A014 · Templates 2: Filters (Text, Numbers, Date) →](../A014_Templates_2_Filters_Text_Numbers_Date/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·
