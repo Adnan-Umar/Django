@@ -1019,7 +1019,7 @@ just learned running inside a shared, styled shell.
 > endorsed — and this artifact's deliberate root-404 is documented honestly in the
 > Journey. No transcript exists for A015 — declared per the documentation contract.
 >
-> **Navigation:** [← A014 · Templates 2: Filters (Text, Numbers, Date)](../A014_Templates_2_Filters_Text_Numbers_Date/README.md) · [📚 Series Hub](../README.md) · [A016 · Templates 4: Inheritance, Static Files →](../A016_Templates_4_Inheritance_Static_Files/)
+> **Navigation:** [← A014 · Templates 2: Filters (Text, Numbers, Date)](../A014_Templates_2_Filters_Text_Numbers_Date/README.md) · [📚 Series Hub](../README.md) · [A016 · Templates 4: Inheritance, Static Files →](../A016_Templates_4_Inheritance_Static_Files/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·

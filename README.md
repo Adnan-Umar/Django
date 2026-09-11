@@ -46,7 +46,8 @@ retention*, not skim-reading.
 | A013 | [Templates 1: Basics & Variables](A013_Templates_1_Basics_&_Variables/README.md) | `{{ }}` variables + the context dictionary: `render()`'s data argument, the dot-lookup order, auto-escaping & `|safe`, DTL comments — built on the tenth artifact `myProject5/` (fresh single-app project, first living `home.html`, all 12 outputs verified by rendering) | ✅ Documented |
 | A014 | [Templates 2: Filters (Text, Numbers, Date)](A014_Templates_2_Filters_Text_Numbers_Date/README.md) | The filter shelf: 20 distinct filters (text / number / date / collection / three-state) reshaping values at print time, the resolve→filter→escape pipeline, case-sensitive date codes, first `{% if %}` — built on the eleventh artifact `myProject6/` (all outputs verified by rendering + live 200 on `GET /`) | ✅ Documented |
 | A015 | [Templates 3: If, For, With and Cycle](A015_Templates_3_If_For_With_and_Cycle/README.md) | The control-flow shelf: 9 block tags (`if`/`else`, `for` with `empty` & `forloop.counter`, `with`, `cycle`, `firstof`, `verbatim`, `autoescape off`) that make a page decide and repeat — built on the twelfth artifact `myProject7/` (list-of-dicts page at `/blog/`, render-verified + live 200) | ✅ Documented |
-| A016+ | — | *future lectures appear here* | 🗓️ Planned |
+| A016 | [Templates 4: Inheritance, Static Files](A016_Templates_4_Inheritance_Static_Files/README.md) | The blueprint + the warehouse: one `base.html` parent with `title`/`content` block defaults, two children (one per template lane), an included navbar reversing named URLs, and a real `static/` tree (`STATICFILES_DIRS` + `{% load static %}` + `{% static %}`) — built on the thirteenth artifact `myProject8/` (render-verified 17/17 + live 200s on both pages and all three assets) | ✅ Documented |
+| A017+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -74,6 +75,7 @@ retention*, not skim-reading.
 ├── A013_…/                  ← Lecture A013 chapter (plus myProject5/ — the fresh single-app project whose home.html got live {{ }} variables, render-verified against artifact context)
 ├── A014_…/                  ← Lecture A014 chapter (plus myProject6/ — the fresh single-app project whose blog_details.html is a 20-filter shelf, render-verified + 200 on GET /)
 ├── A015_…/                  ← Lecture A015 chapter (plus myProject7/ — the fresh single-app project whose blog_list.html is a 9-tag control-flow shelf at /blog/, render-verified + live 200)
+├── A016_…/                  ← Lecture A016 chapter (plus myProject8/ — the fresh single-app project whose pages inherit one base.html parent and wear a real static/ tree, render-verified + live 200s)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -97,7 +99,8 @@ retention*, not skim-reading.
 - ✅ **A013 — Templates 1: Basics & Variables** — documented
 - ✅ **A014 — Templates 2: Filters (Text, Numbers, Date)** — documented
 - ✅ **A015 — Templates 3: If, For, With and Cycle** — documented
-- 🗓️ **A016+** — next up
+- ✅ **A016 — Templates 4: Inheritance, Static Files** — documented
+- 🗓️ **A017+** — next up
 
 ---
 
