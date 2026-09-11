@@ -919,7 +919,7 @@ warehouse of styles one `{% static %}` away.
 > documented, not fixed. No transcript exists for A016 — declared per the
 > documentation contract.
 >
-> **Navigation:** [← A015 · Templates 3: If, For, With and Cycle](../A015_Templates_3_If_For_With_and_Cycle/README.md) · [📚 Series Hub](../README.md) · A017 · the next lecture — its folder drops with it →
+> **Navigation:** [← A015 · Templates 3: If, For, With and Cycle](../A015_Templates_3_If_For_With_and_Cycle/README.md) · [📚 Series Hub](../README.md) · [A017 · Templates 5: Advanced Tags →](../A017_Templates_5_Advanced_Tags/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·
