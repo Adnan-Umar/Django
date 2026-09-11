@@ -253,6 +253,8 @@ emoji outside this table's meaning without first updating this contract.
    (§4), revision schedule row (§5).
 6. **Hub** — add the lecture row to the root `README.md` table and progress section.
 7. **Checklist** — run §14; only then is the chapter done.
+8. **Publish** — commit the change and `git push origin main`. A chapter is only "done"
+   when it is on origin — never leave finished work committed locally.
 
 ---
 
@@ -271,6 +273,7 @@ emoji outside this table's meaning without first updating this contract.
 - [ ] "Sources used" footer + prev/next navigation links valid (relative paths)
 - [ ] Renders on GitHub (GFM-only constructs) and reads fine without CSS
 - [ ] `ChaiAurCode/**` untouched; only documentation files changed
+- [ ] Change committed and pushed to `origin` (`git push origin main`) — done means shipped
 
 ---
 
