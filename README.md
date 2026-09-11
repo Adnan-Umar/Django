@@ -45,7 +45,8 @@ retention*, not skim-reading.
 | A012 | [Manage HTML Files](A012_Manage_HTML_Files/README.md) | Template inheritance in practice: parent `base.html` with `{% block %}` regions, children that `{% extends %}` it, cross-lane parent lookup, block defaults, silent-failure diagnosis, ownership-based placement — built on the ninth artifact (same `myProject4/`, zero Python changed, three rewritten templates) | ✅ Documented |
 | A013 | [Templates 1: Basics & Variables](A013_Templates_1_Basics_&_Variables/README.md) | `{{ }}` variables + the context dictionary: `render()`'s data argument, the dot-lookup order, auto-escaping & `|safe`, DTL comments — built on the tenth artifact `myProject5/` (fresh single-app project, first living `home.html`, all 12 outputs verified by rendering) | ✅ Documented |
 | A014 | [Templates 2: Filters (Text, Numbers, Date)](A014_Templates_2_Filters_Text_Numbers_Date/README.md) | The filter shelf: 20 distinct filters (text / number / date / collection / three-state) reshaping values at print time, the resolve→filter→escape pipeline, case-sensitive date codes, first `{% if %}` — built on the eleventh artifact `myProject6/` (all outputs verified by rendering + live 200 on `GET /`) | ✅ Documented |
-| A015+ | — | *future lectures appear here* | 🗓️ Planned |
+| A015 | [Templates 3: If, For, With and Cycle](A015_Templates_3_If_For_With_and_Cycle/README.md) | The control-flow shelf: 9 block tags (`if`/`else`, `for` with `empty` & `forloop.counter`, `with`, `cycle`, `firstof`, `verbatim`, `autoescape off`) that make a page decide and repeat — built on the twelfth artifact `myProject7/` (list-of-dicts page at `/blog/`, render-verified + live 200) | ✅ Documented |
+| A016+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -72,7 +73,7 @@ retention*, not skim-reading.
 ├── A012_…/                  ← Lecture A012 chapter (plus myProject4/ — same blog + shop project, zero Python changed; base.html now a parent, both app pages children)
 ├── A013_…/                  ← Lecture A013 chapter (plus myProject5/ — the fresh single-app project whose home.html got live {{ }} variables, render-verified against artifact context)
 ├── A014_…/                  ← Lecture A014 chapter (plus myProject6/ — the fresh single-app project whose blog_details.html is a 20-filter shelf, render-verified + 200 on GET /)
-├── A015_…/                  ← planned lecture (Templates 3: If/For/With and Cycle)
+├── A015_…/                  ← Lecture A015 chapter (plus myProject7/ — the fresh single-app project whose blog_list.html is a 9-tag control-flow shelf at /blog/, render-verified + live 200)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -95,7 +96,8 @@ retention*, not skim-reading.
 - ✅ **A012 — Manage HTML Files** — documented
 - ✅ **A013 — Templates 1: Basics & Variables** — documented
 - ✅ **A014 — Templates 2: Filters (Text, Numbers, Date)** — documented
-- 🗓️ **A015+** — next up
+- ✅ **A015 — Templates 3: If, For, With and Cycle** — documented
+- 🗓️ **A016+** — next up
 
 ---
 

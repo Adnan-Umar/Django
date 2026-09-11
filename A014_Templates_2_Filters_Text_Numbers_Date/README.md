@@ -813,7 +813,7 @@ become first-aid for proper loops. Filters reshape one value; A015's tags reshap
 > inert `MAILERS` block are flagged ⚠️, not endorsed. No transcript exists for A014 —
 > declared per the documentation contract.
 >
-> **Navigation:** [← A013 · Templates 1: Basics & Variables](../A013_Templates_1_Basics_&_Variables/README.md) · [📚 Series Hub](../README.md) · [A015 · Templates 3: If/For/With and Cycle →](../A015_Templates_3_If_For_With_and_Cycle/)
+> **Navigation:** [← A013 · Templates 1: Basics & Variables](../A013_Templates_1_Basics_&_Variables/README.md) · [📚 Series Hub](../README.md) · [A015 · Templates 3: If/For/With and Cycle →](../A015_Templates_3_If_For_With_and_Cycle/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·
