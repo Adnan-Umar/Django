@@ -806,7 +806,7 @@ regroup lesson becomes an `order_by` lesson and the pigeonholes become querysets
 > prediction corrected in its footer). No transcript exists for A017 — declared per
 > the documentation contract.
 >
-> **Navigation:** [← A016 · Templates 4: Inheritance, Static Files](../A016_Templates_4_Inheritance_Static_Files/README.md) · [📚 Series Hub](../README.md) · [A018 · Bootstrap in Django →](../A018_Bootstrap_in_Django/)
+> **Navigation:** [← A016 · Templates 4: Inheritance, Static Files](../A016_Templates_4_Inheritance_Static_Files/README.md) · [📚 Series Hub](../README.md) · [A018 · Bootstrap in Django →](../A018_Bootstrap_in_Django/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·

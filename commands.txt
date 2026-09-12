@@ -23,3 +23,5 @@ py -m venv venv
 venv/Scripts/activate
 
 django-admin --version
+
+pip install django-bootstrap5

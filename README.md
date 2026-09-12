@@ -48,7 +48,8 @@ retention*, not skim-reading.
 | A015 | [Templates 3: If, For, With and Cycle](A015_Templates_3_If_For_With_and_Cycle/README.md) | The control-flow shelf: 9 block tags (`if`/`else`, `for` with `empty` & `forloop.counter`, `with`, `cycle`, `firstof`, `verbatim`, `autoescape off`) that make a page decide and repeat — built on the twelfth artifact `myProject7/` (list-of-dicts page at `/blog/`, render-verified + live 200) | ✅ Documented |
 | A016 | [Templates 4: Inheritance, Static Files](A016_Templates_4_Inheritance_Static_Files/README.md) | The blueprint + the warehouse: one `base.html` parent with `title`/`content` block defaults, two children (one per template lane), an included navbar reversing named URLs, and a real `static/` tree (`STATICFILES_DIRS` + `{% load static %}` + `{% static %}`) — built on the thirteenth artifact `myProject8/` (render-verified 17/17 + live 200s on both pages and all three assets) | ✅ Documented |
 | A017 | [Templates 5: Advanced Tags](A017_Templates_5_Advanced_Tags/README.md) | The specialist shelf: `{% regroup %}` (pigeonholes in first-appearance order), `{% widthratio %}`, `{% spaceless %}`, `{% filter %}` (region form of the pipe) — plus the parent rendered directly as a page of pure defaults — built on the fourteenth artifact `myProject9/` (render-verified 13/13 + live 200s on `/blog/` and `/blog/blog/`) | ✅ Documented |
-| A018+ | — | *future lectures appear here* | 🗓️ Planned |
+| A018 | [Bootstrap in Django](A018_Bootstrap_in_Django/README.md) | The costume department: nine `btn` buttons dressed by three supply channels — the `django-bootstrap5 26.3` bridge (prints 5.3.8 CDN link/script), commented-out CDN fossils, and local `{% static %}` labels — plus the `corecss` swap that trades one dead label for a live one — built on the fifteenth artifact `myProject10/` (render-verified + live 200 with a diagnosed asset 404) | ✅ Documented |
+| A019+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -78,6 +79,7 @@ retention*, not skim-reading.
 ├── A015_…/                  ← Lecture A015 chapter (plus myProject7/ — the fresh single-app project whose blog_list.html is a 9-tag control-flow shelf at /blog/, render-verified + live 200)
 ├── A016_…/                  ← Lecture A016 chapter (plus myProject8/ — the fresh single-app project whose pages inherit one base.html parent and wear a real static/ tree, render-verified + live 200s)
 ├── A017_…/                  ← Lecture A017 chapter (plus myProject9/ — the fresh single-app project whose blog.html is a specialist-tag shelf (`regroup`/`widthratio`/`spaceless`/`filter`), render-verified + live 200s)
+├── A018_…/                  ← Lecture A018 chapter (plus myProject10/ — the fresh single-app project whose base.html wires django-bootstrap5 26.3 + CDN fossils + static labels, render-verified + live 200)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -103,7 +105,8 @@ retention*, not skim-reading.
 - ✅ **A015 — Templates 3: If, For, With and Cycle** — documented
 - ✅ **A016 — Templates 4: Inheritance, Static Files** — documented
 - ✅ **A017 — Templates 5: Advanced Tags** — documented
-- 🗓️ **A018+** — next up (Bootstrap in Django — folder already in repo)
+- ✅ **A018 — Bootstrap in Django** — documented
+- 🗓️ **A019+** — next up (models / ORM / forms frontier — folder drops with the lecture)
 
 ---
 
