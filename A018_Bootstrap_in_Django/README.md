@@ -706,7 +706,7 @@ hard-refresh (`Ctrl+F5`). Server-side truth: `GET /blog/` → 200 (1,368 B).
 > honestly pending. No transcript exists for A018 — declared per the documentation
 > contract.
 >
-> **Navigation:** [← A017 · Templates 5: Advanced Tags](../A017_Templates_5_Advanced_Tags/README.md) · [📚 Series Hub](../README.md) · A019 · the next lecture — its folder drops with it →
+> **Navigation:** [← A017 · Templates 5: Advanced Tags](../A017_Templates_5_Advanced_Tags/README.md) · [📚 Series Hub](../README.md) · [A019 · Tailwind Setup in Django →](../A019_Tailwind_Setup_in_Django/README.md)
 >
 > **Series:** [A001](../A001_Introduction_What_is_Django/README.md) ·
 > [A002](../A002_MVT_Architecture_Explained/README.md) ·

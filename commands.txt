@@ -25,3 +25,5 @@ venv/Scripts/activate
 django-admin --version
 
 pip install django-bootstrap5
+
+npm run dev   # for run tailwind css
