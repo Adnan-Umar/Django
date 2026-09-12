@@ -50,7 +50,8 @@ retention*, not skim-reading.
 | A017 | [Templates 5: Advanced Tags](A017_Templates_5_Advanced_Tags/README.md) | The specialist shelf: `{% regroup %}` (pigeonholes in first-appearance order), `{% widthratio %}`, `{% spaceless %}`, `{% filter %}` (region form of the pipe) — plus the parent rendered directly as a page of pure defaults — built on the fourteenth artifact `myProject9/` (render-verified 13/13 + live 200s on `/blog/` and `/blog/blog/`) | ✅ Documented |
 | A018 | [Bootstrap in Django](A018_Bootstrap_in_Django/README.md) | The costume department: nine `btn` buttons dressed by three supply channels — the `django-bootstrap5 26.3` bridge (prints 5.3.8 CDN link/script), commented-out CDN fossils, and local `{% static %}` labels — plus the `corecss` swap that trades one dead label for a live one — built on the fifteenth artifact `myProject10/` (render-verified + live 200 with a diagnosed asset 404) | ✅ Documented |
 | A019 | [Tailwind Setup in Django](A019_Tailwind_Setup_in_Django/README.md) | The print shop with two floors: one `<h1>` wearing three utilities (`bg-sky-200 text-center p-4`), woven by the Tailwind v4.3.3 CLI (`input.css` 22 B → `output.css` 4,889 B via `npm run dev`) and served from the app lane — plus the ghost `STATICFILES_DIRS` (`W004`) and the test-client 404 that proves nothing — built on the sixteenth artifact `myProject11/` (286 B page, 200; asset 404-by-design vs `runserver` 200) | ✅ Documented |
-| A020+ | — | *future lectures appear here* | 🗓️ Planned |
+| A020 | [Portfolio Website in Django](A020_Portfolio_Website_in_Django/README.md) | The capstone-start: a **root-mounted** `portfolio` app owns `/` (`/blog/` → 404), three pages under one base with hard-coded `<title>` (⚠️), an `includes/` partials folder, a real project-level `static/` tree (3,760 B css + 7 byte-identical assets), the series' first `{% csrf_token %}` form (empty + verbatim `UserWarning` bare vs live hidden input), plus **dormant CSS** (`.hero h1`, `.contact h2`) — built on the seventeenth artifact `myProject12/` (render-verified 1,452/794/994 B pages, live 200s incl. `POST /contact/` re-render) |
+| A021+ | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -82,6 +83,7 @@ retention*, not skim-reading.
 ├── A017_…/                  ← Lecture A017 chapter (plus myProject9/ — the fresh single-app project whose blog.html is a specialist-tag shelf (`regroup`/`widthratio`/`spaceless`/`filter`), render-verified + live 200s)
 ├── A018_…/                  ← Lecture A018 chapter (plus myProject10/ — the fresh single-app project whose base.html wires django-bootstrap5 26.3 + CDN fossils + static labels, render-verified + live 200)
 ├── A019_…/                  ← Lecture A019 chapter (plus myProject11/ — the fresh single-app project whose blog.html wears Tailwind utilities woven by the v4.3.3 CLI, 286 B page + 4,889 B bolt)
+├── A020_…/                  ← Lecture A020 chapter (plus myProject12/ — the fresh three-page portfolio whose root-mounted `portfolio` app ships a hard-coded tab, real static/ tree, and a csrf form)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -109,7 +111,8 @@ retention*, not skim-reading.
 - ✅ **A017 — Templates 5: Advanced Tags** — documented
 - ✅ **A018 — Bootstrap in Django** — documented
 - ✅ **A019 — Tailwind Setup in Django** — documented
-- 🗓️ **A020+** — next up (Portfolio Website in Django — folder already in repo)
+- ✅ **A020 — Portfolio Website in Django** — documented
+- 🗓️ **A021+** — next up (ORM — folder already in repo)
 
 ---
 
