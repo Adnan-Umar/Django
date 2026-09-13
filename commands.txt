@@ -37,3 +37,24 @@ from blog.models import Student
 student = Student.objects.all()
 print(student)
 exit()
+
+for s in student:
+    print(s.name, s.age, s.city)
+
+student = Student.objects.get(id = 1)
+print(student)
+
+student = Student.objects.filter(age=30)
+print(student)
+
+## Operations to filter
+__gt, __lt, __gte, __lte, __startswith, __icontains, __exact
+
+student = Student.objects.filter(age__gt=30)
+print(student)
+
+student = Student.objects.filter(age__gt=18)
+print(student)
+
+student = Student.objects.filter(name__startswith = "a")
+>>> print(student)
