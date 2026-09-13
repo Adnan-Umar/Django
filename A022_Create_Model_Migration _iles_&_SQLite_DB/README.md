@@ -406,7 +406,7 @@ A: It automatically sets the field to the current date when the object is first 
 
 The next lecture builds on this foundation by introducing **Django's Admin Interface and Forms** — which both depend entirely on models. The `admin.py` file in the `blog` app registers the `Student` model for the admin site, and forms use the model's fields to generate input elements. The ORM knowledge from this lecture is the **prerequisite for all database-interacting features** in future lectures.
 
-`../A023_Admin_Forms_Read_Only/README.md` ← *when available*
+`../A023_ORM_QuerySet_All_Get_and_Filter/README.md` ← *documented*
 
 ---
 
@@ -423,6 +423,6 @@ The next lecture builds on this foundation by introducing **Django's Admin Inter
 - [Django Migrations Documentation](https://docs.djangoproject.com/en/stable/topics/migrations/) 📌
 - [Django Database Backends](https://docs.djangoproject.com/en/stable/ref/databases/) 📌
 
-**Navigation:** ← [A020 — Portfolio Website in Django](../A020_Portfolio_Website_in_Django/README.md) · [Series hub](../README.md) · 🗓️ A023 — *upcoming* →
+**Navigation:** ← [A020 — Portfolio Website in Django](../A020_Portfolio_Website_in_Django/README.md) · [Series hub](../README.md) · [A023 — ORM QuerySet All/Get/Filter](../A023_ORM_QuerySet_All_Get_and_Filter/README.md) →
 
 </div>
