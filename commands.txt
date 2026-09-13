@@ -31,3 +31,9 @@ npm run dev   # for run tailwind css
 py .\manage.py makemigrations   # only generate query
 
 py .\manage.py migrate          # create table on db
+
+py .\manage.py shell            # Shell command
+from blog.models import Student
+student = Student.objects.all()
+print(student)
+exit()
