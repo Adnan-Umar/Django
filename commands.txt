@@ -27,3 +27,7 @@ django-admin --version
 pip install django-bootstrap5
 
 npm run dev   # for run tailwind css
+
+py .\manage.py makemigrations   # only generate query
+
+py .\manage.py migrate          # create table on db

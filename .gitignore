@@ -3,6 +3,10 @@
 *.pot
 *.pyc
 *.pid
+*.postqode
+node_modules
+# package-lock.json
+# package.json
 
 # Django
 db.sqlite3
