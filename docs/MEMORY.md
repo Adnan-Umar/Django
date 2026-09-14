@@ -43,6 +43,7 @@
 | A020 | `A020_Portfolio_Website_in_Django` | Portfolio Website in Django | ✅ Documented | ⚠️ Partial — primary source is a seventeenth artifact: `myProject12/`, the series' first **three-page, root-mounted** site — a fresh `portfolio` app (not blog) included at `''` (root URLconf: `path('', include('portfolio.urls'))`), so `GET /blog/` → **404** (the A008–A019 prefix era ends); project-level `templates/` (base 358 B with **hard-coded `<title>`** — no `{% block title %}` ⚠️, child home 994 B/about 271 B/contact 509 B) + `templates/includes/` partials (navbar 363 B with nested-quote `{% static "images/logo.svg" %}` + `{% url %}` links, footer 93 B) + project-level `static/` with a real `STATICFILES_DIRS` (css 3,760 B + 7 assets ≈ 2.8 MB: logo.svg 15,116 B, hero.jpg 273,579 B referenced **only via CSS-internal `url('../images/hero.jpg')`**, 4 jpgs) | template + views + urls + settings quoted verbatim; `contact.html` ships the series' first `{% csrf_token %}` form (render 994 B: token **absent** standalone + verbatim UserWarning from `django/template/defaulttags.py:90`; **present** live on `GET /contact/`; `POST /contact/` 200 re-render, no handler) | verified twice — engine render (base 599 B, home 1,452 B 4-cards-empty-hero, about 794 B, contact 994 B, navbar 294 B, footer 91 B; all static labels resolve+exist) AND live request path (7 assets 200 byte-identical with content-types, `/` 200 5/5, `/about/` 200, `/contact/` 200, `/blog/` 404, `/admin/` 302) | journal adds **no new lines** (artifact-only lecture, ends at line 29) |
 | A022 | `A022_Create_Model_Migration _iles_&_SQLite_DB` | Create Model, Migration Files & SQLite DB | ✅ Documented | ⚠️ Partial — primary source is a fresh Django 6.1.1 project `myProject13` with `blog` app; `models.py` defines `Student` model with `id` (BigAutoField), `name` (CharField max_length=50), `age` (IntegerField), `email` (EmailField unique=True), `enrollment_date` (DateField auto_now_add=True); `0001_initial.py` migration creates the `blog_student` table; SQLite database `db.sqlite3` generated via `makemigrations` + `migrate`; `INSTALLED_APPS` includes `blog`; table naming follows `appname_modelname` convention | models.py + 0001_initial.py + settings.py quoted verbatim; migration output verified via `python manage.py migrate`; `blog` view renders `blog.html`; URL route `path('', views.blog, name='blog')` | verified twice — `makemigrations` creates correct migration file AND `migrate` applies it to `db.sqlite3` creating `blog_student` table | journal adds `makemigrations` + `migrate` commands + SQLite DB creation |
 | A023 | `A023_ORM_QuerySet_All_Get_and_Filter` | ORM QuerySet: all(), get() & filter() | ✅ Documented | ⚠️ Partial — primary source is the journal's ORM shell commands and official Django ORM/QuerySet documentation |
+| A024 | `A024_Retrieve_Data_from_Database_Table` | Retrieve Data from Database Table | ✅ Documented | ⚠️ Partial — primary source is the journal's six new result-shaping lines + the A022 `myProject13/` `Student` model they read |
 
 ---
 
@@ -279,6 +280,24 @@
 - **Inert `{% load static %}`** — a load with no use · *`contact.html` calls `{% load static %}` and never a `{% static %}` tag; harmless (the css link comes from base) but a promise with no transaction* · 🧷 the unlocked drawer nobody opens.
 - **POST-without-handler** — a form that re-renders · *`contact()` only calls `render(request, 'contact.html')`; `POST /contact/` → 200 with the same page — a skeleton, not a bug* · 🧷 the posted letter with no addressee.
 
+### A023 — ORM QuerySet All/Get/Filter
+
+- **`all()`** — every row as full objects · *`Student.objects.all()`; lazy QuerySet, evaluates on iteration/print* · 🧷 the whole register.
+- **`get()`** — exactly one object or an exception · *`get(id=1)` → object; zero matches → `DoesNotExist`, multiple → `MultipleObjectsReturned` (📌); never use for "maybe many"* · 🧷 the single file pulled by ID.
+- **`filter()`** — rows matching all conditions · *`filter(age__gte=18)`; chains narrow with AND; lazy QuerySet* · 🧷 the sieve that keeps matches.
+- **Field lookup** — `__suffix` condition inside a filter · *`__gt`, `__lt`, `__gte`, `__lte`, `__startswith`, `__icontains`, `__exact` → SQL `WHERE` (📌)* · 🧷 the sieve's mesh sizes.
+- **Lazy QuerySet** — query built now, SQL run later · *no database hit until iteration, `print()`, slicing, or a terminal call* · 🧷 the unsent order slip.
+
+### A024 — Retrieve Data from Database Table
+
+- **Result shaping** — order, columns, and size of results · *`order_by` / `values` / `first` / `count` applied after row selection; answers sequence/shape/size, not which-rows* · 🧷 the plating after the cooking.
+- **`order_by()`** — sort the rows · *appends SQL `ORDER BY`; `-` = descending; multi-field = tiebreakers (📌)* · 🧷 the librarian shelving A→Z.
+- **Chaining** — linking query calls in one line · *each method returns a QuerySet the next consumes; one SQL trip on evaluation* · 🧷 the assembly line.
+- **`exclude()`** — drop the matching rows · *`NOT` the conditions; lazy QuerySet like `filter()` (📌)* · 🧷 the bouncer's deny list.
+- **`values()`** — named columns as dicts · *`SELECT` the named fields; rows become `dict`s, not model instances (📌)* · 🧷 the photocopy of two columns.
+- **`values_list()`** — named columns as tuples · *like `values()` but rows are `tuple`s; `flat=True` (boolean) unwraps single-field rows (📌)* · 🧷 the plain list, no labels.
+- **`first()` / `last()`** — the winning row, or `None` · *evaluates now; honors current ordering; empty set → `None`, never an exception (📌)* · 🧷 the gold medalist.
+- **`count()`** — how many rows, as a number · *runs `SELECT COUNT(*)`; no row data crosses to Python (📌)* · 🧷 the headcount, not the parade.
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
@@ -318,6 +337,7 @@ built on it; a project is the mall; apps are its shops; a request enters, the re
 desk (URL dispatcher) routes it to the right waiter (view), the kitchen (model/ORM)
 fetches the data, the plating (template) presents it, and the finished dish (HTTP
 response) goes back to the guest (browser).*
+| **The plating after the cooking** | choose → shape → evaluate pipeline for ORM reads | A024 | result-shaping questions (order/exclude/trim/collapse) |
 
 ---
 
@@ -365,6 +385,7 @@ What did the rocket page prove beyond "the command exited 0"?
 **From A022:** Which file defines the database schema and what does it inherit from? · Name all five Student model fields with their types and constraints · What does `auto_now_add=True` do — and when is the value set? · What is the exact migration file name and what SQL table does it create? · How does Django derive the table name `blog_student` from the model definition? · What command generates `0001_initial.py` and what does it scan? · What command applies the migration to the database and where does the data live? · Why must `blog` be in `INSTALLED_APPS` before `makemigrations` works? · What happens if you run `migrate` twice — is it idempotent? · Why does `makemigrations` not touch `db.sqlite3` directly?
 
 **From A023:** What does `Student.objects.all()` return, and when is its SQL evaluated? · Why must `get()` return exactly one object? · Which exceptions can `get()` raise? · Why is `filter()` safer when zero or many rows may match? · Translate `age__gt=18`, `age__lte=25`, and `name__startswith="a"` into plain language · What does chaining two `filter()` calls do? · How does a QuerySet differ from a Python list?
+**From A024:** Recite the choose-vs-shape split: `order_by` asc/desc/multi, chaining AND, `exclude` vs `filter`, `values`/`values_list` return shapes, `flat=True` (boolean), `first()`/`None` vs `get()` exceptions, `count()` SQL.
 
 **From A007:** Name the three files a request crosses, in order · The three `path()` arguments, and the `views.home()` bug · Why `startapp` makes no `urls.py` — evidence from A006's artifact · What do the commented-out lines in `dj1/urls.py` teach? · 404 on `/about/` — which file opens first? · Where and when does `a = 10 + 50` run? · What did journal lines 19–25 add to the environment? · Why does `name=` matter even before any template exists?
 
@@ -408,6 +429,7 @@ What did the rocket page prove beyond "the command exited 0"?
 | A020 | Re-read 📝 Quick Revision; recite the root mount + the two static paths | Redraw the boutique flow (manager/URL table → views → base → partials/warehouse; the css porter and the csrf front desk) from memory; explain why 200 ≠ styled and quote the csrf warning | Do the three Practical-Example exercises (hero headline, title block, rename-hero proof → Django-aware `{% static %}` wrapper); answer the interview set aloud |
 | A022 | Re-read 📝 Quick Revision; recite the five field types + the migration flow | Redraw the blueprint flow (model → field → migration → SQL table → SQLite DB) from memory; explain why `makemigrations` and `migrate` are separate steps | Do the three Practical-Example exercises (define a custom model, create and apply a migration, verify the SQLite table); answer the interview set aloud |
 | A023 | Re-read 📝 Quick Revision; recite the all/get/filter contract + lookup meanings | Redraw the lazy catalog flow (Manager → QuerySet → evaluation → SQL rows); explain why `get()` raises while `filter()` can be empty | Do the four Practical-Example exercises (exact age, email suffix, chained filters, safe replacement for multi-match `get()`); answer the interview set aloud |
+| A024 | Re-read 📝 Quick Revision; recite the shape-table (order/exclude/trim/collapse) + empty-set behaviors | Redraw the choose-then-shape pipeline (filter → order_by/exclude/values → evaluate) from memory; explain why `count()` beats `len()` and `first()` beats `get()` for "maybe many" | Do the four Practical-Example exercises (sort desc, chained Delhi-adults query, values-only dicts, flat name list + count); answer the interview set aloud |
 
 ---
 
@@ -599,3 +621,5 @@ What did the rocket page prove beyond "the command exited 0"?
   Django-blind), the unmigrated admin 302, the inert `MAILERS` block, and the 0-byte `db.sqlite3`
   are flagged ⚠️ per §12. `commands.txt` adds no lines (artifact-only lecture).
   Next lecture: A023 ORM QuerySets — README documented; A024 will retrieve and present database rows.
+
+- **A024 documented** — chapter built from the journal's six new result-shaping lines (`order_by` asc/desc/multi incl. the `>>>` prompt-leak artifact, chained `filter`+`order_by`, `exclude`, `values`, `values_list` with the `flat="True"`-string discrepancy flagged per §12, `first()/last()/count()` from the compressed "similar that" note) + the A022 `myProject13/` `Student` model they read. 8 glossary terms added; "The plating after the cooking" mental model registered; recall bank and revision schedule extended; hub TOC updated to ✅; A023's nav footer repointed at this chapter (folder → README.md).

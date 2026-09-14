@@ -52,8 +52,9 @@ retention*, not skim-reading.
 | A019 | [Tailwind Setup in Django](A019_Tailwind_Setup_in_Django/README.md) | The print shop with two floors: one `<h1>` wearing three utilities (`bg-sky-200 text-center p-4`), woven by the Tailwind v4.3.3 CLI (`input.css` 22 B → `output.css` 4,889 B via `npm run dev`) and served from the app lane — plus the ghost `STATICFILES_DIRS` (`W004`) and the test-client 404 that proves nothing — built on the sixteenth artifact `myProject11/` (286 B page, 200; asset 404-by-design vs `runserver` 200) | ✅ Documented |
 | A020 | [Portfolio Website in Django](A020_Portfolio_Website_in_Django/README.md) | The capstone-start: a **root-mounted** `portfolio` app owns `/` (`/blog/` → 404), three pages under one base with hard-coded `<title>` (⚠️), an `includes/` partials folder, a real project-level `static/` tree (3,760 B css + 7 byte-identical assets), the series' first `{% csrf_token %}` form (empty + verbatim `UserWarning` bare vs live hidden input), plus **dormant CSS** (`.hero h1`, `.contact h2`) — built on the seventeenth artifact `myProject12/` (render-verified 1,452/794/994 B pages, live 200s incl. `POST /contact/` re-render) |
 | A022 | [Create Model, Migration Files & SQLite DB](A022_Create_Model_Migration _iles_&_SQLite_DB/README.md) | The blueprint and the migration ledger: define a `Student` model with `name`, `age`, `email`, and `enrollment_date` fields, then generate the migration skeleton (`0001_initial.py`) and let Django create the SQLite table — plus the `blog` app wiring (model, view, URL, template, admin) — built on the eighteenth artifact `myProject13/` | ✅ Documented |
-| **A023** | [ORM QuerySet All/Get/Filter](A023_ORM_QuerySet_All_Get_and_Filter/README.md) | ✅ Documented | 🗓️ Completed |
-| **A024+** | — | *future lectures appear here* | 🗓️ Planned |
+| A023 | [ORM QuerySet All/Get/Filter](A023_ORM_QuerySet_All_Get_and_Filter/README.md) | `all()`, `get()`, `filter()` + the seven field lookups, lazy QuerySets, chaining — retrieving records in the shell | ✅ Documented |
+| A024 | [Retrieve Data from Database Table](A024_Retrieve_Data_from_Database_Table/README.md) | Result shaping after selection: `order_by()` asc/desc/multi, filter chains, `exclude()`, `values()`/`values_list()`, `first()/last()/count()` — built on the journal's six new ORM lines | ✅ Documented |
+| **A025+** | — | *future lectures appear here* | 🗓️ Planned |
 
 ---
 
@@ -115,7 +116,8 @@ retention*, not skim-reading.
 - ✅ **A019 — Tailwind Setup in Django** — documented
 - ✅ **A020 — Portfolio Website in Django** — documented
 - ✅ **A022 — Create Model, Migration Files & SQLite DB** — documented
-- 🗓️ **A023** — ORM QuerySet All/Get/Filter (✅ documented)
+- ✅ **A023 — ORM QuerySet All/Get/Filter** — documented
+- ✅ **A024 — Retrieve Data from a Database Table** — documented
 
 ---
 

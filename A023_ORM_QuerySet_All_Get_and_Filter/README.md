@@ -318,13 +318,13 @@ A: Django evaluates the QuerySet and prints it as a list-like representation (e.
 
 ## 🔄 Next Lecture Connection
 
-This lecture covers the **read operations** of Django's ORM. The next lecture builds on this foundation by retrieving and presenting database rows in application code. → [A024 — Retrieve Data from a Database Table](../A024_Retrieve_Data_from_Database_Table/README.md) ← *when available*
+This lecture covers the **read operations** of Django's ORM. The next lecture builds on this foundation by retrieving and presenting database rows in application code. → [A024 — Retrieve Data from a Database Table](../A024_Retrieve_Data_from_Database_Table/README.md) ← *documented*
 
 ---
 
 <div class="doc-footer">
 
 **Sources used:** repo's own commands.txt (Django setup commands and ORM QuerySet examples from the owner's command journal), [Django ORM Documentation](https://docs.djangoproject.com/en/stable/topics/db/queries/) 📌, [Django Field Lookup Reference](https://docs.djangoproject.com/en/stable/ref/models/querysets/) 📌, [Django Model Managers](https://docs.djangoproject.com/en/stable/topics/db/managers/) 📌
-**Navigation:** ← [A022 — Create Model, Migration Files & SQLite DB](../A022_Create_Model_Migration _iles_&_SQLite_DB/README.md) · [Series hub](../README.md) · 🗓️ A024 — *upcoming* →
+**Navigation:** ← [A022 — Create Model, Migration Files & SQLite DB](../A022_Create_Model_Migration _iles_&_SQLite_DB/README.md) · [Series hub](../README.md) · [A024 — Retrieve Data from Database Table](../A024_Retrieve_Data_from_Database_Table/README.md) →
 
 </div>

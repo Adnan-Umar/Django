@@ -58,3 +58,27 @@ print(student)
 
 student = Student.objects.filter(name__startswith = "a")
 >>> print(student)
+
+# Ascending order
+students = Student.objects.all().order_by("name")
+print(students)
+
+students = Student.objects.all().order_by("age")
+print(students)
+
+# Descending order
+students = Student.objects.all().order_by("-age")
+>>> print(students)
+
+students = Student.objects.all().order_by("city", "-age")
+
+
+students = Student.objects.filter(city="Delhi").filter(age__gte = 18).order_by("name")
+
+students = Student.objects.exclude(city="Delhi")
+
+students = Student.objects.values("name", "city")
+
+students = Student.objects.values_list("name", flat="True")
+
+similar that first(), last(), count() etc
