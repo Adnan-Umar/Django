@@ -58,6 +58,7 @@ retention*, not skim-reading.
 | A025 | [Display Table Data in Django Template](A025_Display_Table_Data_in_Django_Template/README.md) | The dining table: the view hands `objects.all()` rows to the template as context, and `{% for %}` stamps one `<tr>` per row with `{{ student.name }}` dot lookups — the first database-backed page, with the `{% else %}` empty state and refresh-as-fresh-order — built on the journal's `create(...)` line and the nineteenth artifact `myProject14/` | ✅ Documented |
 | A026 | [Django Admin & Superuser](A026_Django_Admin_&_Superuser/README.md) | The admin site at three gates: `INSTALLED_APPS`, URL mount, superuser — with the `portfolio` app created but intentionally not registered | ✅ Documented |
 | A027 | [Register & Manage Models in Django Admin](A027_Register_&_Manage_Models_in_Django_Admin/README.md) | Define `Student` and `Profile` models, run `makemigrations` + `migrate` (three migrations incl. an `IntegerField`→`DateField` correction), register both in `admin.py` — the admin goes from empty to fully manageable | ✅ Documented |
+| A028 | [Admin: List Display, Searching, Sorting & Filters](A028_Admin_List_Display_Searching_Sorting_&_Filters/README.md) | `ModelAdmin` class with `@admin.register()` decorator; `list_display`, `search_fields`, `list_filter`, `ordering` — the admin goes from generic to a functional dashboard | ✅ Documented |
 
 ---
 
@@ -92,6 +93,7 @@ retention*, not skim-reading.
 ├── A020_…/                  ← Lecture A020 chapter (plus myProject12/ — the fresh three-page portfolio whose root-mounted `portfolio` app ships a hard-coded tab, real static/ tree, and a csrf form)
 ├── A026_…/                  ← Lecture A026 chapter (plus myProject15/ — project with `portfolio` app created but not registered; admin at three gates)
 ├── A027_…/                  ← Lecture A027 chapter (plus myProject15/ — `portfolio` registered; Student + Profile models; 3 migrations; both models in admin)
+├── A028_…/                  ← Lecture A028 chapter (plus myProject16/ — `students` app; `@admin.register()` decorator; `list_display`, `search_fields`, `list_filter`, `ordering`)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -127,6 +129,7 @@ retention*, not skim-reading.
 - ✅ **A025 — Display Table Data in Django Template** — documented
 - ✅ **A026 — Django Admin & Superuser** — documented
 - ✅ **A027 — Register & Manage Models in Django Admin** — documented
+- ✅ **A028 — Admin: List Display, Searching, Sorting & Filters** — documented
 
 ---
 
