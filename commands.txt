@@ -82,3 +82,8 @@ students = Student.objects.values("name", "city")
 students = Student.objects.values_list("name", flat="True")
 
 similar that first(), last(), count() etc
+
+Student.objects.create(name="Umar", age=23, city="Delhi")
+
+# Create super upser
+py .\manage.py createsuperuser    admin admin  admin@123
