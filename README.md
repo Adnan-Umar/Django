@@ -59,6 +59,7 @@ retention*, not skim-reading.
 | A026 | [Django Admin & Superuser](A026_Django_Admin_&_Superuser/README.md) | The admin site at three gates: `INSTALLED_APPS`, URL mount, superuser — with the `portfolio` app created but intentionally not registered | ✅ Documented |
 | A027 | [Register & Manage Models in Django Admin](A027_Register_&_Manage_Models_in_Django_Admin/README.md) | Define `Student` and `Profile` models, run `makemigrations` + `migrate` (three migrations incl. an `IntegerField`→`DateField` correction), register both in `admin.py` — the admin goes from empty to fully manageable | ✅ Documented |
 | A028 | [Admin: List Display, Searching, Sorting & Filters](A028_Admin_List_Display_Searching_Sorting_&_Filters/README.md) | `ModelAdmin` class with `@admin.register()` decorator; `list_display`, `search_fields`, `list_filter`, `ordering` — the admin goes from generic to a functional dashboard | ✅ Documented |
+| A029 | [HTML Forms, POST, CSRF Token & Validation](A029_HTML_Forms_POST_CSRF_Token_&_Validation/README.md) | HTML form with `{% csrf_token %}`, POST handling via `request.method == 'POST'` and `request.POST.get()`, validation before `Contact.objects.create()`, `redirect()` for PRG pattern; two bugs flagged (`STATICFILES_DIRD` typo, duplicate `message` line) | ✅ Documented |
 
 ---
 
@@ -94,6 +95,7 @@ retention*, not skim-reading.
 ├── A026_…/                  ← Lecture A026 chapter (plus myProject15/ — project with `portfolio` app created but not registered; admin at three gates)
 ├── A027_…/                  ← Lecture A027 chapter (plus myProject15/ — `portfolio` registered; Student + Profile models; 3 migrations; both models in admin)
 ├── A028_…/                  ← Lecture A028 chapter (plus myProject16/ — `students` app; `@admin.register()` decorator; `list_display`, `search_fields`, `list_filter`, `ordering`)
+├── A029_…/                  ← Lecture A029 chapter (plus myProject17/ — `contact` app; HTML form with `{% csrf_token %}`, POST handling, validation, `Contact` model)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -130,6 +132,7 @@ retention*, not skim-reading.
 - ✅ **A026 — Django Admin & Superuser** — documented
 - ✅ **A027 — Register & Manage Models in Django Admin** — documented
 - ✅ **A028 — Admin: List Display, Searching, Sorting & Filters** — documented
+- ✅ **A029 — HTML Forms, POST, CSRF Token & Validation** — documented
 
 ---
 
