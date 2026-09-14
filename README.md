@@ -56,7 +56,8 @@ retention*, not skim-reading.
 | A023 | [ORM QuerySet All/Get/Filter](A023_ORM_QuerySet_All_Get_and_Filter/README.md) | `all()`, `get()`, `filter()` + the seven field lookups, lazy QuerySets, chaining — retrieving records in the shell | ✅ Documented |
 | A024 | [Retrieve Data from Database Table](A024_Retrieve_Data_from_Database_Table/README.md) | Result shaping after selection: `order_by()` asc/desc/multi, filter chains, `exclude()`, `values()`/`values_list()`, `first()/last()/count()` — built on the journal's six new ORM lines | ✅ Documented |
 | A025 | [Display Table Data in Django Template](A025_Display_Table_Data_in_Django_Template/README.md) | The dining table: the view hands `objects.all()` rows to the template as context, and `{% for %}` stamps one `<tr>` per row with `{{ student.name }}` dot lookups — the first database-backed page, with the `{% else %}` empty state and refresh-as-fresh-order — built on the journal's `create(...)` line and the nineteenth artifact `myProject14/` | ✅ Documented |
-| **A026+** | — | *future lectures appear here* | 🗓️ Planned |
+| A026 | [Django Admin & Superuser](A026_Django_Admin_&_Superuser/README.md) | The admin site at three gates: `INSTALLED_APPS`, URL mount, superuser — with the `portfolio` app created but intentionally not registered | ✅ Documented |
+| A027 | [Register & Manage Models in Django Admin](A027_Register_&_Manage_Models_in_Django_Admin/README.md) | Define `Student` and `Profile` models, run `makemigrations` + `migrate` (three migrations incl. an `IntegerField`→`DateField` correction), register both in `admin.py` — the admin goes from empty to fully manageable | ✅ Documented |
 
 ---
 
@@ -89,6 +90,8 @@ retention*, not skim-reading.
 ├── A018_…/                  ← Lecture A018 chapter (plus myProject10/ — the fresh single-app project whose base.html wires django-bootstrap5 26.3 + CDN fossils + static labels, render-verified + live 200)
 ├── A019_…/                  ← Lecture A019 chapter (plus myProject11/ — the fresh single-app project whose blog.html wears Tailwind utilities woven by the v4.3.3 CLI, 286 B page + 4,889 B bolt)
 ├── A020_…/                  ← Lecture A020 chapter (plus myProject12/ — the fresh three-page portfolio whose root-mounted `portfolio` app ships a hard-coded tab, real static/ tree, and a csrf form)
+├── A026_…/                  ← Lecture A026 chapter (plus myProject15/ — project with `portfolio` app created but not registered; admin at three gates)
+├── A027_…/                  ← Lecture A027 chapter (plus myProject15/ — `portfolio` registered; Student + Profile models; 3 migrations; both models in admin)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -122,6 +125,8 @@ retention*, not skim-reading.
 - ✅ **A023 — ORM QuerySet All/Get/Filter** — documented
 - ✅ **A024 — Retrieve Data from a Database Table** — documented
 - ✅ **A025 — Display Table Data in Django Template** — documented
+- ✅ **A026 — Django Admin & Superuser** — documented
+- ✅ **A027 — Register & Manage Models in Django Admin** — documented
 
 ---
 

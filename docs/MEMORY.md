@@ -46,6 +46,8 @@
 | A023 | `A023_ORM_QuerySet_All_Get_and_Filter` | ORM QuerySet: all(), get() & filter() | ✅ Documented | ⚠️ Partial — primary source is the journal's ORM shell commands and official Django ORM/QuerySet documentation |
 | A024 | `A024_Retrieve_Data_from_Database_Table` | Retrieve Data from Database Table | ✅ Documented | ⚠️ Partial — primary source is the journal's six new result-shaping lines + the A022 `myProject13/` `Student` model they read |
 | A025 | `A025_Display_Table_Data_in_Django_Template` | Display Table Data in Django Template | ✅ Documented | ⚠️ Partial — primary source is the journal's `Student.objects.create(...)` line (how the shelf got stocked) + the nineteenth artifact `myProject14/` (`portfolio` app): `views.py` (`objects.all()` → context `students`), both URL menus (root-mounted `include`), and `student_list.html` — the template loop stamping one `<tr>` per row |
+| A026 | `A026_Django_Admin_&_Superuser` | Django Admin & Superuser | ✅ Documented | ⚠️ Partial — primary source is the `myProject15/` artifact with `portfolio` app created but intentionally NOT registered in `INSTALLED_APPS`; admin infrastructure complete (URLs, superuser prerequisite) but no custom models registered |
+| A027 | `A027_Register_&_Manage_Models_in_Django_Admin` | Register & Manage Models in Django Admin | ✅ Documented | ⚠️ Partial — primary source is the `myProject15/` artifact evolved from A026: `portfolio` now registered in `INSTALLED_APPS`, two models (`Student` + `Profile`) defined in `models.py`, both registered in `admin.py`, three migrations (0001_initial → 0002_profile → 0003_alter_profile_birth_date) created and applied; models.py + admin.py + all 3 migration files quoted verbatim |
 
 ---
 
@@ -311,6 +313,13 @@
 - **Server-rendered snapshot** — page rebuilt per request · *refresh re-queries and re-renders; no live push (📌 HTMX/WebSockets beyond scope)* · 🧷 a fresh order every visit.
 ---
 
+### A027 — Register & Manage Models in Django Admin
+
+- **`admin.site.register(Model)`** — make a model manageable in the admin; tells the AdminSite to generate CRUD UI; appears in admin sidebar under app name; 🧷 adding the shop to the mall directory.
+- **`TextField`** — unlimited-length text; no max_length; maps to SQL TEXT; for long-form content; 🧷 the whiteboard.
+
+---
+
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)
 
 | Model | Maps to | Introduced | Use for |
@@ -401,6 +410,8 @@ What did the rocket page prove beyond "the command exited 0"?
 
 **From A025:** Name the three cooperating files and their jobs · What the context key holds and why renaming it is a two-sided change · How many `<tr>` blocks for 5 students (and why) · Which dot-lookup rule `{{ student.city }}` exercises · Why the `{% if %}` guard exists when a bare loop renders nothing for empty sets · Whether the loop re-queries SQLite per row (no — evaluated once) · What `{% else %}` shows, and when · Why the page doesn't change until you refresh.
 
+**From A027:** What do `makemigrations` and `migrate` each do · What three things must be true for a model to appear in the admin · What does `admin.site.register()` do · Why does `__str__` matter for the admin · How does `admin.site.register()` differ from adding a model to `INSTALLED_APPS`.
+
 **From A007:** Name the three files a request crosses, in order · The three `path()` arguments, and the `views.home()` bug · Why `startapp` makes no `urls.py` — evidence from A006's artifact · What do the commented-out lines in `dj1/urls.py` teach? · 404 on `/about/` — which file opens first? · Where and when does `a = 10 + 50` run? · What did journal lines 19–25 add to the environment? · Why does `name=` matter even before any template exists?
 
 **From A008:** The two mechanisms A008 adds over A007, and what each prevents · Trace `/shop/products/` through both URL tables · What makes the artifact's second `shop` route dead? · Why must `blog` and `shop` route names differ? · Where does the `blog/` prefix live, and who strips it? · Is a `name=` enough to make a URL work — why? · The three essentials of a multi-app project · Why is a third app "mechanical"?
@@ -445,6 +456,7 @@ What did the rocket page prove beyond "the command exited 0"?
 | A023 | Re-read 📝 Quick Revision; recite the all/get/filter contract + lookup meanings | Redraw the lazy catalog flow (Manager → QuerySet → evaluation → SQL rows); explain why `get()` raises while `filter()` can be empty | Do the four Practical-Example exercises (exact age, email suffix, chained filters, safe replacement for multi-match `get()`); answer the interview set aloud |
 | A024 | Re-read 📝 Quick Revision; recite the shape-table (order/exclude/trim/collapse) + empty-set behaviors | Redraw the choose-then-shape pipeline (filter → order_by/exclude/values → evaluate) from memory; explain why `count()` beats `len()` and `first()` beats `get()` for "maybe many" | Do the four Practical-Example exercises (sort desc, chained Delhi-adults query, values-only dicts, flat name list + count); answer the interview set aloud |
 | A025 | Re-read 📝 Quick Revision; recite the pipeline (model → QuerySet → context → loop → `<tr>`) + the empty-state rule | Redraw the kitchen-to-dining-table flow from memory; explain why headers are hand-written and cells are looped, and why refresh = a fresh order | Do the four Practical-Example exercises (row-count prediction, `order_by` re-sort, Delhi-only filter, the string-concatenation intervention); answer the interview set aloud |
+| A027 | Re-read 📝 Quick Revision; recite model definition, migration flow, and admin registration | Redraw the four-station model-to-admin chain (models.py → makemigrations → migrate → register); explain `admin.site.register()` vs `INSTALLED_APPS` vs `__str__` | Do the Level-4 exercise (full model-to-admin diagnosis walkthrough); answer the interview set aloud |
 
 ---
 
@@ -640,3 +652,4 @@ What did the rocket page prove beyond "the command exited 0"?
 - **A024 documented** — chapter built from the journal's six new result-shaping lines (`order_by` asc/desc/multi incl. the `>>>` prompt-leak artifact, chained `filter`+`order_by`, `exclude`, `values`, `values_list` with the `flat="True"`-string discrepancy flagged per §12, `first()/last()/count()` from the compressed "similar that" note) + the A022 `myProject13/` `Student` model they read. 8 glossary terms added; "The plating after the cooking" mental model registered; recall bank and revision schedule extended; hub TOC updated to ✅; A023's nav footer repointed at this chapter (folder → README.md).
 
 - **A025 documented** — chapter built from the journal's `Student.objects.create(name="Umar", age=23, city="Delhi")` line (how the shelf got stocked; the `# Create super upser` [sic] tail flagged as an A026 preview) + the nineteenth artifact `myProject14/` (`portfolio` app): `views.py` (`objects.all()` → context `students`), both URL menus (root-mounted `include`), and `student_list.html` quoted verbatim — the `{% for %}` loop stamping one `<tr>` per row, `{{ student.name }}` attribute lookup (A013), the `{% if %}`/`{% else %}` empty state, and refresh-as-fresh-order. 6 glossary terms added; "From the kitchen to the dining table" mental model registered; recall bank and revision schedule extended; hub TOC/tracker/progress updated — including backfill of the missing A021 rows and A020's missing status cell. README generated from the artifact files by a builder script (433 lines; gates clean: 20 fences even, 1 H1, 8/8 `<details>`, 0 markers). During registration the missing A021 rows were backfilled **with honest 🔶 Partial status** — A021's body (591 lines) is documented through Active Recall but its tail sections (Revision → Nav) are pending completion.
+- **A027 documented** — chapter built from the `myProject15/` artifact evolved from A026: `portfolio` now registered in `INSTALLED_APPS` (line 40), two models defined in `models.py` (Student: name/age/city; Profile: bio/location/birth_date), both registered in `admin.py` (with commented-out duplicate import preserved), three migrations (0001_initial Student → 0002_profile Profile with IntegerField birth_date → 0003_alter_profile_birth_date → DateField). 2 glossary terms added (`admin.site.register`, `TextField`); recall bank extended; revision schedule extended; hub TOC updated to ✅; A026's nav footer repointed at this chapter (README.md → README.md). Flagged ⚠️ per §12: commented-out import in admin.py; IntegerField→DateField evolution via migration 0003.
