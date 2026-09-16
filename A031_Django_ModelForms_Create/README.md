@@ -485,10 +485,13 @@ A: `EmailField(unique=True)` checks the database during validation. If a matchin
 
 ## 🔄 Next Lecture Connection
 
-A031 introduces ModelForms for creation. The natural progression:
-- [ ] A032 — ModelForms for Update (editing existing records with `instance=` parameter)
+A031 introduces ModelForms for creation. A032 — now documented ([Django ModelForms Read](../A032_Django_ModelForms_Read/README.md)) — added the **read** half over the same table: a list view and a detail view. The remaining progression:
+
+- [ ] **A033 — ModelForms Update (Edit) Data** — editing an existing record by reusing `StudentForm` with `instance=` (*next lecture*)
 - [ ] ModelForms with `ChoiceField` and `ModelChoiceField` for relationships
 - [ ] Formsets (multiple ModelForms at once)
+
+> 📌 **Correction (per §12):** this section previously described A032 as "ModelForms for Update (editing existing records with `instance=` parameter)". That is the **A033** lecture; A032 is **ModelForms Read**. The mislabel is corrected here rather than silently overwritten.
 
 ---
 
@@ -496,6 +499,6 @@ A031 introduces ModelForms for creation. The natural progression:
 
 **Sources used:** `myProject18/` artifact (Django 6.1.1): `manage.py`, `myProject18/settings.py` (`INSTALLED_APPS` includes `'student'`, `ROOT_URLCONF = 'myProject18.urls'`, `TEMPLATES['DIRS'] = [BASE_DIR / 'templates']` (directory does not exist — W004 ghost shelf), `STATICFILES_DIRS = [BASE_DIR / 'static']`), `myProject18/urls.py` (`path('', include('student.urls'))`, no namespace), `student/models.py` (Student: name CharField max_length=100, age IntegerField, email EmailField unique=True), `student/forms.py` (StudentForm ModelForm with clean_age), `student/views.py` (student_create: bind → validate → save → render), `student/urls.py` (no app_name), `student/admin.py` (empty — Student not registered), `student/migrations/0001_initial.py` (creates student_student table), `student/templates/student_form.html` (`{% csrf_token %}`, `{{ form.as_p }}`), `student/templates/student_success.html` (hardcoded `/` link). Bugs flagged per AGENTS §12: `forms.ValidationError` NameError (forms not imported), render vs redirect in student_create view, no `app_name` in student/urls.py, hardcoded `/` in success template, Student not registered in admin, no template inheritance (no base.html). No lecture transcript in folder — chapter built from on-disk artifact and official Django documentation.
 
-**Navigation:** ← [A030 — Build a Complete TODO App](../A030_Build_a_Complete_TODO_App/README.md) · [Series hub](../../README.md) ·
+**Navigation:** ← [A030 — Build a Complete TODO App](../A030_Build_a_Complete_TODO_App/README.md) · [Series hub](../../README.md) · [A032 — Django ModelForms Read →](../A032_Django_ModelForms_Read/README.md)
 
 </div>

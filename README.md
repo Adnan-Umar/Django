@@ -62,6 +62,7 @@ retention*, not skim-reading.
 | A029 | [HTML Forms, POST, CSRF Token & Validation](A029_HTML_Forms_POST_CSRF_Token_&_Validation/README.md) | HTML form with `{% csrf_token %}`, POST handling via `request.method == 'POST'` and `request.POST.get()`, validation before `Contact.objects.create()`, `redirect()` for PRG pattern; two bugs flagged (`STATICFILES_DIRD` typo, duplicate `message` line) | ✅ Documented |
 | A030 | [Build a Complete TODO App](A030_Build_a_Complete_TODO_App/README.md) | Complete CRUD app: Task model, five views (list/create/edit/delete/toggle), URL namespace `todo`, template inheritance, admin with `@admin.register()`; four bugs diagnosed and fixed per §12 | ✅ Documented |
 | A031 | [Django ModelForms Create](A031_Django_ModelForms_Create/README.md) | ModelForm: `StudentForm` mapping to `Student` model, `form.is_valid()`, `form.save()`, custom `clean_age()` validation; `{{ form.as_p }}` rendering; four bugs flagged per §12 | ✅ Documented |
+| A032 | [Django ModelForms Read](A032_Django_ModelForms_Read/README.md) | The read half of CRUD: `student_list` (`objects.all()` → context `students`) and `student_detail` (`get_object_or_404` ← `<int:pk>`), a three-route menu (`add/` · `''` · `details/<int:pk>/`), named-URL links *between* records, and the fix to A031's hard-coded `href="/"`; no migration needed | ✅ Documented |
 
 ---
 
@@ -100,6 +101,7 @@ retention*, not skim-reading.
 ├── A029_…/                  ← Lecture A029 chapter (plus myProject17/ — `contact` app; HTML form with `{% csrf_token %}`, POST handling, validation, `Contact` model)
 ├── A030_…/                  ← Lecture A030 chapter (plus `todoproject/` — complete TODO app: `todo` app with 5 CRUD views, URL namespace `todo`, `Task` model, admin with `@admin.register(Task)`)
 ├── A031_…/                  ← Lecture A031 chapter (plus `myProject18/` — `student` app: `StudentForm` ModelForm, `clean_age()` validation)
+├── A032_…/                  ← Lecture A032 chapter (plus `myProject18/` — the same `student` app extended for reading: `student_list` + `student_detail` views, three routes, `student_list.html`/`student_detail.html`)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -139,6 +141,7 @@ retention*, not skim-reading.
 - ✅ **A029 — HTML Forms, POST, CSRF Token & Validation** — documented
 - ✅ **A030 — Build a Complete TODO App** — documented
 - ✅ **A031 — Django ModelForms Create** — documented
+- ✅ **A032 — Django ModelForms Read** — documented
 
 ---
 

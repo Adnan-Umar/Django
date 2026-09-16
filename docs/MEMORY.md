@@ -2,20 +2,6 @@
 
 > **Status:** Active · **Scope:** the whole series
 >
-> Two jobs in one file:
-> **1) Agent memory** — accumulated terminology, mental models and facts, so any
-> future documentation agent stays consistent with earlier lectures without
-> re-reading every chapter.
-> **2) Student revision index** — one place to find every glossary term, analogy,
-> recall question and revision schedule across all lectures.
->
-> Rules: definitions here are **the single source of spelling/wording** for all
-> lecture READMEs. New terms learned in a lecture get added here by that lecture's
-> documentation pass. Keep entries one-to-three lines; deep explanation lives in
-> the lecture chapters — this file links, it does not re-teach.
-> Writing rules live in [`AGENTS.md`](AGENTS.md).
-
----
 
 ## 1. Series Progress Tracker
 
@@ -51,6 +37,8 @@
 | A028 | `A028_Admin_List_Display_Searching_Sorting_&_Filters` | Admin: List Display, Searching, Sorting & Filters | ✅ Documented | ⚠️ Partial — primary source is the `myProject16/` artifact: `students` app with `Student` model, registered via `@admin.register(Student)` decorator with `StudentAdmin` class featuring `list_display`, `search_fields`, `list_filter`, and `ordering`; `students/admin.py`, `students/models.py`, `migrations/0001_initial.py` quoted verbatim |
 | A029 | `A029_HTML_Forms_POST_CSRF_Token_&_Validation` | HTML Forms, POST, CSRF Token & Validation | ✅ Documented | ⚠️ Partial — primary source is the `myProject17/` artifact: `contact` app with `Contact` model (`name`/`message`/`created_at`, `auto_now_add=True`), two views (`contact_form` renders template, `submit_contact` handles POST with validation and redirect), `{% csrf_token %}` in template, `Contact.objects.create()` for persistence; `contact/views.py`, `contact/templates/contact.html`, `contact/urls.py` quoted verbatim; two bugs flagged ⚠️ per §12 (`STATICFILES_DIRD` typo in settings.py, duplicate `message` line in views.py) |
 | A030 | `A030_Build_a_Complete_TODO_App` | Build a Complete TODO App | ✅ Documented | ⚠️ Partial — primary source is the `todoproject/` artifact: Django 6.1.1 project with `todo` app providing full CRUD (list, create, edit, delete, toggle) for tasks; `models.py`, `views.py`, `urls.py`, `admin.py`, all templates quoted verbatim; four bugs diagnosed and fixed per §12 (CharField missing max_length, context variable mismatch, two wrong URL names) |
+| A031 | `A031_Django_ModelForms_Create` | Django ModelForms Create | ✅ Documented | ⚠️ Partial — primary source is the `myProject18/` artifact: `student` app with a `StudentForm` ModelForm mapping to `Student` (name, age, email) plus `clean_age()` validation; `models.py`, `forms.py`, `views.py`, `urls.py` and both templates quoted verbatim; bugs flagged per §12 (`forms.ValidationError` NameError, render-instead-of-redirect, hard-coded URL, no `app_name`, `Student` unregistered) |
+| A032 | `A032_Django_ModelForms_Read` | Django ModelForms Read | ✅ Documented | ⚠️ Partial — primary source is the **A032 update to A031's project** (`myProject18/`, copied into this lecture's folder per the A026/A027 snapshot convention): two read views (`student_list` = `objects.all()` → context `students`; `student_detail` = `get_object_or_404(Student, pk=pk)`), a three-route menu (`add/` · `''` · `details/<int:pk>/`), two new templates, and the one-line fix to A031's hard-coded `href="/"`; `models.py`/`forms.py`/`admin.py`/`settings.py`/migration byte-identical (no migration needed); verified twice (engine render + live request path incl. the `APPEND_SLASH` 301 and both 404 shapes); two inherited bugs still live per §12 |
 
 ---
 
@@ -359,14 +347,22 @@
 
 ### A031 — Django ModelForms Create
 
-- **`ModelForm`** — a form tied to a model · *subclass of `forms.Form` that auto-generates fields from `Meta.model` + `Meta.fields`; `form.save()` creates a model instance* · 🧷 a model-shaped form.
+- **`Meta` class** — ModelForm configuration · *inner class specifying `model`, `fields`, `exclude`, custom widgets* · 🧷 the form's blueprint.
 - **`form.is_valid()`** — validate all form data · *runs field validators → `clean_<field>()` → `clean()`; populates `form.errors` on failure and `form.cleaned_data` on success* · 🧷 the quality gate.
 - **`form.save()`** — persist form data to DB · *creates a model instance from `form.cleaned_data` and saves it; equivalent to `Model.objects.create()` using validated data* · 🧷 the filing cabinet.
 - **`form.as_p()`** — render form as paragraphs · *template tag outputting each field as a `<p>` element with label, widget, and errors* · 🧷 one tag, all fields.
 - **`clean_<fieldname>()`** — custom field validator · *method named `clean_age()` that receives value from `self.cleaned_data.get('age')`, returns cleaned value or raises `ValidationError`* · 🧷 the field's guard.
 - **`ValidationError`** — invalid input signal · *raised in `clean_*()` methods; displayed as a form error to the user; import from `django.core.exceptions`* · 🧷 the stop sign.
 - **`form.cleaned_data`** — validated form values · *dict of field names → coerced Python values; only available after `is_valid()` returns `True`* · 🧷 the clean output.
-- **`Meta` class** — ModelForm configuration · *inner class specifying `model`, `fields`, `exclude`, custom widgets* · 🧷 the form's blueprint.
+- **`Meta` class** — ModelForm configuration · *inner class specifying `model`, `fields`, `exclude`, custom widgets* ·  the form's blueprint.
+
+### A032 — Django ModelForms Read
+
+- **List view** — a view that renders *many* rows · *fetches a QuerySet (`Model.objects.all()`) and packs it under one context key for a `{% for %}` loop to stamp out; Django's generic `ListView` is the class-based equivalent (📌)* · 🧷 the catalogue drawer.
+- **Detail view** — a view that renders *one* row · *takes a URL-supplied identifier (`def student_detail(request, pk)`), fetches exactly one object with `get_object_or_404`, packs it under a singular context key (📌 cf. `DetailView`)* · 🧷 the one book, fetched by number.
+- **Detail route** — the address of one record · *a path pattern whose dynamic segment carries the identifier (`details/<int:pk>/`); the same view serves every row, and the captured name must equal the view's parameter name or Django raises `TypeError`* · 🧷 the call-slip slot.
+- **`{% url %}` with an argument** — a link that knows *which* record it points to · *`{% url 'student_detail' s.id %}` — URL name plus the value for its dynamic segment; resolved at render time from the URLconf, never hand-written* · 🧷 ordering by catalog number, one title filled in.
+- **`s.id`** — a row's own number · *the auto-generated primary-key attribute Django adds to every model (`BigAutoField`, declared nowhere in `models.py`); `s.pk` is an alias of it* · 🧷 every row wears a badge number.
 
 ---
 
@@ -410,9 +406,9 @@ response) goes back to the guest (browser).*
 | **The plating after the cooking** | choose → shape → evaluate pipeline for ORM reads | A024 | result-shaping questions (order/exclude/trim/collapse) |
 | **From the kitchen to the dining table** | pantry=model, cook+plating=QuerySet, serving=template loop, fresh order=refresh | A025 | data-display questions (context→loop→`<tr>`, empty states, snapshot-per-request) |
 
----
+| **The library's reading room and the call slip** | the read half of the library A023/A031 built: the list page = the catalogue drawer (`objects.all()` → one index card per row, each card carrying a call number), the detail page = the call slip (`<int:pk>` = the number box the visitor fills, `get_object_or_404` = the walk to the shelf, 404 = "no such call number"), the named URL = the cross-reference system (link by destination name, never by a hand-written shelf address), the context key = the shelf label (`students` plural vs `student` singular) | A032 | read-path / list-vs-detail / pk-in-URL / get_object_or_404 / url-argument / dead-route questions |
 
-## 4. Active-Recall Bank (cumulative across lectures)
+---
 
 **From A001:** What is Django in one sentence? · Framework vs library? · Why does
 "batteries included" matter? · Name 5 major features + the problem each removes ·
@@ -470,6 +466,8 @@ What did the rocket page prove beyond "the command exited 0"?
 
 **From A031:** What is a `ModelForm` and how does it differ from `forms.Form`? · What are the three steps in the ModelForm create pattern? · When is `form.cleaned_data` available and what does it contain? · What is the difference between `form.data` and `form.cleaned_data`? · When does `clean_<fieldname>()` run in the validation order? · What is the bug in `forms.py` line 13 (`forms.ValidationError`)? · Why does the model accept any integer for `age` but the form rejects ages < 18? · Why should `render()` be replaced with `redirect()` after successful POST?
 
+**From A032:** What are the three beats of a read view? · What does `student_list` pack into its context versus `student_detail` · Why did the create view have to move from `''` to `add/` · What does `get_object_or_404()` do that `objects.get()` does not · Why does `/details/2` redirect while `/details/abc/` 404s · What is the URL path's role in `details/<int:pk>/` and where does `pk` enter the view · How does `{% url 'student_detail' s.id %}` know the path · Why does the same `student_list.html` render a filtered, re-ordered QuerySet · Which files did A032 change, and why did it need no migration?
+
 **From A007:** Name the three files a request crosses, in order · The three `path()` arguments, and the `views.home()` bug · Why `startapp` makes no `urls.py` — evidence from A006's artifact · What do the commented-out lines in `dj1/urls.py` teach? · 404 on `/about/` — which file opens first? · Where and when does `a = 10 + 50` run? · What did journal lines 19–25 add to the environment? · Why does `name=` matter even before any template exists?
 
 **From A008:** The two mechanisms A008 adds over A007, and what each prevents · Trace `/shop/products/` through both URL tables · What makes the artifact's second `shop` route dead? · Why must `blog` and `shop` route names differ? · Where does the `blog/` prefix live, and who strips it? · Is a `name=` enough to make a URL work — why? · The three essentials of a multi-app project · Why is a third app "mechanical"?
@@ -483,6 +481,23 @@ What did the rocket page prove beyond "the command exited 0"?
 **From A013:** What does `render()`'s third argument do, and what silently happens without it? · Dots resolve in what order — and what does `{{skills.0}}` walk through? · Why do missing names render empty instead of raising an error? · What does auto-escaping do to `<b>` — and how does `|safe` (safely) change it? · Which two comment syntaxes never reach the browser, and which comment always does? · The datetime `{{ }}` self-format — where does it come from? · Why does printing a whole list produce `['a', &#x27;b&#x27;]`? · What still needs the `{{ }}` variables to be useful together (iteration, filter family) — and which lecture?
 
 
+
+---
+
+## 4. Active-Recall Bank (cumulative across lectures)
+
+> Two jobs in one file:
+> **1) Agent memory** — accumulated terminology, mental models and facts, so any
+> future documentation agent stays consistent with earlier lectures without
+> re-reading every chapter.
+> **2) Student revision index** — one place to find every glossary term, analogy,
+> recall question and revision schedule across all lectures.
+>
+> Rules: definitions here are **the single source of spelling/wording** for all
+> lecture READMEs. New terms learned in a lecture get added here by that lecture's
+> documentation pass. Keep entries one-to-three lines; deep explanation lives in
+> the lecture chapters — this file links, it does not re-teach.
+> Writing rules live in [`AGENTS.md`](AGENTS.md).
 
 ---
 
@@ -520,9 +535,9 @@ What did the rocket page prove beyond "the command exited 0"?
 | A030 | Re-read 📝 Quick Revision; recite all five CRUD views and the URL namespacing | Redraw the complete pipeline (model → migration → views → URLs → templates → admin); explain each view's method check, redirect, and error handling; explain `@admin.register()` vs `admin.site.register()` | Do the Level-4 exercise (diagnose NoReverseMatch, context mismatch, CharField error, and a missing redirect — all four A030 bugs); answer the interview set aloud |
 | A031 | Re-read 📝 Quick Revision; recite the ModelForm lifecycle (bind → validate → save → redirect) | Redraw the ModelForm flow (model → ModelForm class → `is_valid()` gate → `form.save()` → DB); explain `clean_age()` vs model constraints; explain `{{ form.as_p }}` vs manual fields | Do the Level-4 exercise (diagnose `forms.ValidationError` NameError, render-vs-redirect bug, hardcoded URL, missing admin registration, missing `app_name`); answer the interview set aloud |
 
----
+| A032 | Re-read 📝 Quick Revision; recite the three beats of a read view and the two context keys (`students` / `student`) | Redraw the read pipeline from memory (route → view → QuerySet → context → loop/template) and explain why `get_object_or_404` yields a **404** while a bare `objects.get` yields a **500**; explain why the create view had to move to `add/` | Do the Level-3 exercises (add `age` to both templates; build `/adults/` with zero new HTML; add a `/stats/` count page; fix both inherited bugs and prove the fixes); answer the interview set aloud |
 
-## 6. Update Log
+---
 
 - **A001 documented; system created** — `docs/` infrastructure built (contract, ledger,
   global CSS, template, hub README). Glossary seeded with 15 A001 terms; 6 mental
@@ -719,3 +734,5 @@ What did the rocket page prove beyond "the command exited 0"?
 - **A029 documented** — chapter built from the `myProject17/` artifact: `contact` app (`Contact` model: `name` CharField, `message` TextField, `created_at` DateTimeField `auto_now_add=True`, `__str__` returns `name`), two views (`contact_form` renders `contact.html`; `submit_contact` handles POST with `request.method` check, `request.POST.get()` for both `name` and `message`, validation via `if name and message`, `Contact.objects.create()`, success/failure `HttpResponse`, `redirect('contact_form')` for GET). Template `contact.html` uses `{% csrf_token %}`, `{% url "submit_contact" %}` action, named inputs. `admin.site.register(Contact)`. Root URLconf includes `contact.urls` at `''`. Two bugs flagged ⚠️ per §12: `STATICFILES_DIRD` typo (line 119, should be `STATICFILES_DIRS`), duplicate `message = request.POST.get('message')` (lines 12–13). 6 glossary terms added (`{% csrf_token %}`, `request.method == 'POST'`, `request.POST.get()`, `redirect()`, `auto_now_add=True`, `HttpResponse`); "The mailroom" mental model registered; recall bank extended; revision schedule extended; hub TOC updated to ✅; A028's nav footer repointed at this chapter (README.md → README.md).
 - **A030 documented** — chapter built from the `todoproject/` artifact (Django 6.1.1): a complete TODO app with a `todo` app providing five CRUD views (task_list, task_create, task_update, task_delete, task_toggle_complete), URL namespace `todo`, a `Task` model (`title`, `description`, `completed`, `created_at`), `@admin.register(Task)` with ModelAdmin (list_display, search_fields, list_filter, ordering), Bootstrap 5.3.8 base template with three children. Four bugs diagnosed and fixed per §12: `CharField()` → `CharField(max_length=200)` in models.py, QuerySet variable `task` → `tasks` in views.py (context key also fixed), URL name `task_toggle` → `task_toggle_complete` in task_list.html, URL name `task_edit` → `task_update` in task_list.html. Migration 0002_alter_task_title created and applied. Glossary added: CRUD, app_name, reverse(), `{% url %}`, get_object_or_404(), pk, ModelAdmin, @admin.register, list_display, list_filter, search_fields, ordering, PRG pattern, makemigrations, migrate, URL namespace. Recall and revision extended; hub TOC updated to ✅; A029's nav footer repointed at this chapter (README.md → README.md).
 - **A031 documented** — chapter built from the `myProject18/` artifact (Django 6.1.1): a `student` app demonstrating `ModelForm` creation — `StudentForm` in `forms.py` maps to `Student` model (name, age, email), uses `form.is_valid()` for validation (including custom `clean_age()` ≥ 18 check), and `form.save()` for persistence. `{{ form.as_p }}` renders all fields. Bugs flagged per §12: `forms.ValidationError` NameError (forms not imported in forms.py), `render()` instead of `redirect()` after POST in views.py, hardcoded `/` URL in success template, no `app_name` in student/urls.py, Student not registered in admin.py, no project-level `templates/` directory. Glossary added: ModelForm, form.is_valid(), form.save(), form.as_p(), clean_<fieldname>(), ValidationError, form.cleaned_data, Meta class. Recall and revision extended; hub TOC updated to ✅; A030's nav footer repointed at this chapter (README.md → README.md).
+
+- **A032 documented** — chapter built from the **A032 update to A031's project**: the working-tree delta to `A031_Django_ModelForms_Create/myProject18/` (three routes `add/` · `''` · `details/<int:pk>/`; `student_list` = `objects.all()` → context `students`; `student_detail(request, pk)` = `get_object_or_404(Student, pk=pk)` → context `student`; new `student_list.html` / `student_detail.html`; `student_success.html`'s hard-coded `href="/"` fixed to `{% url 'student_create' %}`), copied into this lecture's folder as `myProject18/` per the verified A026/A027 snapshot precedent (same project name carried across two lecture folders). `models.py` (262 B), `forms.py` (448 B), `admin.py` (66 B), `settings.py` (3,418 B) and `migrations/0001_initial.py` (636 B) are byte-identical to A031 — no migration, which the chapter teaches as the lesson. Verified twice: engine render (list 487 B with three `/details/N/` links; detail 265 B) + the live `runserver` path (`/` 200 · `/add/` 200 770 B · `/details/1/` 200 265 B · `/details/999999/` 404 · `/nope/` 404), with the artifact's real MIDDLEWARE so `APPEND_SLASH` was genuinely exercised (`/details/2` → **301**; `/details/abc/` and `/details/2/extra/` → 404), plus `reverse()` for all three URL names and a direct DB read (3 rows: Adnan/20, Umar/22, Md/25); the Practical Example's context-key reuse was verified the same way (`filter(age__gte=18).order_by('name')` → Adnan, Md, Umar through the unchanged template). 5 glossary terms added (list view · detail view · detail route · `{% url %}` with an argument · `s.id`); "The library's reading room and the call slip" mental model registered, built on A023's existing library metaphor; recall bank and revision schedule extended; hub TOC/tree/progress updated to ✅; A031's nav footer repointed. **Two §12 corrections/backfills:** A031's "Next Lecture Connection" had mislabeled A032 as "ModelForms for Update" (that is A033) — corrected with an explicit 📌 note — and the **missing A031 tracker row** was backfilled. Inherited bugs re-verified live and flagged, never repaired: `forms.ValidationError` NameError → HTTP 500 on any under-18 POST (row count unchanged at 3) and render-instead-of-redirect (breaks PRG).
