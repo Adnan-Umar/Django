@@ -364,6 +364,15 @@
 - **`{% url %}` with an argument** — a link that knows *which* record it points to · *`{% url 'student_detail' s.id %}` — URL name plus the value for its dynamic segment; resolved at render time from the URLconf, never hand-written* · 🧷 ordering by catalog number, one title filled in.
 - **`s.id`** — a row's own number · *the auto-generated primary-key attribute Django adds to every model (`BigAutoField`, declared nowhere in `models.py`); `s.pk` is an alias of it* · 🧷 every row wears a badge number.
 
+### A033 — Django ModelForms Update (Edit)
+
+- **`instance=`** — the single keyword argument that turns a Create ModelForm into an Edit ModelForm · *when passed to `ModelForm(..., instance=obj)`, the form loads `obj`'s data for GET and writes validated data back to `obj` on `save()`; without it, `save()` does INSERT; with it, `save()` does UPDATE* · 🧷 the magic toggle: no `instance` = birth certificate; with `instance` = amendment.
+- **Edit view (GET branch)** — renders the form pre-filled with the existing record · *`form = StudentForm(instance=student)` — unbound form, but widgets display `student`'s current values* · 🧷 the pre-stamped amendment.
+- **Edit view (POST branch)** — validates and saves changes · *`form = StudentForm(request.POST, instance=student)` — bound form tied to the same record; `is_valid()` runs validators; `form.save()` issues UPDATE SQL* · 🧷 the signed amendment.
+- **`edit/<int:pk>/`** — the canonical edit URL pattern · *the `pk` segment carries the record's identity from the link to the view; the view uses it with `get_object_or_404` to fetch the exact row* · 🧷 the call-slip with the badge number pre-written.
+- **Post-Redirect-Get (PRG) on edit** — after successful UPDATE, redirect to the list or detail page · *prevents duplicate UPDATE on browser refresh; same pattern as create* · 🧷 the roundabout — works for both birth and amendment.
+- **No migration for edit** — editing uses the same schema; no model change means no `makemigrations`/`migrate` · *the table already exists with all columns; UPDATE writes to existing columns* · 🧷 amendment uses the existing form; no renovation permit needed.
+
 ---
 
 ## 3. Mental-Model Registry (registered analogies — reuse, don't reinvent)

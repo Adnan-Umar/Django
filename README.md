@@ -63,6 +63,7 @@ retention*, not skim-reading.
 | A030 | [Build a Complete TODO App](A030_Build_a_Complete_TODO_App/README.md) | Complete CRUD app: Task model, five views (list/create/edit/delete/toggle), URL namespace `todo`, template inheritance, admin with `@admin.register()`; four bugs diagnosed and fixed per §12 | ✅ Documented |
 | A031 | [Django ModelForms Create](A031_Django_ModelForms_Create/README.md) | ModelForm: `StudentForm` mapping to `Student` model, `form.is_valid()`, `form.save()`, custom `clean_age()` validation; `{{ form.as_p }}` rendering; four bugs flagged per §12 | ✅ Documented |
 | A032 | [Django ModelForms Read](A032_Django_ModelForms_Read/README.md) | The read half of CRUD: `student_list` (`objects.all()` → context `students`) and `student_detail` (`get_object_or_404` ← `<int:pk>`), a three-route menu (`add/` · `''` · `details/<int:pk>/`), named-URL links *between* records, and the fix to A031's hard-coded `href="/"`; no migration needed | ✅ Documented |
+| A033 | [Django ModelForms Update (Edit) Data](A033_Django_ModelForms_Update_(Edit)_Data/README.md) | The update half of CRUD: reuse `StudentForm` with `instance=` for PUT semantics; `edit/<int:pk>/` carries pk via URL; GET binds unbound form with instance, POST binds submitted data with instance; `form.save()` issues UPDATE; Post/Redirect/Get to `details/<int:pk>/`; no migration needed | ✅ Documented |
 
 ---
 
@@ -142,6 +143,7 @@ retention*, not skim-reading.
 - ✅ **A030 — Build a Complete TODO App** — documented
 - ✅ **A031 — Django ModelForms Create** — documented
 - ✅ **A032 — Django ModelForms Read** — documented
+- ✅ **A033 — Django ModelForms Update (Edit) Data** — documented
 
 ---
 
