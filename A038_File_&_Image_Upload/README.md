@@ -1504,6 +1504,6 @@ current slice", and finally making a growing gallery usable.
 
 **Beyond the artifact (📌):** the delete view, the `{% if %}` guard, `upload_to` callables, `width_field`/`height_field`, alternative storage backends, production media strategies, signed URLs, re-encoding as hardening, upload-handler thresholds, and the private-media pattern. The **cloakroom/coat-check analogy** is original to this chapter — no lecture transcript existed to conflict with it.
 
-**Navigation:** ← [A037 — Django Authentication: User Signup, Login & Restrict Pages](../A037_Django_Authentication_User_Signup_Login_&_Restrict_Pages/README.md) · [Series hub](../README.md) · A039 →
+**Navigation:** ← [A037 — Django Authentication: User Signup, Login & Restrict Pages](../A037_Django_Authentication_User_Signup_Login_&_Restrict_Pages/README.md) · [Series hub](../README.md) · [A039 — Django Pagination](../A039_Django_Pagination/README.md) →
 
 </div>

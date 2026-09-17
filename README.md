@@ -65,6 +65,7 @@ retention*, not skim-reading.
 | A032 | [Django ModelForms Read](A032_Django_ModelForms_Read/README.md) | The read half of CRUD: `student_list` (`objects.all()` → context `students`) and `student_detail` (`get_object_or_404` ← `<int:pk>`), a three-route menu (`add/` · `''` · `details/<int:pk>/`), named-URL links *between* records, and the fix to A031's hard-coded `href="/"`; no migration needed | ✅ Documented |
 | A033 | [Django ModelForms Update (Edit) Data](A033_Django_ModelForms_Update_(Edit)_Data/README.md) | The update half of CRUD: reuse `StudentForm` with `instance=` for PUT semantics; `edit/<int:pk>/` carries pk via URL; GET binds unbound form with instance, POST binds submitted data with instance; `form.save()` issues UPDATE; Post/Redirect/Get to `details/<int:pk>/`; no migration needed | ✅ Documented |
 | A038 | [File & Image Upload](A038_File_&_Image_Upload/README.md) | The file half of CRUD: `enctype="multipart/form-data"`, `ImageField` vs `FileField` and why Pillow is mandatory, `MEDIA_ROOT` vs `MEDIA_URL`, `ProfileForm(request.POST, request.FILES)`, the DEBUG-only `static()` media route, `{{ profile.image.url }}` and the `FieldFile` API — built on the twentieth artifact `myProject22/` (all claims live-verified: 302 upload, collision suffix `probe_IBTliwB.png`, orphaned file after `delete()`) | ✅ Documented |
+| A039 | [Django Pagination](A039_Django_Pagination/README.md) | Slicing a collection into pages: `Paginator(post, 4)`, forgiving `get_page()` vs strict `page()`, the `Page` object, `?page=` querystring state, the `page_range` nav loop, the `order_by` precondition, the two-queries-per-turn cost — built on the twenty-first artifact `myProject23/` (all claims live-verified: twelve `?page=` inputs, `LIMIT 4 OFFSET 4`, short last tray T13) | ✅ Documented |
 
 
 ---
@@ -106,6 +107,7 @@ retention*, not skim-reading.
 ├── A031_…/                  ← Lecture A031 chapter (plus `myProject18/` — `student` app: `StudentForm` ModelForm, `clean_age()` validation)
 ├── A032_…/                  ← Lecture A032 chapter (plus `myProject18/` — the same `student` app extended for reading: `student_list` + `student_detail` views, three routes, `student_list.html`/`student_detail.html`)
 ├── A038_…/                  ← Lecture A038 chapter (plus myProject22/ — `accounts` app: `Profile` with `ImageField(upload_to='profiles/')`, upload + gallery views, `MEDIA_URL`/`MEDIA_ROOT`, the DEBUG-only `static()` media route; one real uploaded image in `media/profiles/`)
+├── A039_…/                  ← Lecture A039 chapter (plus myProject23/ — `blog` app: `Post` with `title`/`content`, `Paginator(post, 4)` + `get_page` view, one standalone template, root-mounted route; `db.sqlite3` with 13 rows)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -148,6 +150,7 @@ retention*, not skim-reading.
 - ✅ **A032 — Django ModelForms Read** — documented
 - ✅ **A033 — Django ModelForms Update (Edit) Data** — documented
 - ✅ **A038 — File & Image Upload** — documented
+- ✅ **A039 — Django Pagination** — documented
 
 
 ---
