@@ -29,7 +29,7 @@ This lecture adds the **U** of CRUD with a surprisingly small diff. That smallne
 |---|---|
 | `Student` model + `StudentForm` (ModelForm) | [A031 — ModelForms Create](../A031_Django_ModelForms_Create/README.md) |
 | Rendering `{{ form.as_p }}` and the POST/`is_valid()`/`save()` loop | [A031](../A031_Django_ModelForms_Create/README.md) |
-| Reading rows into a `{% for %}` table | [A032 — ModelForms Read](../A032_Django_ModelForms_Read_Data/README.md) |
+| Reading rows into a `{% for %}` table | [A032 — ModelForms Read](../A032_Django_ModelForms_Read/README.md) |
 | URL parameters & the converter→argument contract (`<int:pk>` → `pk`) | [A009 — URL Parameters](../A009_URL_Parameters_%28path_re_path_kwargs%29/README.md) |
 | `get_object_or_404` | [A009](../A009_URL_Parameters_%28path_re_path_kwargs%29/README.md), reused in [A031](../A031_Django_ModelForms_Create/README.md) |
 
@@ -375,8 +375,8 @@ A033 completes the **U** in CRUD: Create (A031) → Read (A032) → **Update (th
 |---|---|
 | Owner's uncommitted diff in `myProject18` (4 files) | **Primary source** — quoted verbatim above |
 | [A031 — ModelForms Create](../A031_Django_ModelForms_Create/README.md) | `Student`/`StudentForm`, POST loop, `save()` = INSERT |
-| [A032 — ModelForms Read](../A032_Django_ModelForms_Read_Data/README.md) | List/detail reading, `{% url %}` links |
+| [A032 — ModelForms Read](../A032_Django_ModelForms_Read/README.md) | List/detail reading, `{% url %}` links |
 | [A009 — URL Parameters](../A009_URL_Parameters_%28path_re_path_kwargs%29/README.md) | Converter→argument contract |
 | Official Django docs (Forms, ModelForms, `redirect`, `get_object_or_404`) | 📌 Supplementary semantics (two-branch pattern, PRG, 404-vs-500) |
 
-**Navigation:** ← [A032 — ModelForms Read](../A032_Django_ModelForms_Read_Data/README.md) · 📚 [Series Hub](../README.md) · [A034 — ModelForms Delete](../A034_Django_ModelForms_Delete_Data/) →
+**Navigation:** ← [A032 — ModelForms Read](../A032_Django_ModelForms_Read/README.md) · 📚 [Series Hub](../README.md) · [A034 — ModelForms Delete](../A034_Django_ModelForms_Delete_Data/) →

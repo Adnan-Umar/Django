@@ -64,6 +64,10 @@ retention*, not skim-reading.
 | A031 | [Django ModelForms Create](A031_Django_ModelForms_Create/README.md) | ModelForm: `StudentForm` mapping to `Student` model, `form.is_valid()`, `form.save()`, custom `clean_age()` validation; `{{ form.as_p }}` rendering; four bugs flagged per §12 | ✅ Documented |
 | A032 | [Django ModelForms Read](A032_Django_ModelForms_Read/README.md) | The read half of CRUD: `student_list` (`objects.all()` → context `students`) and `student_detail` (`get_object_or_404` ← `<int:pk>`), a three-route menu (`add/` · `''` · `details/<int:pk>/`), named-URL links *between* records, and the fix to A031's hard-coded `href="/"`; no migration needed | ✅ Documented |
 | A033 | [Django ModelForms Update (Edit) Data](A033_Django_ModelForms_Update_(Edit)_Data/README.md) | The update half of CRUD: reuse `StudentForm` with `instance=` for PUT semantics; `edit/<int:pk>/` carries pk via URL; GET binds unbound form with instance, POST binds submitted data with instance; `form.save()` issues UPDATE; Post/Redirect/Get to `details/<int:pk>/`; no migration needed | ✅ Documented |
+| A034 | [Django ModelForms Delete Data](A034_Django_ModelForms_Delete_Data/README.md) | The final letter of CRUD — no `ModelForm` needed: `get_object_or_404` → confirm page on GET → `student.delete()` on POST → `redirect()` PRG; `delete/<int:pk>/` route, per-row `{% url %}` link, `{% csrf_token %}` on the confirm form, and the GET-must-never-delete rule (crawlers & prefetchers); no migration | ✅ Documented |
+| A035 | [Debug, Info, Success, Warning & Error — Django Messages Framework](A035_Debug_Info_Success_Warning_&_Error/README.md) | The messages framework bridges the PRG gap: five levels (`debug` 10 · `info` 20 · `success` 25 · `warning` 30 · `error` 40), `messages.<level>(request, text)` queueing, `{% if messages %}` + `{{ message.tags }}` display, the `MESSAGE_LEVEL` gate, the three shipped infrastructure pieces, one-time consumption — built on the `myProject19/` artifact (`msg_demo`) | ✅ Documented |
+| A036 | [Authentication & Permissions](A036_Authentication_&_Permissions/README.md) | The access-control layer through the admin UI (zero custom code): `User` flags (`is_active`/`is_staff`/`is_superuser`), Groups → RBAC, four auto-generated permissions per model (`add`/`change`/`delete`/`view`), `has_perm()` union semantics, PBKDF2-SHA256 password hashing, change-vs-reset flows — built on the `myProject20/` artifact (empty `demo` app) | ✅ Documented |
+| A037 | [Django Authentication: User Signup, Login & Restrict Pages](A037_Django_Authentication_User_Signup_Login_&_Restrict_Pages/README.md) | Public-facing auth: `RegistrationForm` extending `UserCreationForm` with unique-email validation, `authenticate()`/`login()`/`logout()` and auto-login after signup, `@login_required` with `?next=`, conditional navbar via `user.is_authenticated`, messages feedback — built on the `myProject21/` artifact (`accounts` app) | ✅ Documented |
 | A038 | [File & Image Upload](A038_File_&_Image_Upload/README.md) | The file half of CRUD: `enctype="multipart/form-data"`, `ImageField` vs `FileField` and why Pillow is mandatory, `MEDIA_ROOT` vs `MEDIA_URL`, `ProfileForm(request.POST, request.FILES)`, the DEBUG-only `static()` media route, `{{ profile.image.url }}` and the `FieldFile` API — built on the twentieth artifact `myProject22/` (all claims live-verified: 302 upload, collision suffix `probe_IBTliwB.png`, orphaned file after `delete()`) | ✅ Documented |
 | A039 | [Django Pagination](A039_Django_Pagination/README.md) | Slicing a collection into pages: `Paginator(post, 4)`, forgiving `get_page()` vs strict `page()`, the `Page` object, `?page=` querystring state, the `page_range` nav loop, the `order_by` precondition, the two-queries-per-turn cost — built on the twenty-first artifact `myProject23/` (all claims live-verified: twelve `?page=` inputs, `LIMIT 4 OFFSET 4`, short last tray T13) | ✅ Documented |
 
@@ -106,6 +110,11 @@ retention*, not skim-reading.
 ├── A030_…/                  ← Lecture A030 chapter (plus `todoproject/` — complete TODO app: `todo` app with 5 CRUD views, URL namespace `todo`, `Task` model, admin with `@admin.register(Task)`)
 ├── A031_…/                  ← Lecture A031 chapter (plus `myProject18/` — `student` app: `StudentForm` ModelForm, `clean_age()` validation)
 ├── A032_…/                  ← Lecture A032 chapter (plus `myProject18/` — the same `student` app extended for reading: `student_list` + `student_detail` views, three routes, `student_list.html`/`student_detail.html`)
+├── A033_…/                  ← Lecture A033 chapter (edit added to A031's myProject18/ in place — student_edit view with instance=, edit/<int:pk>/ route, per-row Edit links; no artifact copy in this folder)
+├── A034_…/                  ← Lecture A034 chapter (delete added to the same myProject18/ — student_delete view, delete/<int:pk>/, student_confirm_delete.html; models/forms untouched)
+├── A035_…/                  ← Lecture A035 chapter (plus myProject19/ — msg_demo app: show_msg queues all five message levels, MESSAGE_LEVEL = DEBUG, message.html prints tags)
+├── A036_…/                  ← Lecture A036 chapter (plus myProject20/ — demo app left as empty scaffolds; the lecture plays out in the admin UI: users, groups, permissions, password flows)
+├── A037_…/                  ← Lecture A037 chapter (plus myProject21/ — accounts app: RegistrationForm extends UserCreationForm, register/login/logout/dashboard views, conditional navbar)
 ├── A038_…/                  ← Lecture A038 chapter (plus myProject22/ — `accounts` app: `Profile` with `ImageField(upload_to='profiles/')`, upload + gallery views, `MEDIA_URL`/`MEDIA_ROOT`, the DEBUG-only `static()` media route; one real uploaded image in `media/profiles/`)
 ├── A039_…/                  ← Lecture A039 chapter (plus myProject23/ — `blog` app: `Post` with `title`/`content`, `Paginator(post, 4)` + `get_page` view, one standalone template, root-mounted route; `db.sqlite3` with 13 rows)
 └── ChaiAurCode/           ← the real Django project used for practice
@@ -149,6 +158,10 @@ retention*, not skim-reading.
 - ✅ **A031 — Django ModelForms Create** — documented
 - ✅ **A032 — Django ModelForms Read** — documented
 - ✅ **A033 — Django ModelForms Update (Edit) Data** — documented
+- ✅ **A034 — Django ModelForms Delete** — documented
+- ✅ **A035 — Django Messages Framework (Debug, Info, Success, Warning & Error)** — documented
+- ✅ **A036 — Authentication & Permissions** — documented
+- ✅ **A037 — Django Authentication: User Signup, Login & Restrict Pages** — documented
 - ✅ **A038 — File & Image Upload** — documented
 - ✅ **A039 — Django Pagination** — documented
 

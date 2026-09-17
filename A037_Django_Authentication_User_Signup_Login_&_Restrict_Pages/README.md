@@ -842,4 +842,6 @@ This is the **foundation for real web applications**. Master this pattern and yo
 
 ---
 
-**Next Lecture:** A038 — Advanced Authentication (Social Login, OAuth, Two-Factor)
+**Next Lecture:** A038 — File & Image Upload
+
+> 📌 An earlier revision of this line mislabeled A038 as "Advanced Authentication (Social Login, OAuth, Two-Factor)". Corrected per the series' §12 practice: the real A038 chapter is the file & image upload lecture (`myProject22`).
