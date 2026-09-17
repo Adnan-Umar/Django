@@ -87,3 +87,5 @@ Student.objects.create(name="Umar", age=23, city="Delhi")
 
 # Create super upser
 py .\manage.py createsuperuser    admin admin  admin@123
+
+pip install Pillow

@@ -11,7 +11,7 @@ node_modules
 # Django
 db.sqlite3
 /local_settings.py
-*/media/*
+**/media/*
 
 # Virtual environments
 .venv/

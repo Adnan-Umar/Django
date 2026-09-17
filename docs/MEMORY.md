@@ -39,6 +39,8 @@
 | A030 | `A030_Build_a_Complete_TODO_App` | Build a Complete TODO App | ✅ Documented | ⚠️ Partial — primary source is the `todoproject/` artifact: Django 6.1.1 project with `todo` app providing full CRUD (list, create, edit, delete, toggle) for tasks; `models.py`, `views.py`, `urls.py`, `admin.py`, all templates quoted verbatim; four bugs diagnosed and fixed per §12 (CharField missing max_length, context variable mismatch, two wrong URL names) |
 | A031 | `A031_Django_ModelForms_Create` | Django ModelForms Create | ✅ Documented | ⚠️ Partial — primary source is the `myProject18/` artifact: `student` app with a `StudentForm` ModelForm mapping to `Student` (name, age, email) plus `clean_age()` validation; `models.py`, `forms.py`, `views.py`, `urls.py` and both templates quoted verbatim; bugs flagged per §12 (`forms.ValidationError` NameError, render-instead-of-redirect, hard-coded URL, no `app_name`, `Student` unregistered) |
 | A032 | `A032_Django_ModelForms_Read` | Django ModelForms Read | ✅ Documented | ⚠️ Partial — primary source is the **A032 update to A031's project** (`myProject18/`, copied into this lecture's folder per the A026/A027 snapshot convention): two read views (`student_list` = `objects.all()` → context `students`; `student_detail` = `get_object_or_404(Student, pk=pk)`), a three-route menu (`add/` · `''` · `details/<int:pk>/`), two new templates, and the one-line fix to A031's hard-coded `href="/"`; `models.py`/`forms.py`/`admin.py`/`settings.py`/migration byte-identical (no migration needed); verified twice (engine render + live request path incl. the `APPEND_SLASH` 301 and both 404 shapes); two inherited bugs still live per §12 |
+| A038 | `A038_File_&_Image_Upload` | File & Image Upload | ✅ Documented | ⚠️ Partial — primary sources are the journal's new line 91 (`pip install Pillow`, quoted verbatim) and the `myProject22/` artifact (`accounts` app: `Profile` with `ImageField(upload_to='profiles/')`, `ProfileForm`, two views, three templates, migration 0001, `MEDIA_URL`/`MEDIA_ROOT`, the `static()` media route, and a real 36,100-byte upload in `media/profiles/`) — all quoted verbatim; every claim **live-verified** against the running artifact; artifact quirks flagged per §12 (`Profile` unregistered in admin, `staticfiles.W004` ghost shelf, inert `MAILERS`) |
+
 
 ---
 
@@ -372,6 +374,25 @@
 - **`edit/<int:pk>/`** — the canonical edit URL pattern · *the `pk` segment carries the record's identity from the link to the view; the view uses it with `get_object_or_404` to fetch the exact row* · 🧷 the call-slip with the badge number pre-written.
 - **Post-Redirect-Get (PRG) on edit** — after successful UPDATE, redirect to the list or detail page · *prevents duplicate UPDATE on browser refresh; same pattern as create* · 🧷 the roundabout — works for both birth and amendment.
 - **No migration for edit** — editing uses the same schema; no model change means no `makemigrations`/`migrate` · *the table already exists with all columns; UPDATE writes to existing columns* · 🧷 amendment uses the existing form; no renovation permit needed.
+### A038 — File & Image Upload
+
+- **`enctype`** — how the browser packages the request body · *the `<form>` attribute; must be `multipart/form-data` whenever a file input exists, otherwise `request.FILES` stays empty and the field reports "This field is required."* · 🧷 the parcel's packing method.
+- **`multipart/form-data`** — a body of labelled chunks · *a MIME encoding where each field/file is an independent part separated by a boundary string; Django's `MultiPartParser` splits it into `request.POST` (text parts) and `request.FILES` (file parts)* · 🧷 a box of sealed envelopes.
+- **`request.FILES`** — the file half of a POST · *a `MultiValueDict` holding the multipart file parts; empty for GET, urlencoded, or non-multipart POSTs* · 🧷 the second intake slot.
+- **`FileField`** — a column pointing at a file · *stores a **relative path string**; bytes are written by a storage backend; `max_length` defaults to 100 (verified in Django's source)* · 🧷 the coat-check ticket.
+- **`ImageField`** — a `FileField` that must be a real image · *subclass adding a Pillow-decoded validation (rejects `evil.webp` with error code `invalid_image`) and the `accept="image/*"` widget hint* · 🧷 the ticket with a photo check.
+- **Pillow** — the image library `ImageField` depends on · *without it Django raises the system-check error `fields.E210: Cannot use ImageField because Pillow is not installed.`; the journal's `pip install Pillow` (line 91) is this requirement* · 🧷 the x-ray machine.
+- **`upload_to`** — the sub-folder inside `MEDIA_ROOT` · *joined with the sanitised filename **at save time** by the storage, so it shows up in the stored path (`profiles/maulana_azad_img.webp`) rather than as a form error; also accepts `strftime` patterns or a callable (📌)* · 🧷 the shelf label.
+- **`MEDIA_ROOT`** — where uploads live on disk · *an absolute filesystem path (`D:\…\myProject22\media`) used by `FileSystemStorage`; a client never sees it* · 🧷 the warehouse address.
+- **`MEDIA_URL`** — the web prefix for uploads · *joined with the stored relative path to build public URLs (`/media/` — must end with `/`); never stored anywhere* · 🧷 the warehouse's street sign.
+- **`FileSystemStorage`** — the default storage backend · *`django.core.files.storage.FileSystemStorage`; reads and writes under `MEDIA_ROOT`; raises `SuspiciousFileOperation` on a `..` path-traversal attempt* · 🧷 the default warehouse.
+- **`FieldFile`** — what a file column returns · *a lazy wrapper exposing `.name` (the stored path), `.url` (computed), `.path` (absolute), `.size`, `.storage`, `.open()`, `.delete(save=False)`* · 🧷 the ticket that can fetch.
+- **`{{ image.url }}`** — prints where to fetch the file · *a property computed at render time as `storage.url(name)` = `MEDIA_URL + name`; raises `ValueError` when no file is associated — guard with `{% if image %}`* · 🧷 reading the address off the shelf label.
+- **Filename collision suffix** — a renamed duplicate · *`Storage.get_available_name()` never overwrites; `get_alternative_name()` returns `root_<random 7 chars>ext` (live-verified: `probe.png` → `probe_IBTliwB.png`)* · 🧷 the duplicate gets a serial number.
+- **Orphan file** — bytes with no row · *a file left in `MEDIA_ROOT` after its instance is deleted or its image replaced — Django never touches storage on `delete()` (live-verified)* · 🧷 the unclaimed coat.
+- **`static()` helper** — the DEBUG-only media route · *`django.conf.urls.static.static(prefix, document_root=…)` returns `[]` when `DEBUG` is off or the prefix is remote (read from source); Django calls its `serve()` view "grossly inefficient and insecure"* · 🧷 the temporary signpost.
+- **Live verification** — running it, not reading it · *exercising an artifact end-to-end and recording the observed values as evidence; A038's method (pages 200, multipart POST 302, collision suffix, orphaned file, `invalid_image`, `staticfiles.W004`, the full `FieldFile` surface)* · 🧷 trust the measurement.
+
 
 ---
 
@@ -416,6 +437,8 @@ response) goes back to the guest (browser).*
 | **From the kitchen to the dining table** | pantry=model, cook+plating=QuerySet, serving=template loop, fresh order=refresh | A025 | data-display questions (context→loop→`<tr>`, empty states, snapshot-per-request) |
 
 | **The library's reading room and the call slip** | the read half of the library A023/A031 built: the list page = the catalogue drawer (`objects.all()` → one index card per row, each card carrying a call number), the detail page = the call slip (`<int:pk>` = the number box the visitor fills, `get_object_or_404` = the walk to the shelf, 404 = "no such call number"), the named URL = the cross-reference system (link by destination name, never by a hand-written shelf address), the context key = the shelf label (`students` plural vs `student` singular) | A032 | read-path / list-vs-detail / pk-in-URL / get_object_or_404 / url-argument / dead-route questions |
+| **The cloakroom / coat check** | file uploads: the coat = the file (bulky, unwieldy), `MEDIA_ROOT` = the cloakroom behind the counter, `upload_to` = the rack label, the DB column = the ticket bearing a *relative* location (`profiles/x.webp`), `FieldFile.url` = translating the ticket into "go to the counter on the left" (computed fresh, never stored), a filename collision = moving you to a free hook and rewriting the ticket (`probe_IBTliwB`), deleting the row = throwing away the ticket but leaving the coat hanging (orphan), `static()` = temporary festival signage that only works while `DEBUG` is on, `enctype` = handing the coat across the counter instead of miming it — the ticket and the coat are separate objects and **Django only manages the ticket** | A038 | upload / media / storage / orphan / collision / enctype / serving questions |
+
 
 ---
 
@@ -489,6 +512,9 @@ What did the rocket page prove beyond "the command exited 0"?
 **From A012:** How does the engine find the parent named in `{% extends %}` — new mechanism or reused? · What renders when a child skips a block, and is there an error? · The two silent failures (typo'd block name, stray outside-block text) — symptom and fix for each · Trace `GET /shop/` stations 9–11: what is new vs byte-identical? · Why did `base.html`'s move from the inner config package to the outer root matter? · Shop's child shrank 321→221 bytes — where did the bytes go, and why is blog's delta tiny? · What is still missing from every template (zero `{{ }}`) — and which lecture supplies it?
 **From A013:** What does `render()`'s third argument do, and what silently happens without it? · Dots resolve in what order — and what does `{{skills.0}}` walk through? · Why do missing names render empty instead of raising an error? · What does auto-escaping do to `<b>` — and how does `|safe` (safely) change it? · Which two comment syntaxes never reach the browser, and which comment always does? · The datetime `{{ }}` self-format — where does it come from? · Why does printing a whole list produce `['a', &#x27;b&#x27;]`? · What still needs the `{{ }}` variables to be useful together (iteration, filter family) — and which lecture?
 
+**From A038:** Why is `enctype="multipart/form-data"` required, and what exact error appears without it · What does the database column store versus what lives on disk · Why does `ImageField` need Pillow, and what is `fields.E210` · Which two arguments must a file-aware ModelForm receive, and in what order · Why does `static()` return an empty list in production · Why did two uploads both named `probe.png` end up as two different files · What happens to the file when you delete the row, and what should you do instead · Why can `{{ image.url }}` raise `ValueError`, and what guards it?
+
+
 
 
 ---
@@ -545,6 +571,8 @@ What did the rocket page prove beyond "the command exited 0"?
 | A031 | Re-read 📝 Quick Revision; recite the ModelForm lifecycle (bind → validate → save → redirect) | Redraw the ModelForm flow (model → ModelForm class → `is_valid()` gate → `form.save()` → DB); explain `clean_age()` vs model constraints; explain `{{ form.as_p }}` vs manual fields | Do the Level-4 exercise (diagnose `forms.ValidationError` NameError, render-vs-redirect bug, hardcoded URL, missing admin registration, missing `app_name`); answer the interview set aloud |
 
 | A032 | Re-read 📝 Quick Revision; recite the three beats of a read view and the two context keys (`students` / `student`) | Redraw the read pipeline from memory (route → view → QuerySet → context → loop/template) and explain why `get_object_or_404` yields a **404** while a bare `objects.get` yields a **500**; explain why the create view had to move to `add/` | Do the Level-3 exercises (add `age` to both templates; build `/adults/` with zero new HTML; add a `/stats/` count page; fix both inherited bugs and prove the fixes); answer the interview set aloud |
+| A038 | Re-read 📝 Quick Revision; recite the five-file upload checklist (models · settings · form template · view · urls) | Redraw the upload journey from `<form enctype>` to `<img src>` from memory; explain the four surprises and their causes (collision suffix, orphaned file, `.url` `ValueError`, 404 in production) aloud | Do the Level-3 exercises (register `Profile` in admin, add a delete view that removes the file, a uuid `upload_to` callable, the `{% if image %}` guard); answer the interview set aloud |
+
 
 ---
 
