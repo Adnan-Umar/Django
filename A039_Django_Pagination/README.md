@@ -1530,6 +1530,6 @@ nothing to the database.
 `None` / negative outcomes, `count`'s callable-versus-`len` branch,
 querystring-preserving pagination links, and keyset pagination.
 
-**Navigation:** ← [A038 — File & Image Upload](../A038_File_&_Image_Upload/README.md) · [Series hub](../README.md) · A040 →
+**Navigation:** ← [A038 — File & Image Upload](../A038_File_&_Image_Upload/README.md) · [Series hub](../README.md) · [A040 — Dynamic QuerySets with Q Objects](../A040_Dynamic_Querysets_with_Q_Objects/README.md) →
 
 </div>
