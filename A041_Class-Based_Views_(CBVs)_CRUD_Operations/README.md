@@ -1376,6 +1376,12 @@ The next step: `LoginRequiredMixin`, `form_class` for custom forms,
 endpoints via `JsonResponse` — all using the same `as_view()` → `dispatch()`
 mechanism.
 
+That mechanism — the framework calling *your* code at a defined moment under a defined
+contract — is exactly what A042 generalises one layer outward:
+[A042 — Django Middleware](../A042_Django_Middleware/README.md) moves "your code, called at the
+right time" from the view to the pipeline, where `process_request`/`process_response` play the
+role `get()`/`post()` played inside a CBV.
+
 ---
 
 ---
@@ -1445,6 +1451,6 @@ and `BaseListView.get` (`list.py`), `SingleObjectMixin.get_object` and
 `post` / `put`, `BaseCreateView.get` / `BaseUpdateView.get`, and
 `DeletionMixin.delete` / `get_success_url` / `post` (`edit.py`).
 
-**Navigation:** ← [A040 — Dynamic QuerySets with Q Objects](../A040_Dynamic_Querysets_with_Q_Objects/README.md) · [Series hub](../README.md) · *(A042 not yet created)*
+**Navigation:** ← [A040 — Dynamic QuerySets with Q Objects](../A040_Dynamic_Querysets_with_Q_Objects/README.md) · [Series hub](../README.md) · [A042 — Django Middleware](../A042_Django_Middleware/README.md) →
 
 </div>

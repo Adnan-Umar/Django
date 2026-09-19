@@ -72,6 +72,7 @@ retention*, not skim-reading.
 | A039 | [Django Pagination](A039_Django_Pagination/README.md) | Slicing a collection into pages: `Paginator(post, 4)`, forgiving `get_page()` vs strict `page()`, the `Page` object, `?page=` querystring state, the `page_range` nav loop, the `order_by` precondition, the two-queries-per-turn cost — built on the twenty-first artifact `myProject23/` (all claims live-verified: twelve `?page=` inputs, `LIMIT 4 OFFSET 4`, short last tray T13) | ✅ Documented |
 | A040 | [Dynamic QuerySets with Q Objects](A040_Dynamic_Querysets_with_Q_Objects/README.md) | Building queries at request time: `Q` objects, `&`/`|`/`~`, the empty-`Q()` identity, OR vs chained-AND, `icontains`/`iexact`, guard-and-chain dynamic filters, sticky forms, and why a served-200 form can still be dead | ✅ Documented |
 | A041 | [Class-Based Views (CBVs) CRUD Operations](A041_Class-Based_Views_%28CBVs%29_CRUD_Operations/README.md) | The `as_view()` → `dispatch()` pipeline, five generic views (`ListView`/`DetailView`/`CreateView`/`UpdateView`/`DeleteView`), the `ModelFormMixin` vs `DeletionMixin` success-URL asymmetry, shared `post_form.html` via `{% if form.instance.pk %}`, `reverse_lazy`, 405/404 semantics | ✅ Documented |
+| A042 | [Django Middleware](A042_Django_Middleware/README.md) | The onion between dispatcher and view: the two middleware APIs (`MiddlewareMixin` + `process_*` vs new-style callables), request-forward/response-reverse ordering, the short-circuit, the five hooks and their true owners, one-instance-per-process, and the seven shipped layers — built on the twenty-fourth artifact `myProject26/` (live-verified: 403/200 request table, hook-order proof, empty `_exception_middleware`, zero-log reversed-order drill, 2-requests-1-instance spy) | ✅ Documented |
 
 
 ---
@@ -121,6 +122,7 @@ retention*, not skim-reading.
 ├── A039_…/                  ← Lecture A039 chapter (plus myProject23/ — `blog` app: `Post` with `title`/`content`, `Paginator(post, 4)` + `get_page` view, one standalone template, root-mounted route; `db.sqlite3` with 13 rows)
 ├── A040_…/                  ← Lecture A040 chapter (plus myProject24/ — `blog` app: `Post` with `title`/`content`/`catagory`, `post_list` composing `Q(title__icontains) | Q(content__icontains)` + `catagory__iexact` guards, one standalone GET-form template, root-mounted route; `db.sqlite3` with 5 rows)
 ├── A041_…/                  ← Lecture A041 chapter (plus myProject25/ — `blog` app: `Post` with `title`/`content`, five generic CBVs `ListView`/`DetailView`/`CreateView`/`UpdateView`/`DeleteView`, five templates with shared `base.html`, `get_absolute_url()` + `success_url=reverse_lazy('post_list')`; `db.sqlite3` with 2 surviving rows, `sqlite_sequence`=4)
+├── A042_…/                  ← Lecture A042 chapter (plus myProject26/ — Django 6.1.1 scaffold; `blog` app: `middleware.py` with `SimpleLogMiddleware` + `BlockingIPMiddleware` registered at MIDDLEWARE [7, 8], one `home_view`, no models/templates; 0-byte `db.sqlite3`)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -170,6 +172,7 @@ retention*, not skim-reading.
 - ✅ **A039 — Django Pagination** — documented
 - ✅ **A040 — Dynamic QuerySets with Q Objects** — documented
 - ✅ **A041 — Class-Based Views (CBVs) CRUD Operations** — documented
+- ✅ **A042 — Django Middleware** — documented
 
 
 ---
