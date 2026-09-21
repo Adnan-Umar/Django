@@ -74,6 +74,7 @@ retention*, not skim-reading.
 | A041 | [Class-Based Views (CBVs) CRUD Operations](A041_Class-Based_Views_%28CBVs%29_CRUD_Operations/README.md) | The `as_view()` → `dispatch()` pipeline, five generic views (`ListView`/`DetailView`/`CreateView`/`UpdateView`/`DeleteView`), the `ModelFormMixin` vs `DeletionMixin` success-URL asymmetry, shared `post_form.html` via `{% if form.instance.pk %}`, `reverse_lazy`, 405/404 semantics | ✅ Documented |
 | A042 | [Django Middleware](A042_Django_Middleware/README.md) | The onion between dispatcher and view: the two middleware APIs (`MiddlewareMixin` + `process_*` vs new-style callables), request-forward/response-reverse ordering, the short-circuit, the five hooks and their true owners, one-instance-per-process, and the seven shipped layers — built on the twenty-fourth artifact `myProject26/` (live-verified: 403/200 request table, hook-order proof, empty `_exception_middleware`, zero-log reversed-order drill, 2-requests-1-instance spy) | ✅ Documented |
 | A043 | [Pre-Save & Post-Save Signals](A043_Pre_Save_&_Post_Save_Signals/README.md) | Django's in-process observer pattern: the `pre_save`/`post_save` contracts (`sender`, `instance`, `created`), `@receiver` vs `connect()`, the `ready()` import rule, synchronous dispatch, and the veto rule — built on the twenty-fifth artifact `myProject27/` (live-verified: the shipped `NameError` at `signals.py:13` fixed one word, both branches proven, 0-row receipt) | ✅ Documented |
+| A044 | [Session Storage: Get & Set Methods](A044_Session_Storage_Get_&_Set_Methods/README.md) | The server-side memory: the `sessionid` ticket vs the `django_session` locker, the signed three-segment payload (readable in plaintext — signed, not encrypted), lazy creation (reads set no cookie/row), key minting at save via the middleware, `del`/`clear()`/`flush()` as three different deletes, two expiry clocks, `cycle_key()` and the `signed_cookies` engine — built on the twenty-sixth artifact `myProject28/` (live-verified: cookie attribute capture, payload decode, tamper → `SuspiciousSession`, clean 0→1→1→0→0 row cycle, the API surface, the cookie-engine round trip) | ✅ Documented |
 
 
 ---
@@ -176,6 +177,7 @@ retention*, not skim-reading.
 - ✅ **A041 — Class-Based Views (CBVs) CRUD Operations** — documented
 - ✅ **A042 — Django Middleware** — documented
 - ✅ **A043 — Pre-Save & Post-Save Signals** — documented
+- ✅ **A044 — Session Storage: Get & Set Methods** — documented
 
 
 ---

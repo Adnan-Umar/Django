@@ -724,6 +724,11 @@ queues), cross-process fan-out (channels, webhooks), or the audit-trail pattern 
 crier only sketches. The question each of those answers is the one this chapter leaves open: *what
 changes when the bell must ring after the doorway has closed?*
 
+And the first stop is not another bell — it is the state that survives after the bell:
+[A044 — Session Storage: Get & Set Methods](../A044_Session_Storage_Get_&_Set_Methods/README.md)
+uses `SessionMiddleware` (A042's lane 1) to keep a per-visitor locker open across requests — the
+state A043's receivers were reacting to.
+
 ---
 
 <div class="doc-footer">
@@ -762,6 +767,6 @@ handoff, and the request-cycle → data-event bridge narrative. Dispatcher mecha
 keyword invocation, zero signature validation) cross-checked against Django's signal dispatch
 source and documentation.
 
-**Navigation:** ← [A042 — Django Middleware](../A042_Django_Middleware/README.md) · [Series hub](../README.md) · A044 → *(no A044 folder yet)*
+**Navigation:** ← [A042 — Django Middleware](../A042_Django_Middleware/README.md) · [Series hub](../README.md) · [A044 — Session Storage: Get & Set Methods](../A044_Session_Storage_Get_&_Set_Methods/README.md) →
 
 </div>
