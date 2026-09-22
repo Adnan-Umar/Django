@@ -75,6 +75,7 @@ retention*, not skim-reading.
 | A042 | [Django Middleware](A042_Django_Middleware/README.md) | The onion between dispatcher and view: the two middleware APIs (`MiddlewareMixin` + `process_*` vs new-style callables), request-forward/response-reverse ordering, the short-circuit, the five hooks and their true owners, one-instance-per-process, and the seven shipped layers — built on the twenty-fourth artifact `myProject26/` (live-verified: 403/200 request table, hook-order proof, empty `_exception_middleware`, zero-log reversed-order drill, 2-requests-1-instance spy) | ✅ Documented |
 | A043 | [Pre-Save & Post-Save Signals](A043_Pre_Save_&_Post_Save_Signals/README.md) | Django's in-process observer pattern: the `pre_save`/`post_save` contracts (`sender`, `instance`, `created`), `@receiver` vs `connect()`, the `ready()` import rule, synchronous dispatch, and the veto rule — built on the twenty-fifth artifact `myProject27/` (live-verified: the shipped `NameError` at `signals.py:13` fixed one word, both branches proven, 0-row receipt) | ✅ Documented |
 | A044 | [Session Storage: Get & Set Methods](A044_Session_Storage_Get_&_Set_Methods/README.md) | The server-side memory: the `sessionid` ticket vs the `django_session` locker, the signed three-segment payload (readable in plaintext — signed, not encrypted), lazy creation (reads set no cookie/row), key minting at save via the middleware, `del`/`clear()`/`flush()` as three different deletes, two expiry clocks, `cycle_key()` and the `signed_cookies` engine — built on the twenty-sixth artifact `myProject28/` (live-verified: cookie attribute capture, payload decode, tamper → `SuspiciousSession`, clean 0→1→1→0→0 row cycle, the API surface, the cookie-engine round trip) | ✅ Documented |
+| A045 | [Set & Read Cookies in Django](A045_Set_&_Read_Cookies_in_Django/README.md) | The client-side memory: `Set-Cookie` out and `Cookie` in with nothing stored server-side, `set_cookie()`'s permissive defaults (no `HttpOnly`/`SameSite`/`Secure` on the artifact), the tolerant `parse_cookie()`, the `if username and course:` truthiness-vs-presence guard bug (six combinations measured), `delete_cookie()`'s epoch trick, the test client's blanked-cookie blind spot, and `set_signed_cookie()`/`get_signed_cookie()` — built on the twenty-seventh artifact `myProject29/` (live-verified: exact header text, the full API surface, the guard table, jar-before/after evidence, the three-segment signed value with plaintext segment 1, both-directions `BadSignature` namespace proof, CSRF 403 on unsafe verbs) | ✅ Documented |
 
 
 ---
@@ -126,6 +127,8 @@ retention*, not skim-reading.
 ├── A041_…/                  ← Lecture A041 chapter (plus myProject25/ — `blog` app: `Post` with `title`/`content`, five generic CBVs `ListView`/`DetailView`/`CreateView`/`UpdateView`/`DeleteView`, five templates with shared `base.html`, `get_absolute_url()` + `success_url=reverse_lazy('post_list')`; `db.sqlite3` with 2 surviving rows, `sqlite_sequence`=4)
 ├── A042_…/                  ← Lecture A042 chapter (plus myProject26/ — Django 6.1.1 scaffold; `blog` app: `middleware.py` with `SimpleLogMiddleware` + `BlockingIPMiddleware` registered at MIDDLEWARE [7, 8], one `home_view`, no models/templates; 0-byte `db.sqlite3`)
 ├── A043_…/                  ← Lecture A043 chapter (plus myProject27/ — Django 6.1.1 scaffold; `blog` app: `Blog` model, `signals.py` with `pre_save` + `post_save` receivers (one-word fix applied: `created` declared), admin-registered, root-mounted; `db.sqlite3` with 12 tables and 0 `blog_blog` rows)
+├── A044_…/                  ← Lecture A044 chapter (plus myProject28/ — Django 6.1.1 scaffold; `blog` app: three session views `set_session`/`get_session`/`delete_session` with `flush()`, `middleware.py`, no models/templates; `db.sqlite3` with 11 tables incl. `django_session` and 0 rows)
+├── A045_…/                  ← Lecture A045 chapter (plus myProject29/ — Django 6.1.1 scaffold; `blog` app: three cookie views `set_cookie`/`get_cookie`/`delete_cookie`, root-mounted, no models/migrations/templates; `db.sqlite3` with 11 tables, 18 migrations, 0 rows)
 └── ChaiAurCode/           ← the real Django project used for practice
     └── chaiaurDjango/     ← (chai shop app: models, views, templates, admin)
 ```
@@ -178,6 +181,7 @@ retention*, not skim-reading.
 - ✅ **A042 — Django Middleware** — documented
 - ✅ **A043 — Pre-Save & Post-Save Signals** — documented
 - ✅ **A044 — Session Storage: Get & Set Methods** — documented
+- ✅ **A045 — Set & Read Cookies in Django** — documented
 
 
 ---

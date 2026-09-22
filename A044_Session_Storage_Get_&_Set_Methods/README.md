@@ -923,12 +923,14 @@ deliberately *not* sessions:
 - and every "remember me for 30 days", "keep this preference", or "did you close this banner"
   case where the data *should* live on the client.
 
-That is the next lecture's territory (📌):
-[A045 — Set & Read Cookies in Django](../A045_Set_&_Read_Cookies_in_Django/) — *chapter not yet
-written; the folder exists.* It takes the ticket away from the cloakroom and hands the visitor the
-contents themselves — `response.set_cookie(...)` and `request.COOKIES[...]` — with the flags, the
-signing option (`set_signed_cookie`), and the trust boundary that decides which of the two homes
-a given fact belongs in.
+That is the next lecture's territory — now written (📌):
+[A045 — Set & Read Cookies in Django](../A045_Set_&_Read_Cookies_in_Django/README.md) takes the
+ticket away from the cloakroom and hands the visitor the contents themselves —
+`response.set_cookie(...)` and `request.COOKIES.get(...)` — with the flags, the signing option
+(`set_signed_cookie`), and the trust boundary that decides which of the two homes a given fact
+belongs in. Its one genuine bug — a guard that reads as "were cookies sent?" and behaves as "are
+the cookie *values* non-empty?" — is the quiet twin of A043's loud `NameError`: no crash, just the
+wrong name on the branch.
 
 ---
 
@@ -996,6 +998,6 @@ trust boundary that hands A045 its topic. General session mechanics cross-checke
 Django's source and documentation (sessions topic guide, `SESSION_*` settings reference,
 `django.contrib.sessions` models/API).
 
-**Navigation:** ← [A043 — Pre-Save & Post-Save Signals](../A043_Pre_Save_&_Post_Save_Signals/README.md) · [Series hub](../README.md) · [A045 — Set & Read Cookies in Django](../A045_Set_&_Read_Cookies_in_Django/) (folder exists, chapter not yet written) →
+**Navigation:** ← [A043 — Pre-Save & Post-Save Signals](../A043_Pre_Save_&_Post_Save_Signals/README.md) · [Series hub](../README.md) · [A045 — Set & Read Cookies in Django](../A045_Set_&_Read_Cookies_in_Django/README.md) →
 
 </div>
