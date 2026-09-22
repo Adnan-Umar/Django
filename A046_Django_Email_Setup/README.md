@@ -1226,7 +1226,7 @@ signal-fired send that A047 builds. General email mechanics cross-checked agains
 documentation (the "Sending email" topic guide and the "Migrating email to mailers" notes) and
 the `django.core.mail` API reference.
 
-**Navigation:** ← [A045 — Set & Read Cookies in Django](../A045_Set_&_Read_Cookies_in_Django/README.md) · [Series hub](../README.md) · [A047 — Send Auto Welcome Email After User Registration (Signal Use Case)](../A047_Send_Auto_Welcome_Email_After_User_Registration_Signal_Use_Case/) (chapter not yet written) →
+**Navigation:** ← [A045 — Set & Read Cookies in Django](../A045_Set_&_Read_Cookies_in_Django/README.md) · [Series hub](../README.md) · [A047 — Send Auto Welcome Email After User Registration (Signal Use Case)](../A047_Send_Auto_Welcome_Email_After_User_Registration_Signal_Use_Case/README.md) →
 
 </div>
 

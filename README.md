@@ -185,6 +185,7 @@ retention*, not skim-reading.
 - ✅ **A044 — Session Storage: Get & Set Methods** — documented
 - ✅ **A045 — Set & Read Cookies in Django** — documented
 - ✅ **A046 — Django Email Setup** — documented
+- ✅ **A047 — Send Auto Welcome Email After User Registration (Signal Use Case)** — documented
 
 
 ---
