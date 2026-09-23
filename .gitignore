@@ -11,6 +11,7 @@ node_modules
 
 # Django
 db.sqlite3
+*.djcache
 /local_settings.py
 **/media/*
 

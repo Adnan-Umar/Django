@@ -973,7 +973,7 @@ read and executed read-only; no artifact file was modified for this chapter.
 
 **Sources used:** `myProject33/` artifact (Django 6.1.1 scaffold; Python 3.14.6 — `py -3.14 -c "import django; print(django.get_version())"` → `6.1.1`). Official docs: [Django caching fundamentals](https://docs.djangoproject.com/en/6.1/topics/cache/) and [cache backend reference](https://docs.djangoproject.com/en/6.1/ref/cache/) (LocMemCache, timeouts, key API). **No lecture transcript exists in the folder** (honesty contract §3) — this chapter documents the owner's artifact plus the official docs. Live-verified: consecutive `GET /users/` → **200/200** with `Cache miss:` then `Cache hit:` prints captured verbatim, `queries on first GET: 1`, cached value `<class 'django.db.models.query.QuerySet'>` with `_result_cache` populated, `rows rendered: 3`, `py manage.py check` → only the `staticfiles.W004` ghost; `db.sqlite3` inspected with SELECT-only statements (12 tables / 3 data rows / 1 admin).
 
-**Navigation:** ← [A048 — Django Bulk Email with `send_mass_mail()`](../A048_Django_Bulk_Email/README.md) · [Series hub](../README.md) · → [A050 — Django File-based Cache](../A050_Django_File-based_Cache/)
+**Navigation:** ← [A048 — Django Bulk Email with `send_mass_mail()`](../A048_Django_Bulk_Email/README.md) · [Series hub](../README.md) · → [A050 — Django File-based Cache](../A050_Django_File-based_Cache/README.md)
 
 </div>
 
