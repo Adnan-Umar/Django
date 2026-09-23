@@ -686,6 +686,6 @@ long, and what happens when the cache lies?*
 **Sources used:** `myProject32/` artifact (Django 6.1.1 scaffold; `py -c "import django; print(django.get_version())"` → `6.1.1`).
 Live-verified: the `TypeError: cannot use 'list' as a set element (unhashable type: 'list')` traceback reproduced verbatim from curly-brace syntax; the parentheses fix confirmed via `GET /bulk-email/` → 200 with three console-backend email prints, each with `From: nouman0537@gmail.com`; `reverse('bulk_email')` → `/bulk-email/`; template resolution verified via app-directory loader; `manage.py check` → only `staticfiles.W004` ghost. `db.sqlite3` is 0 bytes and was never migrated (`.mode = ro` on all DB reads — SHA-256/mtime unchanged).
 
-**Navigation:** ← [A047 — Signal-based Welcome Email](../A047_Send_Auto_Welcome_Email_After_User_Registration_Signal_Use_Case/README.md) · [Series hub](../README.md) →
+**Navigation:** ← [A047 — Signal-based Welcome Email](../A047_Send_Auto_Welcome_Email_After_User_Registration_Signal_Use_Case/README.md) · [Series hub](../README.md) · → [A049 — Django In-Memory Cache (LocMemCache)](../A049_Django_In-Memory_Cache_(LocMemCache)/README.md)
 
 </div>
