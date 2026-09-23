@@ -1,4 +1,4 @@
-﻿# A047 — Send Auto Welcome Email After User Registration (Signal Use Case)
+# 🚀 A047 — Send Auto Welcome Email After User Registration (Signal Use Case)
 
 `📖 Lecture A047` · `🎓 Track: Core Django` · `📶 Level: Intermediate` · `✅ Status: Documented`
 
@@ -474,5 +474,5 @@ Verified runtime: Django 6.1.1 / Python 3.14.6 / `python-dotenv` installed. Live
 test user via shell, confirmed `From: nouman0537@gmail.com` with corrected code vs `From: None` with
 buggy code.
 
-**Navigation:** ← [A046 — Django Email Setup](../A046_Django_Email_Setup/README.md) · [Series hub](../README.md) →
+**Navigation:** ← [A046 — Django Email Setup](../A046_Django_Email_Setup/README.md) · [Series hub](../README.md) · [A048 — Django Bulk Email with `send_mass_mail()`](../A048_Django_Bulk_Email/README.md) →
 </div>

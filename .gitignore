@@ -4,6 +4,7 @@
 *.pyc
 *.pid
 *.postqode
+.kilo
 node_modules
 # package-lock.json
 # package.json
